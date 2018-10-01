@@ -1,0 +1,9 @@
+SELECT C FROM Tmio1Conductore C WHERE c.fechaContratacion >=" + fechaActual
+				+ " AND EXCEPT SELECT C1 FROM Tmio1Servicio S, Tmio1Conductore C1 WHERE S.Tmio1Conductore=C.cedula
+
+
+
+SELECT C, COUNT(*)
+FROM Tmio1Conductore C, Tmio1Servicio S1, Tmio1Servicio S2, Tmio1Bus B1, Tmio1Bus B2
+GROUPBY C
+HAVING COUNT(*)>1 AND S1.id!=S2.id AND B1.id!=B2.id

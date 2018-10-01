@@ -10,6 +10,7 @@ import co.edu.icesi.mio.modelo.Tmio1Conductore;
 
 public class TMIO1_CONDUCTORES implements ITMIO1_CONDUCTORES {
 
+	
 	@Override
 	public void save(EntityManager entityManager, Tmio1Conductore entity) {
 		entityManager.persist(entity);
@@ -34,19 +35,19 @@ public class TMIO1_CONDUCTORES implements ITMIO1_CONDUCTORES {
 	 */
 	@Override
 	public Tmio1Conductore findByCedula(EntityManager entityManager, String cedula) {
-		String jpql = "Select a from Tmio1Conductore a where a.cedula=" + cedula;
+		String jpql = "Select a from Tmio1Conductore a where a.cedula=\'" + cedula+"\'";
 		return (Tmio1Conductore) entityManager.createQuery(jpql).getSingleResult();
 	}
 
 	@Override
 	public List<Tmio1Conductore> findByApellidos(EntityManager entityManager, String apellidos) {
-		String jpql = "Select a from Tmio1Conductore a where a.apellidos=" + apellidos;
+		String jpql = "Select a from Tmio1Conductore a where a.apellidos=\'" + apellidos+"\'";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
 	@Override
 	public List<Tmio1Conductore> findByNombre(EntityManager entityManager, String nombre) {
-		String jpql = "Select a from Tmio1Conductore a where a.nombre=" + nombre;
+		String jpql = "Select a from Tmio1Conductore a where a.nombre=\'" + nombre+"\'";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
@@ -56,17 +57,13 @@ public class TMIO1_CONDUCTORES implements ITMIO1_CONDUCTORES {
 	 */
 	@Override
 	public List<Tmio1Conductore> obtenerConductores(EntityManager entityManager) {
-		String jpql = "Select a from Tmio1Conductore a ORDER BY a.fechaNacimiento : Date ASC";
+		String jpql = "Select a from Tmio1Conductore a ORDER BY a.fechaNacimiento";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
 	@Override
 	public List<Tmio1Conductore> obtenerConductoresMultipleServicioAsignado(EntityManager entityManager) {
-		// fecha Actual
-		Date fechaActual = GregorianCalendar.getInstance().getTime();
-		String jpql = "SELECT C FROM Tmio1Conductore C WHERE C.fechaContratacion >=" + fechaActual
-				+ " AND EXCEPT SELECT C1 FROM Tmio1Servicio S, Tmio1Conductore C1 WHERE S.Tmio1Conductore=C1.cedula";
-
+		String jpql = "SELECT C, COUNT(*) FROM Tmio1Conductore C, Tmio1Servicio S1, Tmio1Servicio S2, Tmio1Bus B1, Tmio1Bus B2 GROUPBY C HAVING COUNT(*)>1 AND S1.id!=S2.id AND B1.id!=B2.id";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
@@ -76,8 +73,11 @@ public class TMIO1_CONDUCTORES implements ITMIO1_CONDUCTORES {
 	 */
 	@Override
 	public List<Tmio1Conductore> obtenerConductoresLibres(EntityManager entityManager) {
+		// fecha Actual
+		Date fechaActual = GregorianCalendar.getInstance().getTime();
+		String jpql = "SELECT C FROM Tmio1Conductore C WHERE C.fechaContratacion >=" + fechaActual
+				+ " AND EXCEPT SELECT C1 FROM Tmio1Servicio S, Tmio1Conductore C1 WHERE S.Tmio1Conductore=C1.cedula";
 
-		String jpql = "Select a from Tmio1Conductore a";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 

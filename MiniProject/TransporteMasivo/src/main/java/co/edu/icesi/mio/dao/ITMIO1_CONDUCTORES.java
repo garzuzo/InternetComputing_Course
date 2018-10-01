@@ -8,7 +8,6 @@ import co.edu.icesi.mio.modelo.Tmio1Conductore;
 
 public interface ITMIO1_CONDUCTORES {
 
-	
 	public void save(EntityManager entityManager,Tmio1Conductore entity);
 	public void update(EntityManager entityManager,Tmio1Conductore entity);
 	public void delete(EntityManager entityManager,Tmio1Conductore entity);

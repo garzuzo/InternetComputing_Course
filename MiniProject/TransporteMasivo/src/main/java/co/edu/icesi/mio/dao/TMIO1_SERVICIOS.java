@@ -9,6 +9,7 @@ import co.edu.icesi.mio.modelo.Tmio1Servicio;
 
 public class TMIO1_SERVICIOS implements ITMIO1_SERVICIOS {
 
+	
 	@Override
 	public void save(EntityManager entityManager, Tmio1Servicio entity) {
 		entityManager.persist(entity);

@@ -9,6 +9,8 @@ import co.edu.icesi.mio.modelo.Tmio1Bus;
 
 public class TMIO1_BUSES implements ITMIO1_BUSES {
 
+
+	
 	@Override
 	public void save(EntityManager entityManager, Tmio1Bus entity) {
 
@@ -38,7 +40,7 @@ public class TMIO1_BUSES implements ITMIO1_BUSES {
 
 	@Override
 	public List<Tmio1Bus> findByTipo(EntityManager entityManager, String tipo) {
-		String jpql = "Select a from Tmio1Bus a where a.tipo=" + tipo;
+		String jpql = "Select a from Tmio1Bus a where a.tipo=\'" + tipo.charAt(0)+"\'";
 		return entityManager.createQuery(jpql).getResultList();
 	}
 

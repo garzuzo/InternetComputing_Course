@@ -9,7 +9,6 @@ import co.edu.icesi.mio.modelo.Tmio1Servicio;
 
 public interface ITMIO1_SERVICIOS {
 
-	
 	public void save(EntityManager entityManager,Tmio1Servicio entity);
 	public void update(EntityManager entityManager,Tmio1Servicio entity);
 	public void delete(EntityManager entityManager,Tmio1Servicio entity);

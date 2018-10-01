@@ -18,5 +18,5 @@ public interface ITMIO1_BUSES {
 	public List<Tmio1Bus> findByTipo(EntityManager entityManager,String tipo);
 	public List<Tmio1Bus> findByCapacidad(EntityManager entityManager,BigDecimal capacidad);
 	public List<Tmio1Bus> findAll(EntityManager entityManager);
-	
+
 }

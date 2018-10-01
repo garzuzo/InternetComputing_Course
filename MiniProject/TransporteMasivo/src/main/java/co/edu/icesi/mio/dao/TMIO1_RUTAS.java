@@ -8,7 +8,8 @@ import javax.persistence.EntityManager;
 import co.edu.icesi.mio.modelo.Tmio1Ruta;
 
 public class TMIO1_RUTAS implements ITMIO1_RUTAS{
-
+	
+	
 	@Override
 	public void save(EntityManager entityManager, Tmio1Ruta entity) {
 		entityManager.persist(entity);

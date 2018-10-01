@@ -19,22 +19,22 @@ public class Tmio1SitiosRuta implements Serializable {
 
 	//bi-directional many-to-one association to Tmio1Ruta
 	@ManyToOne
-	@JoinColumn(name="id_ruta")
+	@JoinColumn(name="id_ruta",insertable=false,updatable=false)
 	private Tmio1Ruta tmio1Ruta1;
 
 	//bi-directional many-to-one association to Tmio1Ruta
 	@ManyToOne
-	@JoinColumn(name="id_sitio")
+	@JoinColumn(name="id_sitio",insertable=false,updatable=false)
 	private Tmio1Ruta tmio1Ruta2;
 
 	//bi-directional many-to-one association to Tmio1Sitio
 	@ManyToOne
-	@JoinColumn(name="id_sitio")
+	@JoinColumn(name="id_sitio",insertable=false,updatable=false)
 	private Tmio1Sitio tmio1Sitio1;
 
 	//bi-directional many-to-one association to Tmio1Sitio
 	@ManyToOne
-	@JoinColumn(name="id_sitio")
+	@JoinColumn(name="id_sitio",insertable=false,updatable=false)
 	private Tmio1Sitio tmio1Sitio2;
 
 	public Tmio1SitiosRuta() {
