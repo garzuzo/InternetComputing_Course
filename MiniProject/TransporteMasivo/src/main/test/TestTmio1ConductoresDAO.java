@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -218,6 +219,11 @@ public class TestTmio1ConductoresDAO {
 
 	}
 
+	/**
+	 * 
+	 * Listado de los conductores que no tienen servicios asignados que no hayan
+	 * terminado (están libres).
+	 */
 	@Test
 	public void obtenerConductoresLibresTest() {
 		// escenarioConductorLibre();
@@ -225,7 +231,7 @@ public class TestTmio1ConductoresDAO {
 
 		System.out.println("conductores libres");
 		for (Tmio1Conductore cond : lista) {
-			System.out.print(cond.getNombre() + " ");
+			System.out.print(cond.getCedula() + " ");
 		}
 		System.out.println();
 	}
@@ -237,6 +243,7 @@ public class TestTmio1ConductoresDAO {
 
 		System.out.println("conductores con varios servicios asignados");
 		for (Tmio1Conductore cond : lista) {
+
 			System.out.print(cond.getNombre() + " ");
 		}
 		System.out.println();

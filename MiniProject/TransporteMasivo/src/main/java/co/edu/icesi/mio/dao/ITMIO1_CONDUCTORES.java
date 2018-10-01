@@ -1,6 +1,7 @@
 package co.edu.icesi.mio.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 
