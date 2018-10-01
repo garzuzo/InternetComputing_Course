@@ -1,5 +1,6 @@
 package co.edu.icesi.mio.dao;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface ITMIO1_SERVICIOS {
 	public void save(EntityManager entityManager,Tmio1Servicio entity);
 	public void update(EntityManager entityManager,Tmio1Servicio entity);
 	public void delete(EntityManager entityManager,Tmio1Servicio entity);
-	public List<Tmio1Servicio>  findByRangoFechas(EntityManager entityManager,Date fechaInicio, Date fechaFin);
+	public List<Tmio1Servicio>  findByRangoFechas(EntityManager entityManager,Calendar fechaInicio, Calendar fechaFin);
 	/*
 	 * Listado de los servicios que actualmente se prestan 
 	 * sábados y domingos o solamente

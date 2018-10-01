@@ -30,7 +30,7 @@ public class TMIO1_RUTAS implements ITMIO1_RUTAS{
 
 	@Override
 	public List<Tmio1Ruta> findByRangoDias(EntityManager entityManager, BigDecimal diaInicio, BigDecimal diaFin) {
-		String jpql = "Select a from Tmio1Ruta a where a.diaFin>="+diaFin.intValue()+"AND a.diaInicio<="+diaInicio.intValue();
+		String jpql = "Select a from Tmio1Ruta a where a.diaInicio>="+diaInicio.intValue()+"AND a.diaFin<="+diaFin.intValue();
 		return entityManager.createQuery(jpql).getResultList();
 	
 	}

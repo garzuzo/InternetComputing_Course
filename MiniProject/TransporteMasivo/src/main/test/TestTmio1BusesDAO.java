@@ -2,6 +2,7 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,9 +20,12 @@ import co.edu.icesi.mio.modelo.Tmio1Bus;
 import co.edu.icesi.mio.modelo.Tmio1Conductore;
 import co.edu.icesi.mio.modelo.Tmio1Ruta;
 import co.edu.icesi.mio.modelo.Tmio1Servicio;
+import co.edu.icesi.mio.modelo.Tmio1ServicioPK;
 import co.edu.icesi.mio.modelo.Tmio1ServiciosSitio;
+import co.edu.icesi.mio.modelo.Tmio1ServiciosSitioPK;
 import co.edu.icesi.mio.modelo.Tmio1Sitio;
 import co.edu.icesi.mio.modelo.Tmio1SitiosRuta;
+import co.edu.icesi.mio.modelo.Tmio1SitiosRutaPK;
 
 public class TestTmio1BusesDAO {
 
@@ -34,36 +38,36 @@ public class TestTmio1BusesDAO {
 	private TMIO1_RUTAS tmio1_rutas = new TMIO1_RUTAS();
 	private TMIO1_SERVICIOS tmio1_servicios = new TMIO1_SERVICIOS();
 
-	public void escenario() {
+	public void anadirDatos() {
 
 		entityManager.getTransaction().begin();
-		// tmio1_buses.begin(entityManager);
 
-		// tmio1_conductores.begin(entityManager);
-		// tmio1_rutas.begin(entityManager);
-		// tmio1_servicios.begin(entityManager);
 		Tmio1Bus bus = new Tmio1Bus();
 		bus.setCapacidad(BigDecimal.TEN);
 		// sec
 //	bus.setId(11);
-		bus.setMarca("volvo");
+		bus.setMarca("volvito");
 		bus.setModelo(BigDecimal.ONE);
-		bus.setPlaca("abc290");
-		bus.setTipo("alimentador");
+		bus.setPlaca("ab290");
+		bus.setTipo("A");
 		bus.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 		bus.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
-
+		tmio1_buses.save(entityManager, bus);
+		
+		
 		Tmio1Conductore conductor = new Tmio1Conductore();
-		conductor.setApellidos("Garzon Saa");
+		conductor.setApellidos("Montes");
 		conductor.setCedula("1");
 		conductor.setFechaContratacion(new Date());
 		conductor.setFechaNacimiento(new Date());
-		conductor.setNombre("Ernesto");
+		conductor.setNombre("Manuela");
 		conductor.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 		conductor.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
-
+		tmio1_conductores.save(entityManager, conductor);
+		
+		
 		Tmio1Ruta ruta = new Tmio1Ruta();
-		ruta.setActiva("activa");
+		ruta.setActiva("S");
 		ruta.setDescripcion("icesi-javeriana");
 		ruta.setDiaFin(new BigDecimal("7"));
 		ruta.setDiaInicio(new BigDecimal("6"));
@@ -71,19 +75,38 @@ public class TestTmio1BusesDAO {
 		ruta.setHoraInicio(new BigDecimal("18"));
 		// sec
 		// ruta.setId(1);
-		ruta.setNumero("12");
+		ruta.setNumero("A12");
 		ruta.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 		ruta.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 		ruta.setTmio1SitiosRutas1(new ArrayList<Tmio1SitiosRuta>());
 		ruta.setTmio1SitiosRutas2(new ArrayList<Tmio1SitiosRuta>());
+		tmio1_rutas.save(entityManager, ruta);
+		/**
+		 * servicioPK
+		 * 
+		 */
+		// servicio PK
+		Tmio1ServicioPK servicioPK = new Tmio1ServicioPK();
+		servicioPK.setCedulaConductor(conductor.getCedula());
+
+		GregorianCalendar fInicio = new GregorianCalendar();
+		fInicio.set(2007, 03, 04);
+		GregorianCalendar fFin = new GregorianCalendar();
+		fFin.set(2018, 9, 30);
+		servicioPK.setFechaFin(fInicio.getTime());
+		servicioPK.setFechaInicio(fFin.getTime());
+		servicioPK.setIdBus(bus.getId());
+		servicioPK.setIdRuta(ruta.getId());
 
 		Tmio1Servicio servicio = new Tmio1Servicio();
 		// hay que asignarles id?
-		// servicio.setId(ServicioPK);
+		servicio.setId(servicioPK);
 		servicio.setTmio1Bus(bus);
 		servicio.setTmio1Conductore(conductor);
 		servicio.setTmio1Ruta(ruta);
-
+		tmio1_servicios.save(entityManager, servicio);
+		
+		
 		Tmio1Sitio sitio = new Tmio1Sitio();
 		sitio.setDescripcion("sitio blabla");
 		// sec
@@ -93,19 +116,57 @@ public class TestTmio1BusesDAO {
 		sitio.setTmio1SitiosRutas1(new ArrayList<Tmio1SitiosRuta>());
 		sitio.setTmio1SitiosRutas2(new ArrayList<Tmio1SitiosRuta>());
 
+		/**
+		 * sitiosRuta1PK
+		 * 
+		 */
+		// sitio ruta PK
+		Tmio1SitiosRutaPK sitiosRuta1PK = new Tmio1SitiosRutaPK();
+		sitiosRuta1PK.setIdRuta(ruta.getId());
+		sitiosRuta1PK.setIdSitio((int) sitio.getId());
+
 		Tmio1SitiosRuta sitiosRuta1 = new Tmio1SitiosRuta();
 		sitiosRuta1.setTmio1Ruta1(ruta);
 		sitiosRuta1.setTmio1Ruta2(ruta);
 		sitiosRuta1.setTmio1Sitio1(sitio);
 		sitiosRuta1.setTmio1Sitio2(sitio);
 
+		/**
+		 * sitiosRuta1PK
+		 * 
+		 */
+		// sitio ruta PK
+		Tmio1SitiosRutaPK sitiosRuta2PK = new Tmio1SitiosRutaPK();
+		sitiosRuta2PK.setIdRuta(ruta.getId());
+		sitiosRuta2PK.setIdSitio((int) sitio.getId());
+
 		Tmio1SitiosRuta sitiosRuta2 = new Tmio1SitiosRuta();
+		sitiosRuta2.setId(sitiosRuta2PK);
 		sitiosRuta2.setTmio1Ruta1(ruta);
 		sitiosRuta2.setTmio1Ruta2(ruta);
 		sitiosRuta2.setTmio1Sitio1(sitio);
 		sitiosRuta2.setTmio1Sitio2(sitio);
 
+		/**
+		 * serviciosSitioPK
+		 * 
+		 */
+		Tmio1ServiciosSitioPK serviciosSitioPK = new Tmio1ServiciosSitioPK();
+
+		serviciosSitioPK.setCedulaConductor(conductor.getCedula());
+
+		GregorianCalendar fechaServSitio = new GregorianCalendar();
+		fechaServSitio.set(2007, 03, 04);
+		serviciosSitioPK.setFecha(fechaServSitio.getTime());
+		serviciosSitioPK.setHoraProgramada(10);
+		serviciosSitioPK.setIdBus(bus.getId());
+		serviciosSitioPK.setIdRuta(ruta.getId());
+		serviciosSitioPK.setIdSitios((int) sitio.getId());
 		Tmio1ServiciosSitio serviciosSitio = new Tmio1ServiciosSitio();
+		// id
+		serviciosSitio.setId(serviciosSitioPK);
+		serviciosSitio.setRealizado("S");
+		serviciosSitio.setHoraReal(BigDecimal.TEN);
 		serviciosSitio.setTmio1Bus(bus);
 		serviciosSitio.setTmio1Conductore(conductor);
 		serviciosSitio.setTmio1Ruta(ruta);
@@ -119,7 +180,7 @@ public class TestTmio1BusesDAO {
 		// relaciones ruta falta add
 		ruta.getTmio1Servicios().add(servicio);
 		ruta.getTmio1SitiosRutas1().add(sitiosRuta2);
-		ruta.getTmio1SitiosRutas2().add(sitiosRuta1);
+		tmio1_buses.save(entityManager, bus);ruta.getTmio1SitiosRutas2().add(sitiosRuta1);
 		ruta.getTmio1ServiciosSitios();
 
 		// bus
@@ -130,16 +191,13 @@ public class TestTmio1BusesDAO {
 		conductor.getTmio1Servicios().add(servicio);
 		conductor.getTmio1ServiciosSitios().add(serviciosSitio);
 
-		tmio1_buses.save(entityManager, bus);
-		tmio1_conductores.save(entityManager, conductor);
-		tmio1_rutas.save(entityManager, ruta);
-		tmio1_servicios.save(entityManager, servicio);
+		//tmio1_buses.save(entityManager, bus);
+		//tmio1_conductores.save(entityManager, conductor);
+		//tmio1_rutas.save(entityManager, ruta);
+		//tmio1_servicios.save(entityManager, servicio);
 
 		entityManager.getTransaction().commit();
-//		tmio1_buses.commit(entityManager);
-//		tmio1_conductores.commit(entityManager);
-//		tmio1_rutas.commit(entityManager);
-//		tmio1_servicios.commit(entityManager);
+
 	}
 
 	public void crearBus() {
@@ -161,29 +219,29 @@ public class TestTmio1BusesDAO {
 
 	@Test
 	public void encontrarPorParametrosTest() {
-
+		anadirDatos();
 		// escenario();
 
 	}
 
 	@Test
 	public void findByTipoTest() {
-		//crearBus();
-		List<Tmio1Bus> lista=tmio1_buses.findByTipo(entityManager, "c");
-		for(Tmio1Bus bus:lista)
+		// crearBus();
+		List<Tmio1Bus> lista = tmio1_buses.findByTipo(entityManager, "c");
+		for (Tmio1Bus bus : lista)
 			System.out.println(bus);
-		
+
 	}
 
 	@Test
 	public void findByModeloTest() {
-	//	crearBus();
+		// crearBus();
 		List<Tmio1Bus> lista = tmio1_buses.findByModelo(entityManager, BigDecimal.TEN);
-	System.out.println("por modelo");
+		System.out.println("por modelo");
 		for (Tmio1Bus bus : lista) {
-			System.out.print(bus.getId()+" ");
+			System.out.print(bus.getId() + " ");
 		}
-System.out.println();
+		System.out.println();
 	}
 
 	@Test

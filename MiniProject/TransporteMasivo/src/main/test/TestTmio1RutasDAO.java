@@ -1,5 +1,8 @@
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -10,6 +13,8 @@ import co.edu.icesi.mio.dao.TMIO1_BUSES;
 import co.edu.icesi.mio.dao.TMIO1_CONDUCTORES;
 import co.edu.icesi.mio.dao.TMIO1_RUTAS;
 import co.edu.icesi.mio.dao.TMIO1_SERVICIOS;
+import co.edu.icesi.mio.modelo.Tmio1Ruta;
+import co.edu.icesi.mio.modelo.Tmio1Servicio;
 
 public class TestTmio1RutasDAO {
 
@@ -21,16 +26,19 @@ public class TestTmio1RutasDAO {
 	private TMIO1_CONDUCTORES tmio1_conductores = new TMIO1_CONDUCTORES();
 	private TMIO1_RUTAS tmio1_rutas = new TMIO1_RUTAS();
 	private TMIO1_SERVICIOS tmio1_servicios = new TMIO1_SERVICIOS();
-	public void escenario() {
 
-		TMIO1_BUSES bus = new TMIO1_BUSES();
-		TMIO1_CONDUCTORES conductor = new TMIO1_CONDUCTORES();
-		TMIO1_RUTAS ruta = new TMIO1_RUTAS();
-		TMIO1_SERVICIOS servicio = new TMIO1_SERVICIOS();
-	}
-
+	/**
+	 * Permita que las rutas puedan buscarse por rango de días
+	 */
 	@Test
 	public void TestRangoDias() {
-	//	tmio1_rutas.findByRangoDias(entityManager, diaInicio, diaFin);
+		BigDecimal diaInicio = new BigDecimal("6");
+		BigDecimal diaFin = new BigDecimal("7");
+
+		List<Tmio1Ruta> lista = tmio1_rutas.findByRangoDias(entityManager, diaInicio, diaFin);
+		for (Tmio1Ruta ruta : lista) {
+			System.out.println(ruta.getId());
+		}
+		System.out.println();
 	}
 }
