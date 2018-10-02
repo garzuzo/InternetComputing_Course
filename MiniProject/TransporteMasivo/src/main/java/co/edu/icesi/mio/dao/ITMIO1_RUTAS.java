@@ -16,6 +16,6 @@ public interface ITMIO1_RUTAS {
 	public void delete(EntityManager entityManager,Tmio1Ruta entity);
 	public List<Tmio1Ruta> findByRangoDias(EntityManager entityManager,BigDecimal diaInicio,BigDecimal diaFin);
 	public List<Tmio1Ruta> findAll(EntityManager entityManager);
-	
+	public Tmio1Ruta findById(EntityManager entityManager, int id);
 	
 }

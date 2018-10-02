@@ -1,4 +1,8 @@
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +11,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
 import org.junit.Test;
@@ -53,8 +58,7 @@ public class TestTmio1BusesDAO {
 		bus.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 		bus.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 		tmio1_buses.save(entityManager, bus);
-		
-		
+
 		Tmio1Conductore conductor = new Tmio1Conductore();
 		conductor.setApellidos("Montes");
 		conductor.setCedula("1");
@@ -64,8 +68,7 @@ public class TestTmio1BusesDAO {
 		conductor.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 		conductor.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 		tmio1_conductores.save(entityManager, conductor);
-		
-		
+
 		Tmio1Ruta ruta = new Tmio1Ruta();
 		ruta.setActiva("S");
 		ruta.setDescripcion("icesi-javeriana");
@@ -105,8 +108,7 @@ public class TestTmio1BusesDAO {
 		servicio.setTmio1Conductore(conductor);
 		servicio.setTmio1Ruta(ruta);
 		tmio1_servicios.save(entityManager, servicio);
-		
-		
+
 		Tmio1Sitio sitio = new Tmio1Sitio();
 		sitio.setDescripcion("sitio blabla");
 		// sec
@@ -180,21 +182,19 @@ public class TestTmio1BusesDAO {
 		// relaciones ruta falta add
 		ruta.getTmio1Servicios().add(servicio);
 		ruta.getTmio1SitiosRutas1().add(sitiosRuta2);
-		tmio1_buses.save(entityManager, bus);ruta.getTmio1SitiosRutas2().add(sitiosRuta1);
+		tmio1_buses.save(entityManager, bus);
+		ruta.getTmio1SitiosRutas2().add(sitiosRuta1);
 		ruta.getTmio1ServiciosSitios();
 
 		// bus
 		bus.getTmio1Servicios().add(servicio);
 		bus.getTmio1ServiciosSitios().add(serviciosSitio);
 
-		// conductore
+		// conductores
 		conductor.getTmio1Servicios().add(servicio);
 		conductor.getTmio1ServiciosSitios().add(serviciosSitio);
 
-		//tmio1_buses.save(entityManager, bus);
-		//tmio1_conductores.save(entityManager, conductor);
-		//tmio1_rutas.save(entityManager, ruta);
-		//tmio1_servicios.save(entityManager, servicio);
+		
 
 		entityManager.getTransaction().commit();
 
@@ -217,25 +217,72 @@ public class TestTmio1BusesDAO {
 		entityManager.getTransaction().commit();
 	}
 
-	@Test
-	public void encontrarPorParametrosTest() {
-		anadirDatos();
-		// escenario();
+	public int agregarBus() {
+		entityManager.getTransaction().begin();
 
+		Tmio1Bus bus = new Tmio1Bus();
+		bus.setCapacidad(BigDecimal.TEN);
+		// sec
+//	bus.setId(11);
+		bus.setMarca("volvito");
+		bus.setModelo(BigDecimal.TEN);
+		bus.setPlaca("abc221");
+		bus.setTipo("d");
+		bus.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
+		bus.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
+		tmio1_buses.save(entityManager, bus);
+		entityManager.getTransaction().commit();
+		return bus.getId();
 	}
 
+	/**
+	 * working!
+	 */
 	@Test
 	public void findByTipoTest() {
-		// crearBus();
-		List<Tmio1Bus> lista = tmio1_buses.findByTipo(entityManager, "c");
+		try {
+			 crearBus();
+			}catch(Exception e) {
+				
+			}
+		List<Tmio1Bus> lista = tmio1_buses.findByTipo(entityManager, "d");
 		for (Tmio1Bus bus : lista)
 			System.out.println(bus);
 
 	}
 
+	/**
+	 * working!
+	 */
+	@Test
+	public void FindAndDeleteTest() {
+		int idBus = agregarBus();
+
+		Tmio1Bus finded = tmio1_buses.findById(entityManager, idBus);
+		assertNotNull(finded);
+		entityManager.getTransaction().begin();
+		tmio1_buses.delete(entityManager, finded);
+		entityManager.getTransaction().commit();
+		boolean test = false;
+		try {
+			finded = tmio1_buses.findById(entityManager, idBus);
+		} catch (NoResultException e) {
+			test = true;
+		}
+		assertTrue(test);
+
+	}
+
+	/**
+	 * working!
+	 */
 	@Test
 	public void findByModeloTest() {
-		// crearBus();
+		try {
+			crearBus();
+		} catch (Exception e) {
+
+		}
 		List<Tmio1Bus> lista = tmio1_buses.findByModelo(entityManager, BigDecimal.TEN);
 		System.out.println("por modelo");
 		for (Tmio1Bus bus : lista) {
@@ -244,9 +291,16 @@ public class TestTmio1BusesDAO {
 		System.out.println();
 	}
 
+	/**
+	 * working!
+	 */
 	@Test
 	public void findByCapacidadTest() {
-		// crearBus();
+		try {
+			crearBus();
+		} catch (Exception e) {
+
+		}
 		List<Tmio1Bus> lista = tmio1_buses.findByCapacidad(entityManager, BigDecimal.TEN);
 		System.out.println("por capacidad");
 		for (Tmio1Bus bus : lista) {

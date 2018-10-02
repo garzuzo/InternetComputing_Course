@@ -19,6 +19,14 @@ public class TMIO1_BUSES implements ITMIO1_BUSES {
 	}
 
 	@Override
+	public Tmio1Bus findById(EntityManager entityManager, int id) {
+
+		String psql="SELECT a FROM Tmio1Bus a WHERE a.id="+id;
+		return (Tmio1Bus) entityManager.createQuery(psql).getSingleResult();
+
+	}
+
+	@Override
 	public void update(EntityManager entityManager, Tmio1Bus entity) {
 
 		entityManager.merge(entity);
