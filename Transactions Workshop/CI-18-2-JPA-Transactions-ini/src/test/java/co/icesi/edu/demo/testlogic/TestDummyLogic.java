@@ -18,7 +18,7 @@ public class TestDummyLogic {
 
 	@Autowired
 	private IDummyLogic dummyLogic;
-	
+		
 	@Test
 	public void aTest() {
 
