@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="6" failures="0" name="co.edu.icesi.TEST.Test_Tmio1_Buses_DAO" time="9.845" errors="6" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_111\jre\bin"/>
+    <property name="java.vm.version" value="25.111-b14"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\sami_\Desktop\MiniProyectoComputacion"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="CO"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\sami_\Desktop\MiniProyectoComputacion"/>
+    <property name="java.runtime.version" value="1.8.0_111-b14"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_111\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\sami_\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\Users\sami_\Desktop\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2382182178829684198.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_111\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\frascati-runtime-1.4\bin;C:\Program Files\Java\jdk1.6.0_23\bin;C:\Users\sami_\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\sami_"/>
+    <property name="user.timezone" value="America/Bogota"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="sami_"/>
+    <property name="java.class.path" value="/C:/Users/sami_/eclipse/java-oxygen/eclipse/../../../.p2/pool/plugins/org.eclipse.m2e.maven.runtime_1.8.0.20170516-2042/jars/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_111\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="es"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_111"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_111\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_111\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_111\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\sami_\Desktop\MiniProyectoComputacion\EMBEDDED"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="co.edu.icesi.TEST.Test_Tmio1_Buses_DAO" name="testSave" time="4.483">
+    <error message="[PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: [PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:970)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:895)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39)
+	at co.edu.icesi.TEST.Test_Tmio1_Buses_DAO.&lt;init&gt;(Test_Tmio1_Buses_DAO.java:18)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.hibernate.MappingException: Repeated column in mapping for entity: model.Tmio1SitiosRuta column: id_ruta (should be mapped with insert=&quot;false&quot; update=&quot;false&quot;)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:835)
+	at org.hibernate.mapping.PersistentClass.checkPropertyColumnDuplication(PersistentClass.java:853)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:875)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:607)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	... 32 more
+</error>
+    <system-out>1616 [INFO] org.hibernate.jpa.internal.util.LogHelper 2018-09-28T12:29:10,205  HHH000204: Processing PersistenceUnitInfo [
+	name: MiniProyectoComputacion
+	...]
+1971 [INFO] org.hibernate.Version 2018-09-28T12:29:10,560  HHH000412: Hibernate Core {5.2.13.Final}
+1974 [INFO] org.hibernate.cfg.Environment 2018-09-28T12:29:10,563  HHH000206: hibernate.properties not found
+2069 [INFO] org.hibernate.annotations.common.Version 2018-09-28T12:29:10,658  HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2528 [WARN] org.hibernate.orm.connections.pooling 2018-09-28T12:29:11,117  HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2542 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:11,131  HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/pg_mio]
+2542 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:11,131  HHH10001001: Connection properties: {user=postgres, password=****}
+2543 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:11,132  HHH10001003: Autocommit mode: false
+2549 [INFO] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 2018-09-28T12:29:11,138  HHH000115: Hibernate connection pool size: 20 (min=1)
+2819 [INFO] org.hibernate.dialect.Dialect 2018-09-28T12:29:11,408  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+3621 [INFO] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl 2018-09-28T12:29:12,210  HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+3628 [INFO] org.hibernate.type.BasicTypeRegistry 2018-09-28T12:29:12,217  HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2631f68c
+</system-out>
+  </testcase>
+  <testcase classname="co.edu.icesi.TEST.Test_Tmio1_Buses_DAO" name="testFindByModel" time="0.917">
+    <error message="[PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: [PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:970)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:895)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39)
+	at co.edu.icesi.TEST.Test_Tmio1_Buses_DAO.&lt;init&gt;(Test_Tmio1_Buses_DAO.java:18)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.hibernate.MappingException: Repeated column in mapping for entity: model.Tmio1SitiosRuta column: id_ruta (should be mapped with insert=&quot;false&quot; update=&quot;false&quot;)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:835)
+	at org.hibernate.mapping.PersistentClass.checkPropertyColumnDuplication(PersistentClass.java:853)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:875)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:607)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	... 32 more
+</error>
+    <system-out>4965 [INFO] org.hibernate.jpa.internal.util.LogHelper 2018-09-28T12:29:13,554  HHH000204: Processing PersistenceUnitInfo [
+	name: MiniProyectoComputacion
+	...]
+5019 [WARN] org.hibernate.orm.connections.pooling 2018-09-28T12:29:13,608  HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+5019 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:13,608  HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/pg_mio]
+5020 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:13,609  HHH10001001: Connection properties: {user=postgres, password=****}
+5021 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:13,610  HHH10001003: Autocommit mode: false
+5022 [INFO] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 2018-09-28T12:29:13,611  HHH000115: Hibernate connection pool size: 20 (min=1)
+5120 [INFO] org.hibernate.dialect.Dialect 2018-09-28T12:29:13,709  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+5768 [INFO] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl 2018-09-28T12:29:14,357  HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+5771 [INFO] org.hibernate.type.BasicTypeRegistry 2018-09-28T12:29:14,360  HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2631f68c
+</system-out>
+  </testcase>
+  <testcase classname="co.edu.icesi.TEST.Test_Tmio1_Buses_DAO" name="testUpdate" time="0.944">
+    <error message="[PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: [PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:970)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:895)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39)
+	at co.edu.icesi.TEST.Test_Tmio1_Buses_DAO.&lt;init&gt;(Test_Tmio1_Buses_DAO.java:18)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.hibernate.MappingException: Repeated column in mapping for entity: model.Tmio1SitiosRuta column: id_ruta (should be mapped with insert=&quot;false&quot; update=&quot;false&quot;)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:835)
+	at org.hibernate.mapping.PersistentClass.checkPropertyColumnDuplication(PersistentClass.java:853)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:875)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:607)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	... 32 more
+</error>
+    <system-out>5885 [INFO] org.hibernate.jpa.internal.util.LogHelper 2018-09-28T12:29:14,474  HHH000204: Processing PersistenceUnitInfo [
+	name: MiniProyectoComputacion
+	...]
+5941 [WARN] org.hibernate.orm.connections.pooling 2018-09-28T12:29:14,530  HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+5943 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:14,532  HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/pg_mio]
+5944 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:14,533  HHH10001001: Connection properties: {user=postgres, password=****}
+5945 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:14,534  HHH10001003: Autocommit mode: false
+5945 [INFO] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 2018-09-28T12:29:14,534  HHH000115: Hibernate connection pool size: 20 (min=1)
+6058 [INFO] org.hibernate.dialect.Dialect 2018-09-28T12:29:14,647  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+6683 [INFO] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl 2018-09-28T12:29:15,272  HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+6689 [INFO] org.hibernate.type.BasicTypeRegistry 2018-09-28T12:29:15,278  HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2631f68c
+</system-out>
+  </testcase>
+  <testcase classname="co.edu.icesi.TEST.Test_Tmio1_Buses_DAO" name="testFindByType" time="1.262">
+    <error message="[PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: [PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:970)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:895)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39)
+	at co.edu.icesi.TEST.Test_Tmio1_Buses_DAO.&lt;init&gt;(Test_Tmio1_Buses_DAO.java:18)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.hibernate.MappingException: Repeated column in mapping for entity: model.Tmio1SitiosRuta column: id_ruta (should be mapped with insert=&quot;false&quot; update=&quot;false&quot;)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:835)
+	at org.hibernate.mapping.PersistentClass.checkPropertyColumnDuplication(PersistentClass.java:853)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:875)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:607)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	... 32 more
+</error>
+    <system-out>6866 [INFO] org.hibernate.jpa.internal.util.LogHelper 2018-09-28T12:29:15,455  HHH000204: Processing PersistenceUnitInfo [
+	name: MiniProyectoComputacion
+	...]
+6950 [WARN] org.hibernate.orm.connections.pooling 2018-09-28T12:29:15,539  HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+6951 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:15,540  HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/pg_mio]
+6954 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:15,543  HHH10001001: Connection properties: {user=postgres, password=****}
+6954 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:15,543  HHH10001003: Autocommit mode: false
+6955 [INFO] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 2018-09-28T12:29:15,544  HHH000115: Hibernate connection pool size: 20 (min=1)
+7217 [INFO] org.hibernate.dialect.Dialect 2018-09-28T12:29:15,806  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+7993 [INFO] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl 2018-09-28T12:29:16,582  HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+8002 [INFO] org.hibernate.type.BasicTypeRegistry 2018-09-28T12:29:16,591  HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2631f68c
+</system-out>
+  </testcase>
+  <testcase classname="co.edu.icesi.TEST.Test_Tmio1_Buses_DAO" name="testDelete" time="1.152">
+    <error message="[PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: [PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:970)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:895)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39)
+	at co.edu.icesi.TEST.Test_Tmio1_Buses_DAO.&lt;init&gt;(Test_Tmio1_Buses_DAO.java:18)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.hibernate.MappingException: Repeated column in mapping for entity: model.Tmio1SitiosRuta column: id_ruta (should be mapped with insert=&quot;false&quot; update=&quot;false&quot;)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:835)
+	at org.hibernate.mapping.PersistentClass.checkPropertyColumnDuplication(PersistentClass.java:853)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:875)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:607)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	... 32 more
+</error>
+    <system-out>8093 [INFO] org.hibernate.jpa.internal.util.LogHelper 2018-09-28T12:29:16,682  HHH000204: Processing PersistenceUnitInfo [
+	name: MiniProyectoComputacion
+	...]
+8159 [WARN] org.hibernate.orm.connections.pooling 2018-09-28T12:29:16,748  HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+8160 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:16,749  HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/pg_mio]
+8163 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:16,752  HHH10001001: Connection properties: {user=postgres, password=****}
+8163 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:16,752  HHH10001003: Autocommit mode: false
+8166 [INFO] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 2018-09-28T12:29:16,755  HHH000115: Hibernate connection pool size: 20 (min=1)
+8336 [INFO] org.hibernate.dialect.Dialect 2018-09-28T12:29:16,925  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+9071 [INFO] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl 2018-09-28T12:29:17,660  HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+9074 [INFO] org.hibernate.type.BasicTypeRegistry 2018-09-28T12:29:17,663  HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2631f68c
+</system-out>
+  </testcase>
+  <testcase classname="co.edu.icesi.TEST.Test_Tmio1_Buses_DAO" name="testFindByCapacity" time="1.087">
+    <error message="[PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: [PersistenceUnit: MiniProyectoComputacion] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:970)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:895)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39)
+	at co.edu.icesi.TEST.Test_Tmio1_Buses_DAO.&lt;init&gt;(Test_Tmio1_Buses_DAO.java:18)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.hibernate.MappingException: Repeated column in mapping for entity: model.Tmio1SitiosRuta column: id_ruta (should be mapped with insert=&quot;false&quot; update=&quot;false&quot;)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:835)
+	at org.hibernate.mapping.PersistentClass.checkPropertyColumnDuplication(PersistentClass.java:853)
+	at org.hibernate.mapping.PersistentClass.checkColumnDuplication(PersistentClass.java:875)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:607)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	... 32 more
+</error>
+    <system-out>9287 [INFO] org.hibernate.jpa.internal.util.LogHelper 2018-09-28T12:29:17,876  HHH000204: Processing PersistenceUnitInfo [
+	name: MiniProyectoComputacion
+	...]
+9368 [WARN] org.hibernate.orm.connections.pooling 2018-09-28T12:29:17,957  HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+9369 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:17,958  HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/pg_mio]
+9369 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:17,958  HHH10001001: Connection properties: {user=postgres, password=****}
+9370 [INFO] org.hibernate.orm.connections.pooling 2018-09-28T12:29:17,959  HHH10001003: Autocommit mode: false
+9371 [INFO] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 2018-09-28T12:29:17,960  HHH000115: Hibernate connection pool size: 20 (min=1)
+9533 [INFO] org.hibernate.dialect.Dialect 2018-09-28T12:29:18,122  HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+10233 [INFO] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl 2018-09-28T12:29:18,822  HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+10234 [INFO] org.hibernate.type.BasicTypeRegistry 2018-09-28T12:29:18,823  HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2631f68c
+</system-out>
+  </testcase>
+</testsuite>
