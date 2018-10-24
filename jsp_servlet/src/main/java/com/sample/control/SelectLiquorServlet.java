@@ -12,26 +12,36 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
-@WebServlet(
-        name = "selectliquorservlet",
-        urlPatterns = "/SelectLiquor"
-)
+@WebServlet(name = "selectliquorservlet", urlPatterns = "/SelectLiquor")
 public class SelectLiquorServlet extends HttpServlet {
-   
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String liquorType = req.getParameter("Type");
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        LiquorSelect liquorSelect = new LiquorSelect();
-        LiquorType l = LiquorType.valueOf(liquorType);
+		if (req.getQueryString() == null) {
 
-        List liquorBrands = liquorSelect.getAvailableBrands(l);
+			resp.sendRedirect("index.html");
+			// RequestDispatcher view = req.getRequestDispatcher("index.html");
+			// view.forward(req, resp);
+		} else {
+			doPost(req, resp);
+		}
 
-        req.setAttribute("brands", liquorBrands);
-        RequestDispatcher view = req.getRequestDispatcher("result.jsp");
-        view.forward(req, resp);
+	}
 
-    }
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String liquorType = req.getParameter("Type");
+
+		LiquorSelect liquorSelect = new LiquorSelect();
+		LiquorType l = LiquorType.valueOf(liquorType);
+
+		List liquorBrands = liquorSelect.getAvailableBrands(l);
+
+		req.setAttribute("brands", liquorBrands);
+		RequestDispatcher view = req.getRequestDispatcher("result.jsp");
+		view.forward(req, resp);
+
+	}
 }
