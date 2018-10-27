@@ -20,8 +20,8 @@ public class ValidacionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String path = req.getParameter("submit");//getRequestURL().toString();//.getRequestURI();//.getPathInfo();//.getQueryString();//.getLocalAddr();//.getRequestURI();//.getQueryString();//.getPathInfo();//.getContextPath();
-		if (path.equals("index.html")) {
+		String path = req.getContextPath();//req.getParameter("submit");//getRequestURL().toString();//.getRequestURI();//.getPathInfo();//.getQueryString();//.getLocalAddr();//.getRequestURI();//.getQueryString();//.getPathInfo();//.getContextPath();
+		if (path.equals("/jsp_servlet")) {
 
 			// resp.sendRedirect("result.jsp");
 			// String liquorType = req.getParameter("Type");

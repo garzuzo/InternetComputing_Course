@@ -5,9 +5,10 @@
 	<center>
 		<h1>Available Brands</h1>
 		<%
-			//if (request.getParameter("Type")== null) {
-				//response.sendRedirect("index.html");
-			//}
+			if (request.getParameter("Type")== null && request.getParameter("submit1")== null) {
+				response.sendRedirect("index.html");
+			}
+		
 				List result = (List) request.getAttribute("brands");
 				Iterator it = result.iterator();
 
