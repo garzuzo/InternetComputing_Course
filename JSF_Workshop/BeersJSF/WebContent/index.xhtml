@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta charset="UTF-8">
+<h:title>Liquor Store</h:title>
+</meta>
+</head>
+<h:body>
+	<center>
+		<h1>Select the type of Liquor</h1>
+		<h:form>
+			<br></br>
+			<h:selectOneMenu value="#{LiquorSelect.selectedOpt}">
+            <f:selectItem itemValue="WINE" itemLabel="WINE" />
+              <f:selectItem itemValue="WHISKY" itemLabel="WHISKY" />
+                <f:selectItem itemValue="BEER" itemLabel="BEER" />
+            
+
+        </h:selectOneMenu>
+        <br></br><br></br>
+        <input type="submit"></input>
+        
+    </h:form>
+		Enlaces de interés
+
+	</center>
+	<br></br>
+	<center>
+		<h:form method="get" action="Validation">
+			<INPUT TYPE="SUBMIT" NAME="submit1" VALUE="Seleccionar Todos">
+			</INPUT>
+		</h:form>
+	</center>
+</h:body>
+</html>
