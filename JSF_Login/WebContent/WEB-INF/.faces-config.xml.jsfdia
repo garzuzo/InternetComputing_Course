@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:login.xhtml" PATH="login.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:login.xhtml:0" NAME="item" PATH="login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="admin:#{Control.validateUsernamePassword}:#paginas#info.xhtml"
+    NAME="output" PATH="/paginas/info.xhtml"
+    TARGET="rules:#paginas#info.xhtml"
+    TITLE="#{Control.validateUsernamePassword}:admin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paginas#info.xhtml"
+  PATH="/paginas/info.xhtml" SHAPE="448,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#paginas#info.xhtml:0" NAME="item"
+   PATH="/paginas/info.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout:#{Control.logout}:login.xhtml"
+    NAME="output" PATH="login.xhtml" TARGET="rules:login.xhtml"
+    TITLE="#{Control.logout}:logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

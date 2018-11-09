@@ -12,54 +12,60 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class Control implements Serializable {
 
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -839040624126457782L;
 	private String user;
 	private String pwd;
 	private String msg;
-	
-	//validate and login
+
+	// validate and login
 	public String validateUsernamePassword() {
-	boolean valid = user.equals(pwd);
-	if (valid && !user.equals("")) {
-	HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-	.getExternalContext().getSession(false);
-	session.setAttribute("username", user);
-	return "admin";
-	} else {
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Incorrect information","Please enter correct username/Password"));
-	user = null;
-	return "login";
+		boolean valid = user.equals(pwd);
+		if (valid && !user.equals("")) {
+			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+					.getSession(false);
+			session.setAttribute("username", user);
+			return "admin";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Incorrect information", "Please enter correct username/Password"));
+			user = null;
+			return "login";
+		}
 	}
-	}
-	//logout
+
+	// logout
 	public String logout() {
-	HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-	.getExternalContext().getSession(false);
-	session.invalidate();
-	user=null;
-	return "logout";
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		session.invalidate();
+		user = null;
+		return "logout";
 	}
-	
+
 	public String getUser() {
 		return user;
 	}
+
 	public void setUser(String user) {
 		this.user = user;
 	}
+
 	public String getPwd() {
 		return pwd;
 	}
+
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+
 	public String getMsg() {
 		return msg;
 	}
+
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	
-	
-	
-	
+
 }

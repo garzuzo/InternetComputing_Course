@@ -8,39 +8,20 @@
 <h:head></h:head>
 <body>
 	<h:form >
-		<h:panelGrid rendered="#{Control.user==null}">
+	<!--  rendered="#{Control.user==null}" -->
+	
 			<h:outputLabel value="Usuario" />
 			<h:inputText value="#{Control.user}" />
 			<br></br>
 			<h:outputLabel value="Constrasena" />
 			<h:inputSecret value="#{Control.pwd}" />
-			<h:commandButton action="#{Control.validateUsernamePassword()}"
+			<h:commandButton action="#{Control.validateUsernamePassword}"
 				value="Ingresar" />
 
 
-
-		</h:panelGrid>
-
 	</h:form>
 	
-	<h:panelGrid
-		rendered="#{Control.user!=null}">
-		<table border="2">
-			<c:forEach items="#{header}" var="list">
-
-				<tr>
-					<td>#{list.key}</td>
-
-					<td>#{list.value}</td>
-
-				</tr>
-			</c:forEach>
-
-		</table>
-		<h:form>
-				<h:commandButton action="#{Control.logout()}" value="Regresar" />
-		</h:form>
-	</h:panelGrid>
+	
 
 
 </body>
