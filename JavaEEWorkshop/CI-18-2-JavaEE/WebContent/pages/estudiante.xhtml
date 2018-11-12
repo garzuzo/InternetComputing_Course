@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head></h:head>
+<h:body>
+					<div class="jumbotron jumbotron-fluid"
+						style="background-color: #3c77aa;">
+						<div class="container">
+							<h1 class="display-4">Gestión de Estudiantes</h1>
+						</div>
+					</div>
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5" id="crearEstudiante">
+			<h:outputLabel>Código</h:outputLabel>
+			<h:inputText value="#{estudianteNB.codigo}" />
+			<h:outputLabel>Nombre</h:outputLabel>
+			<h:inputText value="#{estudianteNB.nombre}" />
+			<h:outputLabel>Apellidos</h:outputLabel>
+			<h:inputText value="#{estudianteNB.apellidos}" />
+			<h:outputLabel>Tipo</h:outputLabel>
+			<h:inputText value="#{estudianteNB.tipo}" />
+			<h:outputLabel>Sexo</h:outputLabel>
+			<h:inputText value="#{estudianteNB.sexo}" />
+			<h:outputLabel>MatAprobar</h:outputLabel>
+			<h:inputText value="#{estudianteNB.codigo}" />
+			<h:outputLabel>Programas estudiantes</h:outputLabel>
+			<h:selectOneMenu class="form-control" id="frecuencia"
+					value="#{estudianteNB.programa}">
+					<f:selectItems value="#{estudianteNB.listaProgramas()}" />
+				</h:selectOneMenu>
+			<h:commandButton action="#{estudianteNB.agregarEstudiante}"
+				type="submit" value="Agregar" />			
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
