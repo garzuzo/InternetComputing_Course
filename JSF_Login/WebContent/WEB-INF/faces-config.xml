@@ -11,7 +11,7 @@
 			<from-action>#{Control.validateUsernamePassword}</from-action>
 			<from-outcome>admin</from-outcome>
 			<to-view-id>/paginas/info.xhtml</to-view-id>
-
+			<redirect></redirect>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -22,7 +22,7 @@
 			<from-action>#{Control.logout}</from-action>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>login.xhtml</to-view-id>
-
+			<redirect></redirect>
 
 		</navigation-case>
 	</navigation-rule>

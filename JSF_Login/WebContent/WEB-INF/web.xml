@@ -17,6 +17,8 @@
 		<filter-name>Filtro</filter-name>
 		<url-pattern>/paginas/*</url-pattern>
 	</filter-mapping>
+
+
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

@@ -41,16 +41,18 @@ public class Filtro implements Filter {
 
 		// String r=request.get.getLocalAddr();
 
-		String cp = (String) ((HttpServletRequest) request).getAttribute("user");// .getContextPath();
-		if (cp!=null && cp.equals("admin")) {
-			String halfPath = ((HttpServletRequest) request).getContextPath();
-			((HttpServletResponse) response).sendRedirect(halfPath + "/paginas/info.xhtml");
-
-		}else if(cp==null) {
+		String cp = (String) ((HttpServletRequest) request).getSession().getAttribute("username");// .getContextPath();
+		boolean ret=false;
+		if (cp!=null ) {
+		//	String halfPath = ((HttpServletRequest) request).getContextPath();
+			//((HttpServletResponse) response).sendRedirect(halfPath + "/paginas/info.xhtml");
+ret=true;
+		}else{
 			String halfPath = ((HttpServletRequest) request).getContextPath();
 			((HttpServletResponse) response).sendRedirect(halfPath +"/login.xhtml");
 		}
 		// pass the request along the filter chain
+		if(ret)
 		chain.doFilter(request, response);
 	}
 
