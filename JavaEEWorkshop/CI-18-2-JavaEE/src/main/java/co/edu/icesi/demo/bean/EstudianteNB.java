@@ -19,7 +19,7 @@ import co.edu.icesi.demo.model.TPrograma;
 @SessionScoped
 public class EstudianteNB implements Serializable {
 
-	@EJB(lookup="java:global/CI-18-2-JavaEE-prof-full/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
+	@EJB(lookup = "java:global/CI-18-2-JavaEE-prof-full/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
 	private IEstudianteLogicRemota estudianteLogic;
 
 	/**
@@ -36,8 +36,8 @@ public class EstudianteNB implements Serializable {
 	private String sexo;
 
 	private String tipo;
-	
-	private String programa;
+
+	private String programa = "09-DERECHO";
 
 	private List<TMatxaprobar> TMatxaprobars;
 
@@ -98,9 +98,8 @@ public class EstudianteNB implements Serializable {
 	public void setTProgAlumnos(List<TProgAlumno> tProgAlumnos) {
 		TProgAlumnos = tProgAlumnos;
 	}
-	
-	public List<String> listaProgramas()
-	{
+
+	public List<String> listaProgramas() {
 		return estudianteLogic.listaProgramas();
 	}
 
@@ -113,34 +112,91 @@ public class EstudianteNB implements Serializable {
 		talumno.setSexo(sexo);
 		talumno.setTipo(tipo);
 
-		TPrograma pActual=estudianteLogic.consultarPrograma(programa.split("-")[0]);
-		
-		TProgAlumno tProgAl=new TProgAlumno();
+		TPrograma pActual = estudianteLogic.consultarPrograma(programa.split("-")[0]);
+
+		TProgAlumno tProgAl = new TProgAlumno();
 		tProgAl.setTAlumno(talumno);
 		tProgAl.setTPrograma(pActual);
 		tProgAl.setCohorte("182");
 		tProgAl.setSemestre("2");
-		TProgAlumnoPK tpaPK=new TProgAlumnoPK();
+		TProgAlumnoPK tpaPK = new TProgAlumnoPK();
 		tpaPK.setAlumnoCodigo(talumno.getCodigo());
 		tpaPK.setPeriodoAcad("182");
 		tpaPK.setPrincipal("S");
 		tpaPK.setProgramaCodigo(pActual.getCodigo());
 		tProgAl.setId(tpaPK);
-		
+
 		talumno.setTMatxaprobars(TMatxaprobars);
-		TProgAlumnos =new ArrayList<TProgAlumno>();
-		
+		TProgAlumnos = new ArrayList<TProgAlumno>();
+
 		TProgAlumnos.add(tProgAl);
 		talumno.setTProgAlumnos(TProgAlumnos);
-		
-		
-		
-		//TODO obtener el programa del alumno y crear agregarlo a la colección
+
+		// TODO obtener el programa del alumno y crear agregarlo a la colección
 		// de programas para agregarlo al estudiante
-	
+
 		estudianteLogic.createAlumno(talumno);
-		//TODO validar si la creación fue exitosa para retornar failure o success.
+		// TODO validar si la creación fue exitosa para retornar failure o success.
 		return "success";
+	}
+
+	public void obtenerDatosConsulta() {
+
+		TAlumno act = new TAlumno();
+		act = estudianteLogic.consultarAlumno(codigo);
+
+		TPrograma pAct = act.getTProgAlumnos().get(0).getTPrograma();
+
+		String cadenaPrograma = pAct.getCodigo() + "-" + pAct.getDescripcion();
+
+		apellidos = act.getApellidos();
+		nombre = act.getNombre();
+		programa = cadenaPrograma;
+		tipo = act.getTipo();
+		sexo = act.getSexo();
+		codigo = act.getCodigo();
+
+	}
+
+	public void actualizarDatos() {
+		TAlumno talumno = new TAlumno();
+
+		talumno.setApellidos(apellidos);
+		talumno.setCodigo(codigo);
+		talumno.setNombre(nombre);
+		talumno.setSexo(sexo);
+		talumno.setTipo(tipo);
+
+		TPrograma pActual = estudianteLogic.consultarPrograma(programa.split("-")[0]);
+
+		TProgAlumno tProgAl = new TProgAlumno();
+		tProgAl.setTAlumno(talumno);
+		tProgAl.setTPrograma(pActual);
+		tProgAl.setCohorte("182");
+		tProgAl.setSemestre("2");
+		TProgAlumnoPK tpaPK = new TProgAlumnoPK();
+		tpaPK.setAlumnoCodigo(talumno.getCodigo());
+		tpaPK.setPeriodoAcad("182");
+		tpaPK.setPrincipal("S");
+		tpaPK.setProgramaCodigo(pActual.getCodigo());
+		tProgAl.setId(tpaPK);
+
+		talumno.setTMatxaprobars(TMatxaprobars);
+		TProgAlumnos = new ArrayList<TProgAlumno>();
+
+		TProgAlumnos.add(tProgAl);
+		talumno.setTProgAlumnos(TProgAlumnos);
+
+		// TODO obtener el programa del alumno y crear agregarlo a la colección
+		// de programas para agregarlo al estudiante
+
+		estudianteLogic.updateAlumno(talumno);
+	}
+
+	public void eliminarDatos() {
+		TAlumno alumnoAct = estudianteLogic.consultarAlumno(codigo);
+		
+		estudianteLogic.deleteAlumno(alumnoAct);
 	}
 
 	public String getPrograma() {

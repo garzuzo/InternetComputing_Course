@@ -15,4 +15,8 @@ public interface IEstudianteLogicRemota {
 	public List<String> listaProgramas();
 	
 	public TPrograma consultarPrograma(String programa);
+	public TAlumno consultarAlumno(String codigo);
+	public void updateAlumno(TAlumno talumno);
+	public void deleteAlumno(TAlumno alumno);
+	
 }

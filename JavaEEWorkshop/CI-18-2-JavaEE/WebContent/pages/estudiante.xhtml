@@ -25,15 +25,21 @@
 			<h:inputText value="#{estudianteNB.tipo}" />
 			<h:outputLabel>Sexo</h:outputLabel>
 			<h:inputText value="#{estudianteNB.sexo}" />
-			<h:outputLabel>MatAprobar</h:outputLabel>
-			<h:inputText value="#{estudianteNB.codigo}" />
 			<h:outputLabel>Programas estudiantes</h:outputLabel>
 			<h:selectOneMenu class="form-control" id="frecuencia"
 					value="#{estudianteNB.programa}">
 					<f:selectItems value="#{estudianteNB.listaProgramas()}" />
 				</h:selectOneMenu>
 			<h:commandButton action="#{estudianteNB.agregarEstudiante}"
-				type="submit" value="Agregar" />			
+				type="submit" value="Agregar" />
+						<br></br>
+					<h:commandButton action="#{estudianteNB.obtenerDatosConsulta()}" type="submit" value="Consultar" />
+					<br></br>
+							<h:commandButton action="#{estudianteNB.actualizarDatos()}" type="submit" value="Actualizar" />	
+									<br></br>
+							<h:commandButton action="#{estudianteNB.eliminarDatos()}" type="submit" value="Eliminar" />
+							<br></br>
+							<h:commandButton action="#{estudianteNB}" value="Cancelar" />		
 		</h:panelGrid>
 	</h:form>
 	

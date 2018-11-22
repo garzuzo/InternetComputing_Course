@@ -77,15 +77,49 @@ public class EstudiantesLogic implements IEstudianteLogicRemota, IEstudianteLogi
 
 		// TODO validar los datos antes de insertar e insertar también el TProgAlumno.
 		talumnoDao.save(entityManager, talumno);
-		
+
 		List<TProgAlumno> lista = talumno.getTProgAlumnos();
 		for (TProgAlumno act : lista)
 			tprogAlumnoDao.save(entityManager, act);
-		
+
+	}
+
+	public void deleteAlumno(TAlumno alumno) {
+		talumnoDao = new TAlumnoDao();
+		deleteProgAlumno(alumno.getTProgAlumnos());
+		talumnoDao.delete(entityManager, alumno);
+	}
+
+	public void deleteProgAlumno(List<TProgAlumno> tpa) {
+		tprogAlumnoDao = new TProgAlumnoDao();
+		for (TProgAlumno act : tpa)
+			tprogAlumnoDao.delete(entityManager, act);
+	}
+
+	public void updateAlumno(TAlumno talumno) {
+
+		talumnoDao = new TAlumnoDao();
+		tprogAlumnoDao = new TProgAlumnoDao();
+		TProgAlumno tprogAlumno = new TProgAlumno();
+
+		// TODO validar los datos antes de insertar e insertar también el TProgAlumno.
+		talumnoDao.update(entityManager, talumno);
+
+		List<TProgAlumno> lista = talumno.getTProgAlumnos();
+		for (TProgAlumno act : lista)
+			tprogAlumnoDao.save(entityManager, act);
+
+	}
+
+	public TAlumno consultarAlumno(String codigo) {
+
+		talumnoDao = new TAlumnoDao();
+		return talumnoDao.findById(entityManager, codigo);
+
 	}
 
 	public TPrograma consultarPrograma(String programa) {
-		tprogramaDao=new TProgramaDao();
+		tprogramaDao = new TProgramaDao();
 		return tprogramaDao.findById(entityManager, programa);
 	}
 

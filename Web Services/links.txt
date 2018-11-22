@@ -1,0 +1,4 @@
+https://javaee.github.io/tutorial/webservices-intro.html#GIJTI
+https://javaee.github.io/tutorial/jaxrs001.html
+https://javaee.github.io/tutorial/jaxrs-client001.html
+https://dzone.com/articles/intro-rest

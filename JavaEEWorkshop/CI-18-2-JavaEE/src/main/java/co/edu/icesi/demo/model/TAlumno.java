@@ -32,7 +32,7 @@ public class TAlumno implements Serializable {
 	private List<TMatxaprobar> TMatxaprobars;
 
 	//bi-directional many-to-one association to TProgAlumno
-	@OneToMany(mappedBy="TAlumno")
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="TAlumno")
 	private List<TProgAlumno> TProgAlumnos;
 
 	public TAlumno() {
