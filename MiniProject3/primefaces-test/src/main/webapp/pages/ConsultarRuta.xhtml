@@ -7,4 +7,12 @@
 
 	<ui:composition template="">
 	</ui:composition>
+	
+		<h:outputLabel>dia menor</h:outputLabel>
+		<p:inputText value="#{Login.user}" />
+			<h:outputLabel>dia mayor</h:outputLabel>
+			<p:inputText value="#{Login.user}" />
+		<p:commandButton id="btnClean" binding="#{estudiantePF.btnClean}"
+					action="#{estudiantePF.cancelEstudiante()}"
+					update="formEstudiante, growX" value="Cancel" />
 </html>

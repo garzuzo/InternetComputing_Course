@@ -14,7 +14,7 @@ import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.model.Tmio1Bus;
 
 @Service
-public class TmioBusesLogic implements ITmioBusesLogic {
+public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemota {
 
 	@Autowired
 	private ITmio1_Buses_DAO buses;

@@ -14,7 +14,7 @@ import co.edu.icesi.mio.dao.ITmio1_Rutas_DAO;
 import co.edu.icesi.mio.model.Tmio1Ruta;
 
 @Service
-public class TmioRutasLogic implements ITmioRutasLogic {
+public class TmioRutasLogic implements ITmioRutasLogicLocal,ITmioRutasLogicRemota {
 
 	@Autowired
 	private ITmio1_Rutas_DAO rutas;

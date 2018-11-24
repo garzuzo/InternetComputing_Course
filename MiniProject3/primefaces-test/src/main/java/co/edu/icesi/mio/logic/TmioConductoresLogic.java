@@ -19,7 +19,7 @@ import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
 
 @Service
-public class TmioConductoresLogic implements ITmioConductoresLogic{
+public class TmioConductoresLogic implements ITmioConductoresLogicLocal,ITmioConductoresLogicRemota{
 
 	@Autowired
 	private ITmio1_Conductores_DAO conductorDAO;

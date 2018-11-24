@@ -2,27 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
+       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html">
 
 	<ui:composition template="">
 	</ui:composition>
-	
-	<h:outputLabel>consultar por nombre</h:outputLabel>
-	<p:inputText value="#{Conductor.nombre}" />
+	<h:outputLabel>consultar por modelo</h:outputLabel>
+	<p:inputText value="#{Bus.modelo}" />
 		<p:commandButton id="btnClean" binding="#{estudiantePF.btnClean}"
-					action="#{estudiantePF.cancelEstudiante()}"
+					action="#{Bus.findByModelo()}"
 					update="formEstudiante, growX" value="Cancel" />
 					
-					<h:outputLabel>consultar por apellidos</h:outputLabel>
-	<p:inputText value="#{Conductor.nombre}" />
+					<h:outputLabel>consultar por tipo</h:outputLabel>
+	<p:inputText value="#{Bus.tipo}" />
 		<p:commandButton id="btnClean" binding="#{estudiantePF.btnClean}"
-					action="#{estudiantePF.cancelEstudiante()}"
+					action="#{Bus.findByTipo()}"
 					update="formEstudiante, growX" value="Cancel" />
 					
-					<h:outputLabel>consultar por cédula</h:outputLabel>
-	<p:inputText value="#{Conductor.nombre}" />
+					<h:outputLabel>consultar por capacidad</h:outputLabel>
+	<p:inputText value="#{Bus.capacidad}" />
 		<p:commandButton id="btnClean" binding="#{estudiantePF.btnClean}"
-					action="#{estudiantePF.cancelEstudiante()}"
+					action="#{Bus.findByCapacidad()}"
 					update="formEstudiante, growX" value="Cancel" />
 </html>

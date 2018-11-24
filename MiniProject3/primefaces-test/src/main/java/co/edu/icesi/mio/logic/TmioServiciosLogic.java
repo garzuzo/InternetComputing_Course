@@ -25,7 +25,7 @@ import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServicioPK;
 
 @Service
-public class TmioServiciosLogic implements ITmioServiciosLogic {
+public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServiciosLogicRemota {
 
 	@Autowired
 	private ITmio1_Servicios_DAO servicioDAO;

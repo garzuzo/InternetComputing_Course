@@ -5,8 +5,18 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<body> 
-
-</body> 
+<ui:composition template="">
+	</ui:composition>
+	<h:outputLabel>nombre</h:outputLabel>
+	<p:inputText value="#{Conductor.nombre}" />
+	<h:outputLabel>cedula</h:outputLabel>
+	<p:inputText value="#{Conductor.cedula}" />
+		<h:outputLabel>apellido</h:outputLabel>
+	<p:inputText value="#{Conductor.apellido}" />
+	
+	 <p:outputLabel for="popup" value="fecha de nacimiento" />
+        <p:calendar id="popup" value="#{Conductor.fechaNacimiento}" />
+         <p:outputLabel for="popup" value="fecha de contratación" />
+        <p:calendar id="popup" value="#{Conductor.fechaContratacion}" />
+	
 </html>

@@ -7,4 +7,8 @@
 
 	<ui:composition template="">
 	</ui:composition>
+	
+		<p:commandButton id="btnClean" binding="#{estudiantePF.btnClean}"
+					action="#{estudiantePF.cancelEstudiante()}"
+					update="formEstudiante, growX" value="Cancel" />
 </html>

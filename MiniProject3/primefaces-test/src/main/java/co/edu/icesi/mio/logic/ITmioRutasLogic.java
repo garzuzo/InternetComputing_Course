@@ -3,7 +3,6 @@ package co.edu.icesi.mio.logic;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 import co.edu.icesi.mio.model.Tmio1Ruta;
 
 public interface ITmioRutasLogic {

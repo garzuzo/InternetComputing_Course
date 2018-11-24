@@ -2,27 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html">
 
 	<ui:composition template="">
 	</ui:composition>
 	<header>
-	<h5>Servicio Mio</h5>
-	
+	<center>
+	<h3>Servicio Mio</h3>
+	</center>
 	</header>
 	<h:form>
 		<h:outputLabel>Usuario</h:outputLabel>
-	<p:inputText />
+	<p:inputText value="#{Login.user}"/>
 	<br></br>
 		<h:outputLabel>Contrasena</h:outputLabel>
-	  <p:password id="contra" value="#{passwordView.password1}" />
+	  <p:password id="contra" value="#{Login.password}" />
 	  <br></br>
-	<p:commandButton value="Ajax Submit" id="ajax" update="growl" action="#{buttonView.buttonAction}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+	<p:commandButton value="Ajax Submit" id="ajax" update="growl" action="#{Login.validar()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
  
 	</h:form>
 	
 	<footer>
-	<h5>© 2018 garzuzo</h5>
-	<h5>Desarrollo: Johnatan Garzón M.</h5>
+	<center>
+	<h6>© 2018 garzuzo <br></br>Johnatan Garzón M.</h6></center>
+	
 	</footer>
 </html>
