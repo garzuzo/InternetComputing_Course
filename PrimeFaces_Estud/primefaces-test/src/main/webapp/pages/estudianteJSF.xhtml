@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head></h:head>
+<h:body>
+
+	<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container" align="center">
+				<h1 class="display-4">Student's Administration</h1>
+			</div>
+		</div>
+		<h:form>
+			<h:panelGrid columns="3" cellpadding="5" id="crearEstudiante">
+				<h:outputLabel>Código</h:outputLabel>
+				<h:inputText id="cod" value="#{estudiante.codigo}" />
+				<h:message for="cod" />
+				<h:outputLabel>Nombre</h:outputLabel>
+				<h:inputText id="nom" value="#{estudiante.nombre}" />
+				<h:message for="nom" />
+				<h:outputLabel>Apellidos</h:outputLabel>
+				<h:inputText id="app" value="#{estudiante.apellidos}" />
+				<h:message for="app" />
+				<h:outputLabel>Tipo</h:outputLabel>
+				<h:inputText id="tipo" value="#{estudiante.tipo}" />
+				<h:message for="tipo" />
+				<h:outputLabel>Sexo</h:outputLabel>
+				<h:inputText id="sexo" value="#{estudiante.sexo}" />
+				<h:message for="sexo" />
+				<h:outputLabel>Programa</h:outputLabel>
+				<h:selectOneMenu class="form-control" id="frecuencia"
+					value="#{estudiante.programa}">
+					<f:selectItems value="#{estudiante.listaProgramas()}" />
+				</h:selectOneMenu>
+				<h:message for="frecuencia" />
+			</h:panelGrid>
+			
+			<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+				<h:commandButton id="btnAdd"  action="#{estudiante.addEstudiante}"
+					type="submit" value="Add" />
+				<h:commandButton id="btnQuery" action="#{estudiante.queryEstudiante}"
+					type="submit" value="Query" />
+				<h:commandButton id="btnEdit" action="#{estudiante.editEstudiante}"
+					type="submit" value="Edit" />
+				<h:commandButton id="btnDelete" action="#{estudiante.deleteEstudiante}"
+					type="submit" value="Delete" />
+				<h:commandButton id="btnClean" action="#{estudiante.cancelEstudiante}"
+					type="submit" value="Cancel" />
+			</h:panelGrid>
+		</h:form>
+	</h:panelGrid>
+</h:body>
+</html>

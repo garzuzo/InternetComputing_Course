@@ -7,4 +7,62 @@
 
 	<ui:composition template="">
 	</ui:composition>
+	<header>
+	<center>
+	<h3>Servicio Mio</h3>
+	</center>
+	</header>
+	<h:form>
+	
+	<h:outputLabel value="Conductores" />
+	
+	<p:commandButton id="gCond" binding=""
+					action=""
+					update="formEstudiante, growX" value="Gestión Conductores" />
+	<p:commandButton id="cCond" binding=""
+					action=""
+					update="formEstudiante, growX" value="Consultar Conductores" />
+	
+	<br></br>
+	<h:outputLabel value="Rutas" />
+	
+		<p:commandButton id="gRuta" binding=""
+					action=""
+					update="formEstudiante, growX" value="Gestión Rutas" />
+	<p:commandButton id="cRuta" binding=""
+					action=""
+					update="formEstudiante, growX" value="Consultar Rutas" />
+	
+	<br></br>
+	<h:outputLabel value="Buses" />
+	
+		<p:commandButton id="gBus" binding=""
+					action=""
+					update="formEstudiante, growX" value="Gestión Buses" />
+	<p:commandButton id="cBus" binding=""
+					action=""
+					update="formEstudiante, growX" value="Consultar Buses" />
+	
+	<br></br>
+	<h:outputLabel value="Servicios" />
+		<p:commandButton id="gServ" binding=""
+					action=""
+					update="formEstudiante, growX" value="Gestión Servicios" />
+	<p:commandButton id="cServ" binding=""
+					action=""
+					update="formEstudiante, growX" value="Consultar Servicios" />
+	<br></br>
+	</h:form>
+	
+	
+	<h:form>
+		<p:commandButton id="back" binding=""
+					action=""
+					update="formEstudiante, growX" value="Regresar" />
+	</h:form>
+	<footer>
+	<center>
+	<h6>© 2018 garzuzo <br></br>Johnatan Garzón M.</h6></center>
+	
+	</footer>
 </html>

@@ -15,7 +15,7 @@ import co.edu.icesi.mio.model.Tmio1Bus;
 public class Bus implements Serializable {
 
 //cambiar todos...
-	@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
+	//@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
 	private ITmioBusesLogicRemota busLogic;
 
 	/**

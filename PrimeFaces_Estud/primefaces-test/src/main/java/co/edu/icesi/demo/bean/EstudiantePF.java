@@ -7,10 +7,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.component.commandbutton.CommandButton;
-import org.primefaces.component.inputtext.InputText;
 
 import co.edu.icesi.demo.logic.IEstudianteLogicRemota;
 import co.edu.icesi.demo.model.TAlumno;
@@ -19,11 +21,11 @@ import co.edu.icesi.demo.model.TProgAlumno;
 import co.edu.icesi.demo.model.TProgAlumnoPK;
 import co.edu.icesi.demo.model.TPrograma;
 
-//@Named
-//@SessionScoped
-public class Estudiante implements Serializable {
+@Named
+@ViewScoped
+public class EstudiantePF implements Serializable {
 
-	//@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
+	@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
 	private IEstudianteLogicRemota estudianteLogic;
 
 	/**
@@ -46,17 +48,14 @@ public class Estudiante implements Serializable {
 	private List<TMatxaprobar> tMatxaprobars;
 
 	private List<TProgAlumno> tProgAlumnos;
-	
-	
-//	private CommandButton btnAdd;
-//	private CommandButton btnQuery;
-//	private CommandButton btnEdit;
-//	private CommandButton btnDelete;
-//	private CommandButton btnCancel;
-//	private CommandButton btnClean;
 
+	private CommandButton btnAdd;
+	private CommandButton btnQuery;
+	private CommandButton btnEdit;
+	private CommandButton btnDelete;
+	private CommandButton btnClean;
 
-	public Estudiante() {
+	public EstudiantePF() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -65,7 +64,6 @@ public class Estudiante implements Serializable {
 	public void init() {
 		cleanValuesButtons();
 	}
-
 
 	public String cleanValuesButtons() {
 
@@ -76,13 +74,25 @@ public class Estudiante implements Serializable {
 		sexo = "";
 		TPrograma prog = estudianteLogic.consultarPrograma("09");
 		programa = prog.getCodigo() + "-" + prog.getDescripcion();
-		
+
+		if (btnAdd != null) {
+			btnAdd.setDisabled(false);
+			btnQuery.setDisabled(false);
+			btnDelete.setDisabled(true);
+			btnClean.setDisabled(false);
+			btnEdit.setDisabled(true);
+		}
 		return "";
 	}
-	
-	public String setQueryButtons()
-	{
-		
+
+	public String setQueryButtons() {
+		if (btnAdd != null) {
+			btnAdd.setDisabled(true);
+			btnQuery.setDisabled(true);
+			btnDelete.setDisabled(false);
+			btnClean.setDisabled(false);
+			btnEdit.setDisabled(false);
+		}
 		return "";
 	}
 
@@ -159,6 +169,7 @@ public class Estudiante implements Serializable {
 	}
 
 	public String addEstudiante() {
+
 		TAlumno talumno = new TAlumno();
 
 		talumno.setApellidos(apellidos);
@@ -192,10 +203,18 @@ public class Estudiante implements Serializable {
 		tprogalumno.setCohorte("182");
 		tprogalumno.setSemestre("1");
 
-		estudianteLogic.createAlumno(talumno);
+		try {
+			estudianteLogic.createAlumno(talumno);
+			cleanValuesButtons();
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Client added", ""));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Client not added", ""));
+		}
 
 		// TODO validar si la creación fue exitosa para retornar failure o success.
-		cleanValuesButtons();
+
 		return "success";
 	}
 
@@ -211,18 +230,34 @@ public class Estudiante implements Serializable {
 		talumno.setTMatxaprobars(tMatxaprobars);
 		talumno.setTProgAlumnos(tProgAlumnos);
 
-		// TODO obtener el programa del alumno y crear agregarlo a la colección
-		// de programas para agregarlo al estudiante
+		// TODO editar el programa del alumno
 
-		estudianteLogic.editarAlumno(talumno);
-		// TODO validar si la creación fue exitosa para retornar failure o success.
-		cleanValuesButtons();
+		try {
+			estudianteLogic.editarAlumno(talumno);
+			// TODO validar si la creación fue exitosa para retornar failure o success.
+			cleanValuesButtons();
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Client edited", ""));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Client not edited", ""));
+		}
+
 		return "success";
 	}
 
 	public String queryEstudiante() {
 
 		TAlumno talumno = estudianteLogic.consultarEstudiante(codigo);
+		// TODO validar si la creación fue exitosa para retornar failure o success.
+
+		if (talumno == null)
+
+		{
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Client not found", ""));
+			return "";
+		}
 
 		apellidos = talumno.getApellidos();
 		nombre = talumno.getNombre();
@@ -234,22 +269,31 @@ public class Estudiante implements Serializable {
 			TProgAlumno tProgAlumno = tProgAlumnos.get(0);
 			programa = tProgAlumno.getTPrograma().getCodigo() + "-" + tProgAlumno.getTPrograma().getDescripcion();
 		}
-		
+
 		setQueryButtons();
 		return "success";
+
 	}
 
 	public String deleteEstudiante() {
 
 		TAlumno talumno = estudianteLogic.consultarEstudiante(codigo);
-
-		estudianteLogic.borrarAlumno(talumno);
-		cleanValuesButtons();
+		
+		try {
+			estudianteLogic.borrarAlumno(talumno);
+			cleanValuesButtons();
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Client deleted", ""));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Client not deleted", ""));
+			e.printStackTrace();
+		}
 		return "success";
 	}
 
 	public String cancelEstudiante() {
-		cleanValuesButtons();		
+		cleanValuesButtons();
 		return "success";
 	}
 
@@ -260,5 +304,45 @@ public class Estudiante implements Serializable {
 	public void setPrograma(String programa) {
 		this.programa = programa;
 	}
-	
+
+	public CommandButton getBtnAdd() {
+		return btnAdd;
+	}
+
+	public void setBtnAdd(CommandButton btnAdd) {
+		this.btnAdd = btnAdd;
+	}
+
+	public CommandButton getBtnQuery() {
+		return btnQuery;
+	}
+
+	public void setBtnQuery(CommandButton btnQuery) {
+		this.btnQuery = btnQuery;
+	}
+
+	public CommandButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	public void setBtnEdit(CommandButton btnEdit) {
+		this.btnEdit = btnEdit;
+	}
+
+	public CommandButton getBtnClean() {
+		return btnClean;
+	}
+
+	public void setBtnClean(CommandButton btnClean) {
+		this.btnClean = btnClean;
+	}
+
+	public CommandButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public void setBtnDelete(CommandButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
 }

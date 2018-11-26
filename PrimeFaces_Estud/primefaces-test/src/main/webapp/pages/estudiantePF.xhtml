@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+
+	<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container" align="center">
+				<h1 class="display-4">Student's Administration</h1>
+			</div>
+		</div>
+		<h:form id="formEstudiante">
+			<p:growl id="growX">
+			</p:growl>
+			<h:panelGrid columns="2" cellpadding="5" id="crearEstudiante">
+				<h:outputLabel>Código</h:outputLabel>
+				<p:inputText id="cod" value="#{estudiantePF.codigo}" />
+				<h:outputLabel>Nombre</h:outputLabel>
+				<p:inputText id="nom" value="#{estudiantePF.nombre}" />
+				<h:outputLabel>Apellidos</h:outputLabel>
+				<p:inputText id="app" value="#{estudiantePF.apellidos}" />
+				<h:outputLabel>Tipo</h:outputLabel>
+				<p:inputText id="tipo" value="#{estudiantePF.tipo}" />
+				<h:outputLabel>Sexo</h:outputLabel>
+				<p:inputText id="sexo" value="#{estudiantePF.sexo}" />
+				<h:outputLabel>Programa</h:outputLabel>
+				<p:selectOneMenu class="form-control" id="frecuencia"
+					style="width:300px" value="#{estudiantePF.programa}">
+					<f:selectItems value="#{estudiantePF.listaProgramas()}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+
+			<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+				<p:commandButton id="btnAdd" binding="#{estudiantePF.btnAdd}"
+					action="#{estudiantePF.addEstudiante()}"
+					update="formEstudiante, growX" value="Add" />
+				<p:commandButton id="btnQuery" binding="#{estudiantePF.btnQuery}"
+					action="#{estudiantePF.queryEstudiante()}"
+					update="formEstudiante, growX" value="Query" />
+				<p:commandButton id="btnEdit" binding="#{estudiantePF.btnEdit}"
+					action="#{estudiantePF.editEstudiante()}" disabled = "true"
+					update="formEstudiante, growX" value="Edit" />
+				<p:commandButton id="btnDelete" binding="#{estudiantePF.btnDelete}"
+					action="#{estudiantePF.deleteEstudiante()}" disabled = "true"
+					update="formEstudiante, growX" value="Delete" />
+				<p:commandButton id="btnClean" binding="#{estudiantePF.btnClean}"
+					action="#{estudiantePF.cancelEstudiante()}"
+					update="formEstudiante, growX" value="Cancel" />
+			</h:panelGrid>
+		</h:form>
+	</h:panelGrid>
+</h:body>
+</html>

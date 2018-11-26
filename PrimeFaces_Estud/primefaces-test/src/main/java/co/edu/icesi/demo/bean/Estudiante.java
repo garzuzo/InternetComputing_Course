@@ -19,11 +19,11 @@ import co.edu.icesi.demo.model.TProgAlumno;
 import co.edu.icesi.demo.model.TProgAlumnoPK;
 import co.edu.icesi.demo.model.TPrograma;
 
-//@Named
-//@SessionScoped
+@Named
+@SessionScoped
 public class Estudiante implements Serializable {
 
-	//@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
+	@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
 	private IEstudianteLogicRemota estudianteLogic;
 
 	/**

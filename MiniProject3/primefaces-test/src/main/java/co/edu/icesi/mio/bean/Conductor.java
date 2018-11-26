@@ -14,7 +14,7 @@ import co.edu.icesi.mio.model.Tmio1Conductore;
 @Named
 @ViewScoped
 public class Conductor implements Serializable {
-	@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
+//	@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")
 	private ITmioConductoresLogicRemota conductorLogic;
 	/**
 	 * 
