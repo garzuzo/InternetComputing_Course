@@ -3,6 +3,13 @@ package co.edu.icesi.mio.logic;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,10 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.edu.icesi.demo.logic.IEstudianteLogicLocal;
+import co.edu.icesi.demo.logic.IEstudianteLogicRemota;
 import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.model.Tmio1Bus;
 
-@Service
+@Stateless(name = "TmioBusesLogic", mappedName = "EstudiantesLogic")
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Local(ITmioBusesLogicLocal.class)
+@Remote(ITmioBusesLogicRemota.class)
 public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemota {
 
 	@Autowired

@@ -21,8 +21,8 @@ import co.edu.icesi.demo.model.TProgAlumno;
 import co.edu.icesi.demo.model.TProgAlumnoPK;
 import co.edu.icesi.demo.model.TPrograma;
 
-@Named
-@ViewScoped
+//@Named
+//@ViewScoped
 public class EstudiantePF implements Serializable {
 
 	//@EJB(lookup = "java:global/primefaces-test-1.0-SNAPSHOT/EstudiantesLogic!co.edu.icesi.demo.logic.IEstudianteLogicRemota")

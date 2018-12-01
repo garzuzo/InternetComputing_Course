@@ -6,6 +6,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="java-output-path" value="/primefaces-test/target/classes"/>
-        <property name="context-root" value="MiniProject3_JohnatanGarzon"/>
+        <property name="context-root" value="primefaces-test"/>
     </wb-module>
 </project-modules>

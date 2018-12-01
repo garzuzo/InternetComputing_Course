@@ -3,6 +3,13 @@ package co.edu.icesi.mio.logic;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,7 +20,11 @@ import org.springframework.transaction.annotation.Transactional;
 import co.edu.icesi.mio.dao.ITmio1_Rutas_DAO;
 import co.edu.icesi.mio.model.Tmio1Ruta;
 
-@Service
+@Stateless(name = "TmioRutasLogic", mappedName = "TmioRutasLogic")
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Local(ITmioRutasLogicLocal.class)
+@Remote(ITmioRutasLogicRemota.class)
 public class TmioRutasLogic implements ITmioRutasLogicLocal,ITmioRutasLogicRemota {
 
 	@Autowired

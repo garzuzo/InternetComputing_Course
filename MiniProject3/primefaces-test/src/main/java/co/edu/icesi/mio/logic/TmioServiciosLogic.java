@@ -7,6 +7,13 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -24,7 +31,11 @@ import co.edu.icesi.mio.model.Tmio1Ruta;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServicioPK;
 
-@Service
+@Stateless(name = "TmioServiciosLogic", mappedName = "TmioServiciosLogic")
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Local(ITmioServiciosLogicLocal.class)
+@Remote(ITmioServiciosLogicRemota.class)
 public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServiciosLogicRemota {
 
 	@Autowired

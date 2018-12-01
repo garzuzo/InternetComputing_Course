@@ -33,6 +33,9 @@ public class Conductor implements Serializable {
 	private String nombre;
 
 	
+	public void prueba() {
+		
+	}
 	public void crearConductor() {
 Tmio1Conductore conductor=new Tmio1Conductore();
 conductorLogic.createConductor(conductor);

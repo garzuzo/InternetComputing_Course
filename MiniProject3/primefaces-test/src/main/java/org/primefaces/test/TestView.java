@@ -5,8 +5,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean(name = "testView")
-@ViewScoped
+//@ManagedBean(name = "testView")
+//@ViewScoped
 public class TestView implements Serializable {
     
     private String testString;

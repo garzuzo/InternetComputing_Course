@@ -4,8 +4,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-@Named
-@RequestScoped
+//@Named
+//@RequestScoped
 public class TestViewCdi {
     
     private String testString;
