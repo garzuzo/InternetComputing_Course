@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#MainView.xhtml"
+  PATH="/pages/MainView.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:Login.xhtml" PATH="Login.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:Login.xhtml:0" NAME="item" PATH="Login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="correct:#{login.validar}:#pages#MainView.xhtml" NAME="output"
+    PATH="/pages/MainView.xhtml" TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{login.validar}:correct" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:MainView.xhtml" PATH="MainView.xhtml"
+  SHAPE="32,705,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:MainView.xhtml:0" NAME="item"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login:#{login.navigation}:#Login.xhtml"
+    NAME="output" PATH="/Login.xhtml" TARGET="rules:#Login.xhtml"
+    TITLE="#{login.navigation}:login" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:1" NAME="item1"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cBus:#{Login.navigation}:#pages#ConsultarBus.xhtml"
+    NAME="output" PATH="/pages/ConsultarBus.xhtml"
+    TARGET="rules:#pages#ConsultarBus.xhtml"
+    TITLE="#{Login.navigation}:cBus" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:2" NAME="item2"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cConductor:#{Login.navigation}:#pages#ConsultarConductor.xhtml"
+    NAME="output" PATH="/pages/ConsultarConductor.xhtml"
+    TARGET="rules:#pages#ConsultarConductor.xhtml"
+    TITLE="#{Login.navigation}:cConductor" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:3" NAME="item3"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cRuta:#{Login.navigation}:#pages#ConsultarRuta.xhtml"
+    NAME="output" PATH="/pages/ConsultarRuta.xhtml"
+    TARGET="rules:#pages#ConsultarRuta.xhtml"
+    TITLE="#{Login.navigation}:cRuta" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:4" NAME="item4"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cServicio:#{Login.navigation}:#pages#ConsultarServicio.xhtml"
+    NAME="output" PATH="/pages/ConsultarServicio.xhtml"
+    TARGET="rules:#pages#ConsultarServicio.xhtml"
+    TITLE="#{Login.navigation}:cServicio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:5" NAME="item5"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gBus:#{Login.navigation}:#pages#GestionarBus.xhtml"
+    NAME="output" PATH="/pages/GestionarBus.xhtml"
+    TARGET="rules:#pages#GestionarBus.xhtml"
+    TITLE="#{Login.navigation}:gBus" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:6" NAME="item6"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gConductor:#{Login.navigation}:#pages#GestionarConductor.xhtml"
+    NAME="output" PATH="/pages/GestionarConductor.xhtml"
+    TARGET="rules:#pages#GestionarConductor.xhtml"
+    TITLE="#{Login.navigation}:gConductor" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:7" NAME="item7"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gRuta:#{Login.navigation}:#pages#GestionarRuta.xhtml"
+    NAME="output" PATH="/pages/GestionarRuta.xhtml"
+    TARGET="rules:#pages#GestionarRuta.xhtml"
+    TITLE="#{Login.navigation}:gRuta" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:8" NAME="item8"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gServicio:#{Login.navigation}:#pages#GestionarServicio.xhtml"
+    NAME="output" PATH="/pages/GestionarServicio.xhtml"
+    TARGET="rules:#pages#GestionarServicio.xhtml"
+    TITLE="#{Login.navigation}:gServicio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:MainView.xhtml:9" NAME="item9"
+   PATH="MainView.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cRuta:#{Login.navigation}:#pages#ConsultarRuta.xhtml"
+    NAME="output" PATH="/pages/ConsultarRuta.xhtml"
+    TARGET="rules:#pages#ConsultarRuta.xhtml"
+    TITLE="#{Login.navigation}:cRuta" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Login.xhtml" PATH="/Login.xhtml"
+  SHAPE="256,721,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ConsultarBus.xhtml"
+  PATH="/pages/ConsultarBus.xhtml" SHAPE="256,865,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ConsultarConductor.xhtml"
+  PATH="/pages/ConsultarConductor.xhtml" SHAPE="304,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ConsultarServicio.xhtml"
+  PATH="/pages/ConsultarServicio.xhtml" SHAPE="304,545,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#ConsultarRuta.xhtml"
+  PATH="/pages/ConsultarRuta.xhtml" SHAPE="304,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#GestionarServicio.xhtml"
+  PATH="/pages/GestionarServicio.xhtml" SHAPE="304,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#GestionarBus.xhtml"
+  PATH="/pages/GestionarBus.xhtml" SHAPE="304,1249,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#GestionarConductor.xhtml"
+  PATH="/pages/GestionarConductor.xhtml" SHAPE="304,1361,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#GestionarRuta.xhtml"
+  PATH="/pages/GestionarRuta.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:ConsultarBus.xhtml" PATH="ConsultarBus.xhtml"
+  SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:ConsultarBus.xhtml:0" NAME="item"
+   PATH="ConsultarBus.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cBus:#{Login.navigation}:#pages#MainView.xhtml" NAME="output"
+    PATH="/pages/MainView.xhtml" TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{Login.navigation}:cBus" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:ConsultarConductor" PATH="ConsultarConductor"
+  SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:ConsultarConductor:0" NAME="item"
+   PATH="ConsultarConductor" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cConductor:#{Login.navigation}:#pages#MainView.xhtml"
+    NAME="output" PATH="/pages/MainView.xhtml"
+    TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{Login.navigation}:cConductor" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:ConsultarServicio.xhtml"
+  PATH="ConsultarServicio.xhtml" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:ConsultarServicio.xhtml:0" NAME="item"
+   PATH="ConsultarServicio.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cServicio:#{Login.navigation}:#pages#MainView.xhtml"
+    NAME="output" PATH="/pages/MainView.xhtml"
+    TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{Login.navigation}:cServicio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:GestionarBus.xhtml" PATH="GestionarBus.xhtml"
+  SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:GestionarBus.xhtml:0" NAME="item"
+   PATH="GestionarBus.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gBus:#{Login.navigation}:#pages#MainView.xhtml" NAME="output"
+    PATH="/pages/MainView.xhtml" TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{Login.navigation}:gBus" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:GestionarConductor.xhtml"
+  PATH="GestionarConductor.xhtml" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:GestionarConductor.xhtml:0" NAME="item"
+   PATH="GestionarConductor.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gConductor:#{Login.navigation}:#pages#MainView.xhtml"
+    NAME="output" PATH="/pages/MainView.xhtml"
+    TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{Login.navigation}:gConductor" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:GestionarRuta.xhtml"
+  PATH="GestionarRuta.xhtml" SHAPE="32,1089,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:GestionarRuta.xhtml:0" NAME="item"
+   PATH="GestionarRuta.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gRuta:#{Login.navigation}:#pages#MainView.xhtml" NAME="output"
+    PATH="/pages/MainView.xhtml" TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{Login.navigation}:gRuta" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:GestionarServicio.xhtml"
+  PATH="GestionarServicio.xhtml" SHAPE="32,1201,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:GestionarServicio.xhtml:0" NAME="item"
+   PATH="GestionarServicio.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="gServicio:#{Login.navigation}:#pages#MainView.xhtml"
+    NAME="output" PATH="/pages/MainView.xhtml"
+    TARGET="rules:#pages#MainView.xhtml"
+    TITLE="#{Login.navigation}:gServicio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>
