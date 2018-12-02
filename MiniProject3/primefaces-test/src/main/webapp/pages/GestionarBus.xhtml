@@ -35,7 +35,7 @@
 		<br></br>
 		<h:outputLabel>tipo</h:outputLabel>
 		<br></br>
-		<p:selectOneRadio id="tip" value="#{Bus.tipo}">
+		<p:selectOneRadio id="tip" value="#{bus.tipo}">
 			<f:selectItem itemLabel="P" itemValue="P" />
 			<f:selectItem itemLabel="A" itemValue="A" />
 			<f:selectItem itemLabel="T" itemValue="T" />
@@ -59,6 +59,10 @@
 		<br></br>
 		<br></br>
 
+		<p:commandButton action="#{login.gBus}" value="Atrás" ajax="false" />
+
+	</h:form>
+	<h:form>
 		<p:commandButton action="#{login.gBus}" value="Atrás" ajax="false" />
 
 	</h:form>

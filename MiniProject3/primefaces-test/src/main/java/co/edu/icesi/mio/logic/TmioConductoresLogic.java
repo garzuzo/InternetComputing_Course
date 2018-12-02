@@ -18,6 +18,7 @@ import javax.persistence.PersistenceContext;
 
 
 import co.edu.icesi.mio.dao.ITmio1_Conductores_DAO;
+import co.edu.icesi.mio.dao.Tmio1_Conductores_DAO;
 import co.edu.icesi.mio.model.Tmio1Conductore;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
@@ -37,7 +38,7 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal,ITmioCon
 	
 
 	public void createConductor(Tmio1Conductore conductor) {
-
+		conductorDAO=new Tmio1_Conductores_DAO();
 		if(conductor != null && findByCedula(conductor.getCedula())==null &&
 			validacionCedula(conductor.getCedula()) && 
 				validacionNombre(conductor.getNombre()) &&
@@ -50,7 +51,7 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal,ITmioCon
 	
 	
 	public void updateConductor(Tmio1Conductore conductor) {
-		
+		conductorDAO=new Tmio1_Conductores_DAO();
 		if(conductor != null && findByCedula(conductor.getCedula())!=null &&
 			validacionCedula(conductor.getCedula()) && 
 				validacionNombre(conductor.getNombre()) &&
@@ -64,12 +65,14 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal,ITmioCon
 
 	
 	public void deleteConductor(Tmio1Conductore conductor) {
+		conductorDAO=new Tmio1_Conductores_DAO();
 		if(conductor!=null && findByCedula(conductor.getCedula())!=null)
 		conductorDAO.delete(em, findByCedula(conductor.getCedula()));
 	}
 
 	
 	public List<Tmio1Conductore> findByName(String name) {
+		conductorDAO=new Tmio1_Conductores_DAO();
 		List<Tmio1Conductore> conductores= null;
 		if(validacionNombre(name))
 			conductores= conductorDAO.findByName(em, name);
@@ -78,6 +81,7 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal,ITmioCon
 
 
 	public List<Tmio1Conductore> findByLastname(String lastname) {
+		conductorDAO=new Tmio1_Conductores_DAO();
 		List<Tmio1Conductore> conductores= null;
 		if(validacionApellido(lastname))
 			conductores= conductorDAO.findByLastName(em, lastname);
@@ -86,6 +90,7 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal,ITmioCon
 
 	
 	public Tmio1Conductore findByCedula(String cedula) {
+		conductorDAO=new Tmio1_Conductores_DAO();
 		Tmio1Conductore conductor= null;
 		if(validacionCedula(cedula))
 			conductor= conductorDAO.findByCedula(em, cedula);

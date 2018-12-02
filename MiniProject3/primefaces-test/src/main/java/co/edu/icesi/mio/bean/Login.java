@@ -79,7 +79,7 @@ public class Login implements Serializable {
 	}
 
 	public String gBus() {
-		return "gBus1";
+		return "gBus";
 	}
 
 	public String cRuta() {

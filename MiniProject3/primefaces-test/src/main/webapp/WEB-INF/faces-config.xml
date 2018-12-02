@@ -24,7 +24,7 @@
 
 	<navigation-rule>
 		<!-- CIERRE SESION -->
-		<from-view-id>MainView.xhtml</from-view-id>
+		<from-view-id>/pages/MainView.xhtml</from-view-id>
 
 		<navigation-case>
 			<from-action>#{login.inicio}</from-action>
@@ -91,7 +91,7 @@
 
 		<navigation-case>
 			<from-action>#{login.gBus}</from-action>
-			<from-outcome>gBus1</from-outcome>
+			<from-outcome>gBus</from-outcome>
 			<to-view-id>/pages/GestionarBus.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
@@ -136,10 +136,12 @@
 	</navigation-rule>
 
 
-	<navigation-rule>
-		<!-- CBUS TO MAIN VIEW -->
 
-		<from-view-id>ConsultarBus.xhtml</from-view-id>
+	<!-- CBUS TO MAIN VIEW -->
+
+	<navigation-rule>
+
+		<from-view-id>/pages/ConsultarBus.xhtml</from-view-id>
 
 		<navigation-case>
 			<from-action>#{login.cBus}</from-action>
@@ -147,84 +149,101 @@
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
+	</navigation-rule>
 
 
+	<!-- CCONDUCTOR TO MAIN VIEW -->
 
-		<!-- CCONDUCTOR TO MAIN VIEW -->
 
-		
+	<navigation-rule>
 
+		<from-view-id>/pages/ConsultarConductor.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.cConductor}</from-action>
 			<from-outcome>cConductor</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
+	</navigation-rule>
+
+	<!--CRUTA MAIN VIEW  -->
 
 
-		<!-- MAIN VIEW TO CRUTA -->
+	<navigation-rule>
 
-		
-
+		<from-view-id>/pages/ConsultarRuta.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.cRuta}</from-action>
 			<from-outcome>cRuta</from-outcome>
 			<to-view-id>/pages/ConsultarRuta.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	
+	</navigation-rule>
 
 	<!--CSERVICIO TO MAIN VIEW -->
-	
 
+
+	<navigation-rule>
+
+		<from-view-id>/pages/ConsultarServicio.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.cServicio}</from-action>
 			<from-outcome>cServicio</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	
+	</navigation-rule>
 
 
 
 	<!-- GBUS TO MAIN VIEW -->
 
 
+	<navigation-rule>
+
+		<from-view-id>/pages/GestionarBus.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.gBus}</from-action>
 			<from-outcome>gBus</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-
+	</navigation-rule>
 
 	<!--GCONDUCTOR TO MAIN VIEW -->
-	
 
+	<navigation-rule>
+
+		<from-view-id>/pages/GestionarConductor.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.gConductor}</from-action>
 			<from-outcome>gConductor</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	
+	</navigation-rule>
 
-	<!-- GRUTAMAIN TO VIEW -->
-	
+	<!-- GRUTA TO VIEWMAIN -->
 
+	<navigation-rule>
+
+		<from-view-id>/pages/GestionarRuta.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.gRuta}</from-action>
 			<from-outcome>gRuta</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	
+	</navigation-rule>
 
 
 
 	<!--GSERVICIO TO MAIN VIEW -->
-	
 
+
+	<navigation-rule>
+
+		<from-view-id>/pages/GestionarServicio.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{login.gServicio}</from-action>
 			<from-outcome>gServicio</from-outcome>
@@ -232,7 +251,7 @@
 			<!-- <redirect></redirect> -->
 		</navigation-case>
 
-</navigation-rule>
+	</navigation-rule>
 
 
 

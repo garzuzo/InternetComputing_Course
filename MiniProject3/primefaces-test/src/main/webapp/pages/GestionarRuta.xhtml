@@ -9,7 +9,7 @@
 	<h:form>
 		<h:outputLabel>numero</h:outputLabel>
 		<br></br>
-		<p:inputText value="#{Ruta.numero}" maxlength="3" minlength="3" />
+		<p:inputText value="#{ruta.numero}" maxlength="3" minlength="3" />
 		<br></br>
 		<br></br>
 
@@ -17,7 +17,7 @@
 		<h:outputLabel>descripción</h:outputLabel>
 		<br></br>
 		<p:inputTextarea rows="4" cols="20"
-			completeMethod="#{inputTextareaView.completeArea}" />
+			completeMethod="#{ruta.descripcion}" />
 
 		<br></br>
 		<br></br>
@@ -47,7 +47,7 @@
 		<br></br>
 		<h:outputLabel>activa</h:outputLabel>
 		<br></br>
-		<p:selectOneRadio id="act" value="#{Ruta.activa}">
+		<p:selectOneRadio id="act" value="#{ruta.activa}">
 			<f:selectItem itemLabel="SI" itemValue="S" />
 			<f:selectItem itemLabel="NO" itemValue="N" />
 		</p:selectOneRadio>
@@ -66,8 +66,8 @@
 			ajax="false" />
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{ruta.actualizarRuta}" value="Actualizar Ruta"
-			ajax="false" />
+		<p:commandButton action="#{ruta.actualizarRuta}"
+			value="Actualizar Ruta" ajax="false" />
 		<br></br>
 		<br></br>
 		<p:commandButton action="#{ruta.borrarRuta}" value="Borrar Ruta"
@@ -75,6 +75,14 @@
 		<br></br>
 		<br></br>
 		<br></br>
+		<p:commandButton action="#{login.gRuta}" value="Atrás" ajax="false" />
+
+<p:commandButton action="#{login.gRuta}" value="Atrás" ajax="false" />
+
+
+
+	</h:form>
+	<h:form>
 		<p:commandButton action="#{login.gRuta}" value="Atrás" ajax="false" />
 
 

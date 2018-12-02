@@ -2,6 +2,7 @@ package co.edu.icesi.mio.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -37,13 +38,17 @@ public class Bus implements Serializable {
 
 	private String tipo;
 
-	private List <Tmio1Servicio> tmio1Servicios;
-	private List <Tmio1ServiciosSitio> tmio1ServiciosSitio;
+	private String id;
+
+	private List<Tmio1Servicio> tmio1Servicios;
+	private List<Tmio1ServiciosSitio> tmio1ServiciosSitio;
+
 	public void crearBus() {
 		Tmio1Bus bus = new Tmio1Bus();
 
 		bus.setCapacidad(new BigDecimal(capacidad));
-		
+		tmio1Servicios = new ArrayList<Tmio1Servicio>();
+		tmio1ServiciosSitio = new ArrayList<Tmio1ServiciosSitio>();
 		bus.setMarca(marca);
 		bus.setModelo(new BigDecimal(modelo));
 		bus.setPlaca(placa);
@@ -51,45 +56,53 @@ public class Bus implements Serializable {
 		bus.setTmio1Servicios(tmio1Servicios);
 		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
-		
 		busLogic.add(bus);
 	}
 
 	public void actualizarBus() {
 		Tmio1Bus bus = new Tmio1Bus();
 
-	bus.setCapacidad(new BigDecimal(capacidad));
-		
+		bus = busLogic.findById(Integer.parseInt(id));
+
+		bus.setCapacidad(new BigDecimal(capacidad));
+
 		bus.setMarca(marca);
 		bus.setModelo(new BigDecimal(modelo));
 		bus.setPlaca(placa);
 		bus.setTipo(tipo);
 		bus.setTmio1Servicios(tmio1Servicios);
 		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
-		
-		
+
 		busLogic.update(bus);
 	}
 
 	public void borrarBus() {
-		Tmio1Bus bus = new Tmio1Bus();
+		Tmio1Bus bus = busLogic.findById(Integer.parseInt(id));
+
 		busLogic.delete(bus);
 
 	}
 
-	public void findByModelo() {
-		busLogic.findByModelo(null);
+	public List<Tmio1Bus> findByModelo() {
+	return	busLogic.findByModelo(new BigDecimal(modelo));
 	}
 
-	public void findByTipo() {
-		busLogic.findByTipo(null);
+	public List<Tmio1Bus> findByTipo() {
+		return busLogic.findByTipo(tipo);
 	}
 
-	public void findByCapacidad() {
-		busLogic.findByCapacidad(null);
+	public List<Tmio1Bus> findByCapacidad() {
+		return busLogic.findByCapacidad(new BigDecimal(capacidad));
 	}
 
-	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public List<Tmio1Servicio> getTmio1Servicios() {
 		return tmio1Servicios;
 	}

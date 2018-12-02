@@ -24,6 +24,10 @@ import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.dao.ITmio1_Conductores_DAO;
 import co.edu.icesi.mio.dao.ITmio1_Rutas_DAO;
 import co.edu.icesi.mio.dao.ITmio1_Servicios_DAO;
+import co.edu.icesi.mio.dao.Tmio1_Buses_DAO;
+import co.edu.icesi.mio.dao.Tmio1_Conductores_DAO;
+import co.edu.icesi.mio.dao.Tmio1_Rutas_DAO;
+import co.edu.icesi.mio.dao.Tmio1_Servicios_DAO;
 import co.edu.icesi.mio.model.Tmio1Bus;
 import co.edu.icesi.mio.model.Tmio1Conductore;
 import co.edu.icesi.mio.model.Tmio1Ruta;
@@ -54,6 +58,10 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 
 
 	public void createServicio(Tmio1Servicio servicio) {
+		servicioDAO=new Tmio1_Servicios_DAO();
+		conductorDAO=new Tmio1_Conductores_DAO();
+		busDAO=new Tmio1_Buses_DAO();
+		rutaDAO=new Tmio1_Rutas_DAO();
 		if (servicio != null
 				&& validacionLlavesForaneas(servicio.getTmio1Bus(), servicio.getTmio1Conductore(),
 						servicio.getTmio1Ruta())
@@ -66,6 +74,10 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 
 
 	public void updateServicio(Tmio1Servicio servicio) {
+		servicioDAO=new Tmio1_Servicios_DAO();
+		conductorDAO=new Tmio1_Conductores_DAO();
+		busDAO=new Tmio1_Buses_DAO();
+		rutaDAO=new Tmio1_Rutas_DAO();
 		if (servicio != null && getServicio(servicio.getId()) != null
 				&& validacionLlavesForaneas(servicio.getTmio1Bus(), servicio.getTmio1Conductore(),
 						servicio.getTmio1Ruta())
@@ -78,12 +90,20 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 
 	
 	public void deleteServicio(Tmio1Servicio servicio) {
+		servicioDAO=new Tmio1_Servicios_DAO();
+		conductorDAO=new Tmio1_Conductores_DAO();
+		busDAO=new Tmio1_Buses_DAO();
+		rutaDAO=new Tmio1_Rutas_DAO();
 		if (servicio != null && getServicio(servicio.getId()) != null)
 			servicioDAO.delete(em, getServicio(servicio.getId()));
 	}
 
 
 	public List<Tmio1Servicio> findByRangeOfDates(Calendar d1, Calendar d2) {
+		servicioDAO=new Tmio1_Servicios_DAO();
+		conductorDAO=new Tmio1_Conductores_DAO();
+		busDAO=new Tmio1_Buses_DAO();
+		rutaDAO=new Tmio1_Rutas_DAO();
 		List<Tmio1Servicio> servicios = null;
 		if (d1 != null && d2 != null)
 			servicios = servicioDAO.findByRangeOfDates(em, d1, d2);
@@ -92,6 +112,10 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 
 	
 	public Tmio1Servicio getServicio(Tmio1ServicioPK id) {
+		servicioDAO=new Tmio1_Servicios_DAO();
+		conductorDAO=new Tmio1_Conductores_DAO();
+		busDAO=new Tmio1_Buses_DAO();
+		rutaDAO=new Tmio1_Rutas_DAO();
 		return servicioDAO.findById(em, id);
 	}
 

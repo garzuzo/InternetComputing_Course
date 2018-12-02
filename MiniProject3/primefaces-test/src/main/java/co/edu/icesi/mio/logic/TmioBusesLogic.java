@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 
 
 import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
+import co.edu.icesi.mio.dao.Tmio1_Buses_DAO;
 import co.edu.icesi.mio.model.Tmio1Bus;
 
 @Stateless(name = "TmioBusesLogic", mappedName = "EstudiantesLogic")
@@ -32,7 +33,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemot
 
 	
 	public boolean add(Tmio1Bus bus) {
-
+		buses=new Tmio1_Buses_DAO();
 		if (bus != null && placaMESix(bus) && marcaMEThree(bus) && modeloNumbersEFour(bus.getModelo())
 				&& tipoPAT(bus.getTipo()) && capacidadMZero(bus.getCapacidad())) {
 			buses.save(em, bus);
@@ -43,6 +44,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemot
 
 	
 	public void update(Tmio1Bus bus) {
+		buses=new Tmio1_Buses_DAO();
 		if (bus != null && buses.findById(em, bus.getId()) != null && placaMESix(bus) && marcaMEThree(bus)
 				&& modeloNumbersEFour(bus.getModelo()) && tipoPAT(bus.getTipo()) && capacidadMZero(bus.getCapacidad()))
 			buses.update(em, bus);
@@ -50,14 +52,14 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemot
 
 	
 	public void delete(Tmio1Bus bus) {
-
+		buses=new Tmio1_Buses_DAO();
 		if (bus != null && buses.findById(em, bus.getId()) != null)
 			buses.delete(em, findById(bus.getId()));
 	}
 
 	
 	public List<Tmio1Bus> findByModelo(BigDecimal m) {
-
+		buses=new Tmio1_Buses_DAO();
 		if (modeloNumbersEFour(m))
 			return buses.findByModel(em, m);
 		else
@@ -66,6 +68,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemot
 
 	
 	public List<Tmio1Bus> findByTipo(String t) {
+		buses=new Tmio1_Buses_DAO();
 		if (tipoPAT(t))
 			return buses.findByType(em, t);
 		else
@@ -74,6 +77,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemot
 
 	
 	public List<Tmio1Bus> findByCapacidad(BigDecimal c) {
+		buses=new Tmio1_Buses_DAO();
 		if (capacidadMZero(c))
 			return buses.findByCapacity(em, c);
 		else
@@ -82,6 +86,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemot
 
 	
 	public Tmio1Bus findById(int id) {
+		buses=new Tmio1_Buses_DAO();
 		return buses.findById(em, id);
 	}
 

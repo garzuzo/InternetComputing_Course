@@ -27,7 +27,7 @@
 
 		<h:outputLabel>apellido</h:outputLabel>
 		<br></br>
-		<p:inputText value="#{conductor.apellido}" minlength="3" />
+		<p:inputText value="#{conductor.apellidos}" minlength="3" />
 		<br></br>
 		<br></br>
 		<p:outputLabel for="popup1" value="fecha de nacimiento" />
@@ -64,6 +64,10 @@
 		<br></br>
 
 
+	</h:form>
+	<h:form>
+		<p:commandButton action="#{login.gConductor}" value="Atrás"
+			ajax="false" />
 	</h:form>
 	<h:form>
 		<p:commandButton action="#{login.gConductor}" value="Atrás"

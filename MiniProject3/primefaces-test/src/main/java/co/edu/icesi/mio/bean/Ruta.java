@@ -28,6 +28,8 @@ public class Ruta implements Serializable {
 
 	private String descripcion;
 
+	private String id;
+
 	// bd
 	private String diaFin;
 
@@ -64,8 +66,7 @@ public class Ruta implements Serializable {
 	}
 
 	public void actualizarRuta() {
-		Tmio1Ruta ruta = new Tmio1Ruta();
-		
+		Tmio1Ruta ruta = rutaLogic.findById(Integer.parseInt(id));
 
 		ruta.setActiva(activa);
 		ruta.setDescripcion(descripcion);
@@ -77,20 +78,19 @@ public class Ruta implements Serializable {
 		ruta.setTmio1Servicios(tmio1Servicio);
 		ruta.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 		ruta.setTmio1SitiosRutas1(tmio1SitiosRuta);
-		
-		
+
 		rutaLogic.update(ruta);
 
 	}
 
 	public void borrarRuta() {
-		Tmio1Ruta ruta = new Tmio1Ruta();
+		Tmio1Ruta ruta = rutaLogic.findById(Integer.parseInt(id));
 		rutaLogic.delete(ruta);
 	}
 
 	public void findByRangoDias() {
 		Tmio1Ruta ruta = new Tmio1Ruta();
-		rutaLogic.findByRangoDias(null, null);
+		rutaLogic.findByRangoDias(new BigDecimal(diaInicio), new BigDecimal(diaFin));
 	}
 
 	public List<Tmio1Servicio> getTmio1Servicio() {
@@ -135,6 +135,14 @@ public class Ruta implements Serializable {
 
 	public String getDiaFin() {
 		return diaFin;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setDiaFin(String diaFin) {

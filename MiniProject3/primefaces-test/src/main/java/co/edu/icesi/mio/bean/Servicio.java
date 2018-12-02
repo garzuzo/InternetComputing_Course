@@ -1,7 +1,9 @@
 package co.edu.icesi.mio.bean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -48,9 +50,13 @@ public class Servicio implements Serializable {
 		servicioLogic.deleteServicio(servicio);
 	}
 
-	public void findByRangoFechas() {
+	public List<Tmio1Servicio> findByRangoFechas() {
 		Tmio1Servicio servicio = new Tmio1Servicio();
-		servicioLogic.findByRangeOfDates(null, null);
+		Calendar fi=Calendar.getInstance();
+		fi.setTime(fechaInicio);
+		Calendar ff=Calendar.getInstance();
+		ff.setTime(fechaFin);
+		return servicioLogic.findByRangeOfDates(fi,ff);
 	}
 	
 	

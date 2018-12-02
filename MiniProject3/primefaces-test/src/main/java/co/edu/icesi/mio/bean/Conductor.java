@@ -56,36 +56,36 @@ public class Conductor implements Serializable {
 	}
 
 	public void actualizarConductor() {
-		Tmio1Conductore conductor = new Tmio1Conductore();
-		
-		conductor.setCedula(cedula);
+		Tmio1Conductore conductor = conductorLogic.findByCedula(cedula);
+
 		conductor.setApellidos(apellidos);
 		conductor.setFechaContratacion(fechaContratacion);
 		conductor.setFechaNacimiento(fechaNacimiento);
 		conductor.setNombre(nombre);
 		conductor.setTmio1Servicios(tmio1Servicio);
 		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
-		
+
 		conductorLogic.updateConductor(conductor);
 	}
 
 	public void borrarConductor() {
-		Tmio1Conductore conductor = new Tmio1Conductore();
+		Tmio1Conductore conductor = conductorLogic.findByCedula(cedula);
 		conductorLogic.deleteConductor(conductor);
 	}
-	public void findByNombre() {
-		Tmio1Conductore conductor = new Tmio1Conductore();
-		conductorLogic.findByName(null);
+
+	public List<Tmio1Conductore>  findByNombre() {
+	
+		return conductorLogic.findByName(nombre);
 	}
 
-	public void findByApellidos() {
-		Tmio1Conductore conductor = new Tmio1Conductore();
-		conductorLogic.findByLastname(null);
+	public List<Tmio1Conductore> findByApellidos() {
+	//	Tmio1Conductore conductor = new Tmio1Conductore();
+		return conductorLogic.findByLastname(apellidos);
 	}
 
-	public void findByCedula() {
-		Tmio1Conductore conductor = new Tmio1Conductore();
-		conductorLogic.findByCedula(null);
+	public Tmio1Conductore findByCedula() {
+		//Tmio1Conductore conductor = new Tmio1Conductore();
+		return conductorLogic.findByCedula(cedula);
 	}
 
 	public List<Tmio1Servicio> getTmio1Servicio() {
@@ -103,8 +103,6 @@ public class Conductor implements Serializable {
 	public void setTmio1ServiciosSitio(List<Tmio1ServiciosSitio> tmio1ServiciosSitio) {
 		this.tmio1ServiciosSitio = tmio1ServiciosSitio;
 	}
-
-
 
 	public ITmioConductoresLogicRemota getConductorLogic() {
 		return conductorLogic;
