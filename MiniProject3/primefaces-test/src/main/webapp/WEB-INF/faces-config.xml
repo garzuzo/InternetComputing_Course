@@ -1,242 +1,240 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <faces-config version="2.2"
-              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
 
-	
+
 	<!-- INICIO SESION -->
 	<navigation-rule>
 		<from-view-id>Login.xhtml</from-view-id>
 
 		<navigation-case>
 			<from-action>#{login.validar}</from-action>
-			<from-outcome>correct</from-outcome>
+			<from-outcome>aceptado</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
+
 	</navigation-rule>
-	
-	<!-- CIERRE SESION -->
+
+
+
+
 	<navigation-rule>
+		<!-- CIERRE SESION -->
 		<from-view-id>MainView.xhtml</from-view-id>
 
 		<navigation-case>
-			<from-action>#{login.navigation}</from-action>
-			<from-outcome>login</from-outcome>
+			<from-action>#{login.inicio}</from-action>
+			<from-outcome>salida</from-outcome>
 			<to-view-id>/Login.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	<!-- MAIN VIEW TO CBUS -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+
+		<!-- MAIN VIEW TO CBUS -->
+
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cBus}</from-action>
 			<from-outcome>cBus</from-outcome>
 			<to-view-id>/pages/ConsultarBus.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	
-	<!-- MAIN VIEW TO CCONDUCTOR -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+
+
+		<!-- MAIN VIEW TO CCONDUCTOR -->
+
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cConductor}</from-action>
 			<from-outcome>cConductor</from-outcome>
 			<to-view-id>/pages/ConsultarConductor.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
 
-<!-- MAIN VIEW TO CRUTA -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+		<!-- MAIN VIEW TO CRUTA -->
+
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cRuta}</from-action>
 			<from-outcome>cRuta</from-outcome>
 			<to-view-id>/pages/ConsultarRuta.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
 
-<!-- MAIN VIEW TO CSERVICIO -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+		<!-- MAIN VIEW TO CSERVICIO -->
+
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cServicio}</from-action>
 			<from-outcome>cServicio</from-outcome>
 			<to-view-id>/pages/ConsultarServicio.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	
-	
-	<!-- MAIN VIEW TO GBUS -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+
+
+
+		<!-- MAIN VIEW TO GBUS -->
+
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
-			<from-outcome>gBus</from-outcome>
+			<from-action>#{login.gBus}</from-action>
+			<from-outcome>gBus1</from-outcome>
 			<to-view-id>/pages/GestionarBus.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	<!-- MAIN VIEW TO GCONDUCTOR -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+
+		<!-- MAIN VIEW TO GCONDUCTOR -->
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.gConductor}</from-action>
 			<from-outcome>gConductor</from-outcome>
 			<to-view-id>/pages/GestionarConductor.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	<!-- MAIN VIEW TO GRUTA -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+
+		<!-- MAIN VIEW TO GRUTA -->
+
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.gRuta}</from-action>
 			<from-outcome>gRuta</from-outcome>
 			<to-view-id>/pages/GestionarRuta.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	
-	
-	<!-- MAIN VIEW TO GSERVICIO -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+
+
+
+		<!-- MAIN VIEW TO GSERVICIO -->
+
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.gServicio}</from-action>
 			<from-outcome>gServicio</from-outcome>
 			<to-view-id>/pages/GestionarServicio.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
+
 	</navigation-rule>
-	
-	
-	
-	
-	<!-- CBUS TO MAIN VIEW  -->
+
+
 	<navigation-rule>
+		<!-- CBUS TO MAIN VIEW -->
+
 		<from-view-id>ConsultarBus.xhtml</from-view-id>
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cBus}</from-action>
 			<from-outcome>cBus</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	
-	<!-- CCONDUCTOR TO MAIN VIEW  -->
-	<navigation-rule>
-		<from-view-id>ConsultarConductor</from-view-id>
+
+
+
+		<!-- CCONDUCTOR TO MAIN VIEW -->
+
+		
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cConductor}</from-action>
 			<from-outcome>cConductor</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
 
-<!-- MAIN VIEW TO CRUTA -->
-	<navigation-rule>
-		<from-view-id>MainView.xhtml</from-view-id>
+
+		<!-- MAIN VIEW TO CRUTA -->
+
+		
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cRuta}</from-action>
 			<from-outcome>cRuta</from-outcome>
 			<to-view-id>/pages/ConsultarRuta.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
+	
 
-<!--CSERVICIO TO MAIN VIEW  -->
-	<navigation-rule>
-		<from-view-id>ConsultarServicio.xhtml</from-view-id>
+	<!--CSERVICIO TO MAIN VIEW -->
+	
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.cServicio}</from-action>
 			<from-outcome>cServicio</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
 	
-	
-	
-	<!-- GBUS  TO MAIN VIEW -->
-	<navigation-rule>
-		<from-view-id>GestionarBus.xhtml</from-view-id>
+
+
+
+	<!-- GBUS TO MAIN VIEW -->
+
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.gBus}</from-action>
 			<from-outcome>gBus</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
+
+
+	<!--GCONDUCTOR TO MAIN VIEW -->
 	
-	<!--GCONDUCTOR TO MAIN VIEW   -->
-	<navigation-rule>
-		<from-view-id>GestionarConductor.xhtml</from-view-id>
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.gConductor}</from-action>
 			<from-outcome>gConductor</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
 	
-	<!--  GRUTAMAIN TO VIEW -->
-	<navigation-rule>
-		<from-view-id>GestionarRuta.xhtml</from-view-id>
+
+	<!-- GRUTAMAIN TO VIEW -->
+	
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.gRuta}</from-action>
 			<from-outcome>gRuta</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
 	
+
+
+
+	<!--GSERVICIO TO MAIN VIEW -->
 	
-	
-	<!--GSERVICIO TO MAIN VIEW   -->
-	<navigation-rule>
-		<from-view-id>GestionarServicio.xhtml</from-view-id>
 
 		<navigation-case>
-			<from-action>#{Login.navigation}</from-action>
+			<from-action>#{login.gServicio}</from-action>
 			<from-outcome>gServicio</from-outcome>
 			<to-view-id>/pages/MainView.xhtml</to-view-id>
 			<!-- <redirect></redirect> -->
 		</navigation-case>
-	</navigation-rule>
-	
-	
-	
+
+</navigation-rule>
+
+
 
 
 </faces-config>

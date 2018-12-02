@@ -21,8 +21,7 @@
 		<h:outputLabel>Contraseña</h:outputLabel>
 	  <p:password id="contra" value="#{login.password}" />
 	  <br></br>
-	<p:commandButton value="Validar" action="#{login.validar}" />
-	
+	<p:commandButton action="#{login.validar}" value="Validar usuario" ajax="false"/> 
 
 	</h:form>
 	

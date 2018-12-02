@@ -1,37 +1,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head></h:head>
-	<h:body>
+<h:body>
 	<h:form>
 
 
-	<h:outputLabel>placa</h:outputLabel>
-	<p:inputText value="#{Bus.placa}" maxlength="6"  minlength="6" />
+		<h:outputLabel>placa</h:outputLabel>
+		<br></br>
+		<p:inputText value="#{bus.placa}" maxlength="6" minlength="6" />
+		<br></br>
+		<br></br>
+		<h:outputLabel>marca</h:outputLabel>
+		<br></br>
+		<p:inputText value="#{bus.marca}" minlength="3" />
 
-	<h:outputLabel>marca</h:outputLabel>
-	<p:inputText value="#{Bus.marca}"  minlength="3"/>
+		<br></br>
+		<br></br>
+		<h:outputLabel>capacidad</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{bus.capacidad}" min="1" />
+
+		<br></br>
+		<br></br>
+		<h:outputLabel>modelo</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{bus.modelo}" maxlength="4" minlength="4" />
+
+		<br></br>
+		<br></br>
+		<h:outputLabel>tipo</h:outputLabel>
+		<br></br>
+		<p:selectOneRadio id="tip" value="#{Bus.tipo}">
+			<f:selectItem itemLabel="P" itemValue="P" />
+			<f:selectItem itemLabel="A" itemValue="A" />
+			<f:selectItem itemLabel="T" itemValue="T" />
+		</p:selectOneRadio>
+		<br></br>
+		<br></br>
 
 
-	<h:outputLabel>capacidad</h:outputLabel>
-	<p:spinner value="#{Bus.capacidad}" min="1"/>
 
 
-	<h:outputLabel>modelo</h:outputLabel>
-	<p:input type="number" value="#{Bus.modelo}"  maxlength="4"  minlength="4"/>
+		<p:commandButton action="#{bus.crearBus}" value="Agregar Bus"
+			ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{bus.actualizarBus}" value="Actualizar Bus"
+			ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{bus.borrarBus}" value="Borrar Bus"
+			ajax="false" />
+		<br></br>
+		<br></br>
 
-
-	<h:outputLabel>tipo</h:outputLabel>
-<p:selectOneRadio id="tip" value="#{Bus.tipo}">
-            <f:selectItem itemLabel="P" itemValue="P" />
-            <f:selectItem itemLabel="A" itemValue="A" />
-            <f:selectItem itemLabel="T" itemValue="T" />
-        </p:selectOneRadio>
+		<p:commandButton action="#{login.gBus}" value="Atrás" ajax="false" />
 
 	</h:form>
-	</h:body>
+</h:body>
 </html>

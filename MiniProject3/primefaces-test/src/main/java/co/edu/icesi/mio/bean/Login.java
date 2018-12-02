@@ -3,6 +3,7 @@ package co.edu.icesi.mio.bean;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -38,6 +39,7 @@ public class Login implements Serializable {
 	private String password;
 
 	private String nav;
+
 	public String getNav() {
 		return password;
 	}
@@ -45,6 +47,7 @@ public class Login implements Serializable {
 	public void setNav(String nav) {
 		this.nav = nav;
 	}
+
 	public String validar() {
 
 		String correctUser = "garzuzo";
@@ -56,39 +59,50 @@ public class Login implements Serializable {
 //			
 //			session.getServletContext().setAttribute("username", user);
 //			session.setAttribute("username", user);
-		
-			return "correct";
+
+			return "aceptado";
 		}
 		return "failed";
 
 	}
-	
-	public String navigation() {
-		
-		String caso=nav;
-		
-		if(caso.equals("cBus")) {
-			return "cBus";
-		}else if(caso.equalsIgnoreCase("gBus")) {
-			return "gBus";
-		}else if(caso.equalsIgnoreCase("cRuta")) {
-			return "cRuta";
-		}else if(caso.equalsIgnoreCase("gRuta")) {
-			return "gRuta";
-		}else if(caso.equalsIgnoreCase("cServicio")) {
-			return "cServicio";
-		}else if(caso.equalsIgnoreCase("gServicio")) {
-			return "gServicio";
-		}else if(caso.equalsIgnoreCase("cConductor")) {
-			return "cConductor";
-		}else if(caso.equalsIgnoreCase("gConductor")) {
-			return "gConductor";
-		}else if(caso.equalsIgnoreCase("mainview")) {
-			return "mainview";
-		}else {
-			return "login";
-		}
-		
-		
+
+	public String inicio() {
+		return "salida";
+	}
+
+	public String mainview() {
+		return "mainview";
+	}
+
+	public String cBus() {
+		return "cBus";
+	}
+
+	public String gBus() {
+		return "gBus1";
+	}
+
+	public String cRuta() {
+		return "cRuta";
+	}
+
+	public String gRuta() {
+		return "gRuta";
+	}
+
+	public String cServicio() {
+		return "cServicio";
+	}
+
+	public String gServicio() {
+		return "gServicio";
+	}
+
+	public String cConductor() {
+		return "cConductor";
+	}
+
+	public String gConductor() {
+		return "gConductor";
 	}
 }

@@ -1,6 +1,8 @@
 package co.edu.icesi.mio.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -9,6 +11,8 @@ import javax.inject.Named;
 import co.edu.icesi.demo.logic.IEstudianteLogicRemota;
 import co.edu.icesi.mio.logic.ITmioBusesLogicRemota;
 import co.edu.icesi.mio.model.Tmio1Bus;
+import co.edu.icesi.mio.model.Tmio1Servicio;
+import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
 
 @Named
 @ViewScoped
@@ -33,31 +37,44 @@ public class Bus implements Serializable {
 
 	private String tipo;
 
+	private List <Tmio1Servicio> tmio1Servicios;
+	private List <Tmio1ServiciosSitio> tmio1ServiciosSitio;
 	public void crearBus() {
-		Tmio1Bus bus=new Tmio1Bus();
+		Tmio1Bus bus = new Tmio1Bus();
+
+		bus.setCapacidad(new BigDecimal(capacidad));
 		
-//		bus.setCapacidad(capacidad);
-//		bus.setId(id);
-//		bus.setMarca(marca);
-//		bus.setModelo(modelo);
-//		bus.setPlaca(placa);
-//		bus.setTipo(tipo);
-//		bus.setTmio1Servicios(tmio1Servicios);
-//		bus.setTmio1ServiciosSitios(tmio1ServiciosSitios);
+		bus.setMarca(marca);
+		bus.setModelo(new BigDecimal(modelo));
+		bus.setPlaca(placa);
+		bus.setTipo(tipo);
+		bus.setTmio1Servicios(tmio1Servicios);
+		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
+
 		
 		busLogic.add(bus);
 	}
 
 	public void actualizarBus() {
-		Tmio1Bus bus=new Tmio1Bus();
+		Tmio1Bus bus = new Tmio1Bus();
+
+	bus.setCapacidad(new BigDecimal(capacidad));
+		
+		bus.setMarca(marca);
+		bus.setModelo(new BigDecimal(modelo));
+		bus.setPlaca(placa);
+		bus.setTipo(tipo);
+		bus.setTmio1Servicios(tmio1Servicios);
+		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
+		
 		
 		busLogic.update(bus);
 	}
 
 	public void borrarBus() {
-		Tmio1Bus bus=new Tmio1Bus();
+		Tmio1Bus bus = new Tmio1Bus();
 		busLogic.delete(bus);
-		
+
 	}
 
 	public void findByModelo() {
@@ -71,4 +88,70 @@ public class Bus implements Serializable {
 	public void findByCapacidad() {
 		busLogic.findByCapacidad(null);
 	}
+
+	
+	public List<Tmio1Servicio> getTmio1Servicios() {
+		return tmio1Servicios;
+	}
+
+	public void setTmio1Servicios(List<Tmio1Servicio> tmio1Servicios) {
+		this.tmio1Servicios = tmio1Servicios;
+	}
+
+	public List<Tmio1ServiciosSitio> getTmio1ServiciosSitio() {
+		return tmio1ServiciosSitio;
+	}
+
+	public void setTmio1ServiciosSitio(List<Tmio1ServiciosSitio> tmio1ServiciosSitio) {
+		this.tmio1ServiciosSitio = tmio1ServiciosSitio;
+	}
+
+	public ITmioBusesLogicRemota getBusLogic() {
+		return busLogic;
+	}
+
+	public void setBusLogic(ITmioBusesLogicRemota busLogic) {
+		this.busLogic = busLogic;
+	}
+
+	public String getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(String capacidad) {
+		this.capacidad = capacidad;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 }

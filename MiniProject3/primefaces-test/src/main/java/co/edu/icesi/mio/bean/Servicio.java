@@ -1,6 +1,7 @@
 package co.edu.icesi.mio.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -22,11 +23,13 @@ public class Servicio implements Serializable {
 	 */
 	private static final long serialVersionUID = -3364962522222536126L;
 
-	private String tmio1Bus;
+	private String bus;
 
-	private String tmio1Conductore;
+	private String conductor;
 
-	private String tmio1Ruta;
+	private String ruta;
+	private Date fechaInicio;
+	private Date fechaFin;
 
 	// Debe permitir seleccionar el conductor, ruta y bus a
 	// asociar el servicio de los existentes.
@@ -49,5 +52,47 @@ public class Servicio implements Serializable {
 		Tmio1Servicio servicio = new Tmio1Servicio();
 		servicioLogic.findByRangeOfDates(null, null);
 	}
+	
+	
+	public String getBus() {
+		return bus;
+	}
+
+	public void setBus(String bus) {
+		this.bus = bus;
+	}
+
+	public String getConductor() {
+		return conductor;
+	}
+
+	public void setConductor(String conductor) {
+		this.conductor = conductor;
+	}
+
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
 
 }

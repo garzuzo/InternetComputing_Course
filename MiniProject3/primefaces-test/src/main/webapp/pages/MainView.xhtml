@@ -13,41 +13,47 @@
 
 <h:body>
 	<h:form>
-
-		<h:outputLabel value="Conductores" />
-
-		<p:commandButton id="gCond" binding="" action=""
-			value="Gestión Conductores" />
-		<p:commandButton id="cCond" binding="" action=""
-			value="Consultar Conductores" />
-
+		<div>
+			<h:outputLabel value="Buses           " />
+			<span></span><br></br>
+			<p:commandButton action="#{login.gBus}" value="Gestionar Bus"
+				ajax="false" />
+			<p:commandButton action="#{login.cBus}" value="Consultar Bus"
+				ajax="false" />
+			<br></br>
+		</div>
+		
+		<div>
 		<br></br>
-		<h:outputLabel value="Rutas" />
+			<h:outputLabel value="Conductores     " />
+			<span></span><br></br>
+			<p:commandButton action="#{login.gConductor}"
+				value="Gestionar Conductor" ajax="false" />
+			<p:commandButton action="#{login.cConductor}"
+				value="Consultar Conductor" ajax="false" />
 
-		<p:commandButton id="gRuta" binding="" action="" value="Gestión Rutas" />
-		<p:commandButton id="cRuta" binding="" action=""
-			value="Consultar Rutas" />
-
+			
+		</div>
 		<br></br>
-		<h:outputLabel value="Buses" />
-
-		<p:commandButton id="gBus" binding="" action=""
-			update="formEstudiante, growX" value="Gestión Buses" />
-		<p:commandButton id="cBus" binding="" action=""
-			value="Consultar Buses" />
-
-		<br></br>
-		<h:outputLabel value="Servicios" />
-		<p:commandButton id="gServ" binding="" action=""
-			value="Gestión Servicios" />
-		<p:commandButton id="cServ" binding="" action=""
-			value="Consultar Servicios" />
-		<br></br>
-	</h:form>
-
-
-	<h:form>
-		<p:commandButton id="back" binding="" action="" value="Regresar" />
+			<br></br>
+		<h:outputLabel value="Rutas           " />
+		<span></span><br></br>
+		<p:commandButton action="#{login.gRuta}" value="Gestionar Ruta"
+			ajax="false" />
+		<p:commandButton action="#{login.cRuta}" value="Consultar Ruta"
+			ajax="false" />
+			<span></span>
+		<div>
+			<br></br> <br></br>
+			<h:outputLabel value="Servicios       " />
+			<span></span><br></br>
+			<p:commandButton action="#{login.gServicio}" value="Gestionar Servicio"
+				ajax="false" />
+			<p:commandButton action="#{login.cServicio}" value="Consultar Servicio"
+				ajax="false" />
+			<br></br>
+		</div>
+		
 	</h:form>
 </h:body>
 <footer>

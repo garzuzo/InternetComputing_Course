@@ -1,40 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head></h:head>
 <h:body>
-<h:form>
+	<h:form>
 
 
-	<h:outputLabel>cedula</h:outputLabel>
-	<p:input type="number" value="#{Conductor.cedula}" />
+		<h:outputLabel>cedula</h:outputLabel>
+		<br></br>
+		<p:inputText type="number" value="#{conductor.cedula}" />
 
+		<br></br>
+		<br></br>
 
-	<h:outputLabel>nombre</h:outputLabel>
-	<p:inputText value="#{Conductor.nombre}"  minlength="3" />
-
+		<h:outputLabel>nombre</h:outputLabel>
+		<br></br>
+		<p:inputText value="#{conductor.nombre}" minlength="3" />
+		<br></br>
+		<br></br>
 
 
 
 
 		<h:outputLabel>apellido</h:outputLabel>
-	<p:inputText value="#{Conductor.apellido}" minlength="3" />
-	
-	 <p:outputLabel for="popup" value="fecha de nacimiento" />
-        <p:calendar id="popup" value="#{Conductor.fechaNacimiento}" />
+		<br></br>
+		<p:inputText value="#{conductor.apellido}" minlength="3" />
+		<br></br>
+		<br></br>
+		<p:outputLabel for="popup1" value="fecha de nacimiento" />
+		<br></br>
+		<p:calendar id="popup1" value="#{conductor.fechaNacimiento}" />
+		<br></br>
+		<br></br>
+
+
+		<p:outputLabel for="popup" value="fecha de contratación" />
+		<br></br>
+		<p:calendar id="popup" value="#{conductor.fechaContratacion}" />
+		<br></br>
+		<br></br>
+
+		<br></br>
+		<br></br>
 
 
 
-         <p:outputLabel for="popup" value="fecha de contratación" />
-        <p:calendar id="popup" value="#{Conductor.fechaContratacion}" />
-        
-        
-        	<p:commandButton id="btnClean" 
-					action="#{Conductor.prueba()}"
-				 value="Cancel" />
+
+		<p:commandButton action="#{conductor.crearConductor}"
+			value="Agregar Conductor" ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{conductor.actualizarConductor}"
+			value="Actualizar Conductor" ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{conductor.borrarConductor}"
+			value="Borrar Conductor" ajax="false" />
+		<br></br>
+		<br></br>
+		<br></br>
+
+
 	</h:form>
-	</h:body>
+	<h:form>
+		<p:commandButton action="#{login.gConductor}" value="Atrás"
+			ajax="false" />
+	</h:form>
+</h:body>
 </html>

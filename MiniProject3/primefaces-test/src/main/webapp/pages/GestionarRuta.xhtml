@@ -6,45 +6,81 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head></h:head>
 <h:body>
-<h:form>
-<h:outputLabel>numero</h:outputLabel>
-<p:inputText value="#{Ruta.numero}" maxlength="3"  minlength="3" />
+	<h:form>
+		<h:outputLabel>numero</h:outputLabel>
+		<br></br>
+		<p:inputText value="#{Ruta.numero}" maxlength="3" minlength="3" />
+		<br></br>
+		<br></br>
+
+
+		<h:outputLabel>descripción</h:outputLabel>
+		<br></br>
+		<p:inputTextarea rows="4" cols="20"
+			completeMethod="#{inputTextareaView.completeArea}" />
+
+		<br></br>
+		<br></br>
+
+		<h:outputLabel>dia inicio</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{ruta.diaInicio}" />
+		<br></br>
+		<br></br>
+
+		<h:outputLabel>dia fin</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{ruta.diaFin}" />
+		<br></br>
+		<br></br>
+
+		<h:outputLabel>hora inicio</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{ruta.horaInicio}" />
+		<br></br>
+
+		<h:outputLabel>hora fin</h:outputLabel>
+		<br></br>
+		<br></br>
+		<p:spinner value="#{ruta.horaFin}" />
+		<br></br>
+		<br></br>
+		<h:outputLabel>activa</h:outputLabel>
+		<br></br>
+		<p:selectOneRadio id="act" value="#{Ruta.activa}">
+			<f:selectItem itemLabel="SI" itemValue="S" />
+			<f:selectItem itemLabel="NO" itemValue="N" />
+		</p:selectOneRadio>
 
 
 
-<h:outputLabel>descripción</h:outputLabel>
-<p:inputTextarea rows="5" cols="6" completeMethod="#{inputTextareaView.completeArea}" />
- 
-
-<h:outputLabel>dia inicio</h:outputLabel>
- <p:spinner value="#{Ruta.diaInicio}"/>
-
-<h:outputLabel>dia fin</h:outputLabel>
- <p:spinner value="#{Ruta.diaFin}"/>
 
 
-<h:outputLabel>hora inicio</h:outputLabel>
- <p:spinner value="#{Ruta.horaInicio}"/>
-
-
-<h:outputLabel>hora fin</h:outputLabel>
-  <p:spinner value="#{Ruta.horaFin}"/>
-
-<h:outputLabel>activa</h:outputLabel>
- <p:selectOneRadio id="act" value="#{Ruta.activa}">
-            <f:selectItem itemLabel="SI" itemValue="S" />
-            <f:selectItem itemLabel="NO" itemValue="N" />
-        </p:selectOneRadio>
+		<br></br>
+		<br></br>
 
 
 
 
+		<p:commandButton action="#{ruta.crearRuta}" value="Agregar Ruta"
+			ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{ruta.actualizarRuta}" value="Actualizar Ruta"
+			ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{ruta.borrarRuta}" value="Borrar Ruta"
+			ajax="false" />
+		<br></br>
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{login.gRuta}" value="Atrás" ajax="false" />
 
 
 
 
-
-</h:form>
-	</h:body>
+	</h:form>
+</h:body>
 
 </html>

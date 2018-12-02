@@ -1,16 +1,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head></h:head>
-	<h:body>
+<h:body>
 	<h:form>
-	 <p:outputLabel for="popup" value="fecha inicio" />
-        <p:calendar id="popup" value="#{Conductor.fechaNacimiento}" />
-         <p:outputLabel for="popup" value="fecha fin" />
-        <p:calendar id="popup" value="#{Conductor.fechaNacimiento}" />
-        </h:form>
-        </h:body>
+		<p:outputLabel for="popup" value="fecha inicio" />
+		<br></br>
+		<p:calendar id="popup" value="#{servicio.fechaInicio}" />
+		<br></br>
+		<br></br>
+		<p:outputLabel for="popup1" value="fecha fin" />
+		<br></br>
+		<p:calendar id="popup1" value="#{servicio.fechaFin}" />
+		<br></br>
+		<br></br>
+
+		<br></br>
+		<br></br>
+
+
+
+
+		<p:commandButton action="#{servicio.crearServicio}"
+			value="Agregar Conductor" ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{servicio.actualizarServicio}"
+			value="Actualizar Servicio" ajax="false" />
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{servicio.borrarServicio}" value="Borrar Servicio"
+			ajax="false" />
+		<br></br>
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{login.gServicio}" value="Atrás"
+			ajax="false" />
+
+	</h:form>
+</h:body>
 </html>
