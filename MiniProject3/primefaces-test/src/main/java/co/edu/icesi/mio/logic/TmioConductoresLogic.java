@@ -16,7 +16,6 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
 import co.edu.icesi.mio.dao.ITmio1_Conductores_DAO;
 import co.edu.icesi.mio.dao.Tmio1_Conductores_DAO;
 import co.edu.icesi.mio.model.Tmio1Conductore;
@@ -28,104 +27,136 @@ import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(ITmioConductoresLogicLocal.class)
 @Remote(ITmioConductoresLogicRemota.class)
-public class TmioConductoresLogic implements ITmioConductoresLogicLocal,ITmioConductoresLogicRemota{
-
+public class TmioConductoresLogic implements ITmioConductoresLogicLocal, ITmioConductoresLogicRemota {
 
 	private ITmio1_Conductores_DAO conductorDAO;
-	
+
 	@PersistenceContext
-    private EntityManager em;
-	
+	private EntityManager em;
 
-	public void createConductor(Tmio1Conductore conductor) {
-		conductorDAO=new Tmio1_Conductores_DAO();
-		if(conductor != null && findByCedula(conductor.getCedula())==null &&
-			validacionCedula(conductor.getCedula()) && 
-				validacionNombre(conductor.getNombre()) &&
-					validacionApellido(conductor.getApellidos()) &&
-						validacionFechaNacimiento(conductor.getFechaNacimiento()) &&
-							validacionFechaContratacion(conductor.getFechaContratacion())) {
-				conductorDAO.save(em,conductor);
-		}
-	}
-	
-	
-	public void updateConductor(Tmio1Conductore conductor) {
-		conductorDAO=new Tmio1_Conductores_DAO();
-		if(conductor != null && findByCedula(conductor.getCedula())!=null &&
-			validacionCedula(conductor.getCedula()) && 
-				validacionNombre(conductor.getNombre()) &&
-					validacionApellido(conductor.getApellidos()) &&
-						validacionFechaNacimiento(conductor.getFechaNacimiento()) &&
-							validacionFechaContratacion(conductor.getFechaContratacion())) {
-				conductorDAO.update(em, conductor);
+	public String createConductor(Tmio1Conductore conductor) {
+		conductorDAO = new Tmio1_Conductores_DAO();
+		if (conductor == null)
+			return "El conductor es nulo";
 
-		}
-	}
+		if (findByCedula(conductor.getCedula()) != null)
+			return "El conductor ya existe";
 
-	
-	public void deleteConductor(Tmio1Conductore conductor) {
-		conductorDAO=new Tmio1_Conductores_DAO();
-		if(conductor!=null && findByCedula(conductor.getCedula())!=null)
-		conductorDAO.delete(em, findByCedula(conductor.getCedula()));
+		if (!validacionCedula(conductor.getCedula()))
+			return "La cedula no es valida, debe  ser númerica";
+
+		if (!validacionNombre(conductor.getNombre()))
+			return "El nombre no es válido, debe tener 3 caracteres o más";
+
+		if (!validacionApellido(conductor.getApellidos()))
+			return "El apellido no es válido, debe tener 3 caracteres o más";
+
+		if (!validacionFechaNacimiento(conductor.getFechaNacimiento()))
+			return "Recuerda que tienes que ser mayor de edad";
+
+		if (!validacionFechaContratacion(conductor.getFechaContratacion()))
+			return "Recuerda que la fecha de contratación tiene que ser menor a la fecha actual";
+
+		conductorDAO.save(em, conductor);
+		return "Se creó exitosamente";
 	}
 
 	
+
+	public String updateConductor(Tmio1Conductore conductor) {
+		conductorDAO = new Tmio1_Conductores_DAO();
+		if (conductor == null)
+			return "El conductor es nulo";
+
+		if (findByCedula(conductor.getCedula()) == null)
+			return "El conductor no existe";
+
+		if (!validacionCedula(conductor.getCedula()))
+			return "La cedula no es valida, debe  ser númerica";
+
+		if (!validacionNombre(conductor.getNombre()))
+			return "El nombre no es válido, debe tener 3 caracteres o más";
+
+		if (!validacionApellido(conductor.getApellidos()))
+			return "El apellido no es válido, debe tener 3 caracteres o más";
+
+		if (!validacionFechaNacimiento(conductor.getFechaNacimiento()))
+			return "Recuerda que tienes que ser mayor de edad";
+
+		if (!validacionFechaContratacion(conductor.getFechaContratacion()))
+			return "Recuerda que la fecha de contratación tiene que ser menor a la fecha actual";
+
+		conductorDAO.save(em, conductor);
+		return "Se creó exitosamente";
+	}
+
+	public String deleteConductor(Tmio1Conductore conductor) {
+		conductorDAO = new Tmio1_Conductores_DAO();
+		if (conductor == null)
+			return "El conductor es nulo";
+
+		if (findByCedula(conductor.getCedula())== null)
+			return "El conductor no existe";
+		
+			conductorDAO.delete(em, findByCedula(conductor.getCedula()));
+			return "Se eliminó correctamente";
+	}
+
 	public List<Tmio1Conductore> findByName(String name) {
-		conductorDAO=new Tmio1_Conductores_DAO();
-		List<Tmio1Conductore> conductores= null;
-		if(validacionNombre(name))
-			conductores= conductorDAO.findByName(em, name);
+		conductorDAO = new Tmio1_Conductores_DAO();
+		List<Tmio1Conductore> conductores = null;
+		if (validacionNombre(name))
+			if(conductorDAO.findByName(em, name)!=null)
+			conductores = conductorDAO.findByName(em, name);
 		return conductores;
 	}
 
-
 	public List<Tmio1Conductore> findByLastname(String lastname) {
-		conductorDAO=new Tmio1_Conductores_DAO();
-		List<Tmio1Conductore> conductores= null;
-		if(validacionApellido(lastname))
-			conductores= conductorDAO.findByLastName(em, lastname);
-		return conductores; 
+		conductorDAO = new Tmio1_Conductores_DAO();
+		List<Tmio1Conductore> conductores = null;
+		if (validacionApellido(lastname))
+			if(conductorDAO.findByLastName(em, lastname)!=null)
+			conductores = conductorDAO.findByLastName(em, lastname);
+		return conductores;
 	}
 
-	
 	public Tmio1Conductore findByCedula(String cedula) {
-		conductorDAO=new Tmio1_Conductores_DAO();
-		Tmio1Conductore conductor= null;
-		if(validacionCedula(cedula))
-			conductor= conductorDAO.findByCedula(em, cedula);
-		return conductor; 
+		conductorDAO = new Tmio1_Conductores_DAO();
+		Tmio1Conductore conductor = null;
+		if (validacionCedula(cedula))
+			if(conductorDAO.findByCedula(em, cedula)!=null)
+			conductor = conductorDAO.findByCedula(em, cedula);
+		return conductor;
 	}
-	
+
 	/**
-	 * 	VALIDACIONES
+	 * VALIDACIONES
 	 */
 	public boolean validacionCedula(String cedula) {
 		return cedula.matches("[0-9]+");
 	}
-	
+
 	public boolean validacionNombre(String nombre) {
-		return !nombre.equals("") && nombre.length()>=3;
-	}
-	
-	public boolean validacionApellido(String apellido) {
-		return !apellido.equals("") && apellido.length()>=3;
-	}
-	
-	public boolean validacionFechaNacimiento(Date fechaNacimiento) {
-		Calendar gc1= new GregorianCalendar();
-		gc1.setTime(fechaNacimiento);
-		Calendar gc= new GregorianCalendar().getInstance();
-		return fechaNacimiento!= null && (gc.get(GregorianCalendar.YEAR) - gc1.get(GregorianCalendar.YEAR))>=18;
-	}
-	
-	public boolean validacionFechaContratacion(Date fechaContratacion) {
-		Calendar gc1= new GregorianCalendar();
-		gc1.setTime(fechaContratacion);
-		Calendar gc= new GregorianCalendar().getInstance();
-		
-		return fechaContratacion != null && gc1.compareTo(gc)<0;
+		return !nombre.equals("") && nombre.length() >= 3;
 	}
 
-	
+	public boolean validacionApellido(String apellido) {
+		return !apellido.equals("") && apellido.length() >= 3;
+	}
+
+	public boolean validacionFechaNacimiento(Date fechaNacimiento) {
+		Calendar gc1 = new GregorianCalendar();
+		gc1.setTime(fechaNacimiento);
+		Calendar gc = new GregorianCalendar().getInstance();
+		return fechaNacimiento != null && (gc.get(GregorianCalendar.YEAR) - gc1.get(GregorianCalendar.YEAR)) >= 18;
+	}
+
+	public boolean validacionFechaContratacion(Date fechaContratacion) {
+		Calendar gc1 = new GregorianCalendar();
+		gc1.setTime(fechaContratacion);
+		Calendar gc = new GregorianCalendar().getInstance();
+
+		return fechaContratacion != null && gc1.compareTo(gc) < 0;
+	}
+
 }

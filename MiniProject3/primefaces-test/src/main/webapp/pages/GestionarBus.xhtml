@@ -35,7 +35,7 @@
 		<br></br>
 		<h:outputLabel>modelo</h:outputLabel>
 		<br></br>
-		<p:spinner value="#{bus.modelo}" maxlength="4" minlength="4" />
+		<p:spinner value="#{bus.modelo}" max="9999" min="1000" />
 
 		<br></br>
 		<br></br>
@@ -52,19 +52,21 @@
 
 
 
-		<p:commandButton action="#{bus.crearBus}" value="Agregar Bus"
+		<p:commandButton  action="#{bus.crearBus}"  onclick="PF('dlg1').show();"  value="Agregar Bus"
 			ajax="false" />
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{bus.actualizarBus}" value="Actualizar Bus"
+		<p:commandButton action="#{bus.actualizarBus}"  onclick="PF('dlg1').show();" value="Actualizar Bus"
 			ajax="false" />
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{bus.borrarBus}" value="Borrar Bus"
+		<p:commandButton action="#{bus.borrarBus}"  onclick="PF('dlg1').show();" value="Borrar Bus"
 			ajax="false" />
 		<br></br>
 		<br></br>
-
+<p:dialog header="Mensaje" widgetVar="dlg1" minHeight="40" dynamic="true">
+    <h:outputText value="#{bus.valorDialog}" />
+</p:dialog>
 		
 
 	</h:form>

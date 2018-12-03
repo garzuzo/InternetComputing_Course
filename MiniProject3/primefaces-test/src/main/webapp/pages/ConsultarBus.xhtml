@@ -10,14 +10,14 @@
 	<h:form>
 
 		<p:spinner value="#{bus.capacidad}" min="1" />
-		<p:commandButton for="busDT" action="#{bus.findByCapacidad}"
+		<p:commandButton  action="#{bus.findByCapacidad()}"
 			value="Consultar por capacidad" ajax="false" />
 		<br></br>
 		<br></br>
 
 		<br></br>
 		<p:spinner value="#{bus.modelo}" min="1" maxlength="4" minlength="4" />
-		<p:commandButton for="busDT" action="#{bus.findByModelo}"
+		<p:commandButton for="busDT" action="#{bus.findByModelo()}"
 			value="Consultar por modelo" ajax="false" />
 		<br></br>
 		<br></br>
@@ -28,30 +28,30 @@
 			<f:selectItem itemLabel="A" itemValue="A" />
 			<f:selectItem itemLabel="T" itemValue="T" />
 		</p:selectOneRadio>
-		<p:button for="busDT" action="#{bus.findByTipo}" value="Consultar por tipo"
+		<p:commandButton for="busDT" action="#{bus.findByTipo()}" value="Consultar por tipo"
 			ajax="false" />
 		<br></br>
 		<br></br>
 
 
-		<p:dataTable var="busDT" value="#{bus.datos()}">
+		<p:dataTable var="busDT" value="#{bus.dt}">
 			<p:column headerText="Id">
-				<h:outputText value="#{bus.id}" />
+				<h:outputText value="#{busDT.id}" />
 			</p:column>
 			<p:column headerText="Capacidad">
-				<h:outputText value="#{bus.capacidad}" />
+				<h:outputText value="#{busDT.capacidad}" />
 			</p:column>
 			<p:column headerText="Marca">
-				<h:outputText value="#{bus.marca}" />
+				<h:outputText value="#{busDT.marca}" />
 			</p:column>
 			<p:column headerText="Modelo">
-				<h:outputText value="#{bus.modelo}" />
+				<h:outputText value="#{busDT.modelo}" />
 			</p:column>
 			<p:column headerText="Placa">
-				<h:outputText value="#{bus.placa}" />
+				<h:outputText value="#{busDT.placa}" />
 			</p:column>
 			<p:column headerText="Tipo">
-				<h:outputText value="#{bus.tipo}" />
+				<h:outputText value="#{busDT.tipo}" />
 			</p:column>
 		</p:dataTable>
 

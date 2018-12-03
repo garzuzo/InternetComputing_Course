@@ -17,9 +17,6 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
-
-
 import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.dao.ITmio1_Conductores_DAO;
 import co.edu.icesi.mio.dao.ITmio1_Rutas_DAO;
@@ -39,83 +36,101 @@ import co.edu.icesi.mio.model.Tmio1ServicioPK;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(ITmioServiciosLogicLocal.class)
 @Remote(ITmioServiciosLogicRemota.class)
-public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServiciosLogicRemota {
+public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServiciosLogicRemota {
 
-	
 	private ITmio1_Servicios_DAO servicioDAO;
 
-	
 	private ITmio1_Conductores_DAO conductorDAO;
 
-	
 	private ITmio1_Buses_DAO busDAO;
 
-	
 	private ITmio1_Rutas_DAO rutaDAO;
 
 	@PersistenceContext
 	private EntityManager em;
 
+	public String createServicio(Tmio1Servicio servicio) {
+		servicioDAO = new Tmio1_Servicios_DAO();
+		conductorDAO = new Tmio1_Conductores_DAO();
+		busDAO = new Tmio1_Buses_DAO();
+		rutaDAO = new Tmio1_Rutas_DAO();
+		if (servicio == null)
+			return "El servicio es nulo";
 
-	public void createServicio(Tmio1Servicio servicio) {
-		servicioDAO=new Tmio1_Servicios_DAO();
-		conductorDAO=new Tmio1_Conductores_DAO();
-		busDAO=new Tmio1_Buses_DAO();
-		rutaDAO=new Tmio1_Rutas_DAO();
-		if (servicio != null
-				&& validacionLlavesForaneas(servicio.getTmio1Bus(), servicio.getTmio1Conductore(),
-						servicio.getTmio1Ruta())
-				&& validacionBusesYConductoresDisponibles(servicio.getTmio1Bus(), servicio.getTmio1Ruta(),
-						servicio.getTmio1Conductore())
-				&& validacionFechaInicioFinal(servicio.getId().getFechaInicio(), servicio.getId().getFechaFin())) {
-			servicioDAO.save(em, servicio);
-		}
+		if (!validacionLlavesForaneas(servicio.getTmio1Bus(), servicio.getTmio1Conductore(), servicio.getTmio1Ruta()))
+			return "No existe el bus, conductor o ruta";
+
+		if (!validacionBusesYConductoresDisponibles(servicio.getTmio1Bus(), servicio.getTmio1Ruta(),
+				servicio.getTmio1Conductore()))
+			return "Los buses y/o los conductores no estan disponibles";
+
+		if (!validacionFechaInicioFinal(servicio.getId().getFechaInicio(), servicio.getId().getFechaFin()))
+			return "La fecha inicial es mayor que la fecha final";
+
+		servicioDAO.save(em, servicio);
+		return "Servicio creado exitosamente";
+
 	}
 
-
-	public void updateServicio(Tmio1Servicio servicio) {
-		servicioDAO=new Tmio1_Servicios_DAO();
-		conductorDAO=new Tmio1_Conductores_DAO();
-		busDAO=new Tmio1_Buses_DAO();
-		rutaDAO=new Tmio1_Rutas_DAO();
-		if (servicio != null && getServicio(servicio.getId()) != null
-				&& validacionLlavesForaneas(servicio.getTmio1Bus(), servicio.getTmio1Conductore(),
-						servicio.getTmio1Ruta())
-				&& validacionBusesYConductoresDisponibles(servicio.getTmio1Bus(), servicio.getTmio1Ruta(),
-						servicio.getTmio1Conductore())
-				&& validacionFechaInicioFinal(servicio.getId().getFechaInicio(), servicio.getId().getFechaFin())) {
-			servicioDAO.update(em, servicio);
-		}
-	}
-
+	public String updateServicio(Tmio1Servicio servicio) {
+		servicioDAO = new Tmio1_Servicios_DAO();
+		conductorDAO = new Tmio1_Conductores_DAO();
+		busDAO = new Tmio1_Buses_DAO();
+		rutaDAO = new Tmio1_Rutas_DAO();
 	
-	public void deleteServicio(Tmio1Servicio servicio) {
-		servicioDAO=new Tmio1_Servicios_DAO();
-		conductorDAO=new Tmio1_Conductores_DAO();
-		busDAO=new Tmio1_Buses_DAO();
-		rutaDAO=new Tmio1_Rutas_DAO();
-		if (servicio != null && getServicio(servicio.getId()) != null)
-			servicioDAO.delete(em, getServicio(servicio.getId()));
+
+		if (servicio == null)
+			return "El servicio es nulo";
+
+		if (getServicio(servicio.getId()) == null)
+			return "El servicio no se encuentra agregado";
+
+		if (!validacionLlavesForaneas(servicio.getTmio1Bus(), servicio.getTmio1Conductore(), servicio.getTmio1Ruta()))
+			return "No existe el bus, conductor o ruta";
+
+		if (!validacionBusesYConductoresDisponibles(servicio.getTmio1Bus(), servicio.getTmio1Ruta(),
+				servicio.getTmio1Conductore()))
+			return "Los buses y/o los conductores no estan disponibles";
+
+		if (!validacionFechaInicioFinal(servicio.getId().getFechaInicio(), servicio.getId().getFechaFin()))
+			return "La fecha inicial es mayor que la fecha final";
+
+		servicioDAO.update(em, servicio);
+		return "Servicio creado exitosamente";
 	}
 
+	public String deleteServicio(Tmio1Servicio servicio) {
+		servicioDAO = new Tmio1_Servicios_DAO();
+		conductorDAO = new Tmio1_Conductores_DAO();
+		busDAO = new Tmio1_Buses_DAO();
+		rutaDAO = new Tmio1_Rutas_DAO();
+		if (servicio == null)
+			return "El servicio es nulo";
+
+			if (getServicio(servicio.getId()) == null)
+				return "El servicio no se encuentra agregado";
+			
+			
+				servicioDAO.delete(em, getServicio(servicio.getId()));
+				return "El servicio no se eliminó correctamente";
+	}
 
 	public List<Tmio1Servicio> findByRangeOfDates(Calendar d1, Calendar d2) {
-		servicioDAO=new Tmio1_Servicios_DAO();
-		conductorDAO=new Tmio1_Conductores_DAO();
-		busDAO=new Tmio1_Buses_DAO();
-		rutaDAO=new Tmio1_Rutas_DAO();
+		servicioDAO = new Tmio1_Servicios_DAO();
+		conductorDAO = new Tmio1_Conductores_DAO();
+		busDAO = new Tmio1_Buses_DAO();
+		rutaDAO = new Tmio1_Rutas_DAO();
 		List<Tmio1Servicio> servicios = null;
 		if (d1 != null && d2 != null)
 			servicios = servicioDAO.findByRangeOfDates(em, d1, d2);
 		return servicios;
 	}
 
-	
 	public Tmio1Servicio getServicio(Tmio1ServicioPK id) {
-		servicioDAO=new Tmio1_Servicios_DAO();
-		conductorDAO=new Tmio1_Conductores_DAO();
-		busDAO=new Tmio1_Buses_DAO();
-		rutaDAO=new Tmio1_Rutas_DAO();
+		servicioDAO = new Tmio1_Servicios_DAO();
+		conductorDAO = new Tmio1_Conductores_DAO();
+		busDAO = new Tmio1_Buses_DAO();
+		rutaDAO = new Tmio1_Rutas_DAO();
 		return servicioDAO.findById(em, id);
 	}
 
@@ -149,12 +164,10 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 		return validacion;
 	}
 
-	
 	public List<Tmio1Servicio> findAllServicios() {
 		return servicioDAO.findAll(em);
 	}
 
-	
 	public HashSet<Integer> findAllBuses() {
 		HashSet<Integer> hs = new HashSet<Integer>();
 		List<Tmio1Bus> buses = busDAO.findAll(em);
@@ -220,7 +233,6 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 
 	}
 
-	
 	public Tmio1Bus findById(int id) {
 		return busDAO.findById(em, id);
 	}
@@ -229,7 +241,6 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 		return cedula.matches("[0-9]+");
 	}
 
-	
 	public Tmio1Conductore findByCedula(String cedula) {
 		Tmio1Conductore conductor = null;
 		if (validacionCedula(cedula))
@@ -237,7 +248,6 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal,ITmioServici
 		return conductor;
 	}
 
-	
 	public Tmio1Ruta findByIdRuta(int id) {
 		return rutaDAO.findById(em, id);
 	}

@@ -29,55 +29,90 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal, ITmioBusesLogicRemo
 	@PersistenceContext
 	private EntityManager em;
 
-	public boolean add(Tmio1Bus bus) {
-		buses = new Tmio1_Buses_DAO();
-		if (bus != null && placaMESix(bus) && marcaMEThree(bus) && modeloNumbersEFour(bus.getModelo())
-				&& tipoPAT(bus.getTipo()) && capacidadMZero(bus.getCapacidad())) {
-			buses.save(em, bus);
-			return true;
-		} else
-			return false;
+	public String add(Tmio1Bus bus) {
+		buses= new Tmio1_Buses_DAO();
+		String m;
+		if (bus == null) 
+			return "El bus es nulo";
+		if(!placaMESix(bus))
+			return "La placa no tiene 6 caracteres";
+		if(!marcaMEThree(bus))
+			return "La marca tiene menos de 3 caracteres";
+		if(!modeloNumbersEFour(bus.getModelo()))
+			return "El modelo no es númerico de 4 dígitos";
+		if(!tipoPAT(bus.getTipo()))
+			return "El tipo no es P, A o T";
+		if(!capacidadMZero(bus.getCapacidad()))
+			return "La capacidad no es mayor a cero";
+		
+		buses.save(em, bus);
+		return "Se agregó correctamente el bus";
+
 	}
 
-	public void update(Tmio1Bus bus) {
-		buses = new Tmio1_Buses_DAO();
-		if (bus != null && placaMESix(bus) && marcaMEThree(bus) && modeloNumbersEFour(bus.getModelo())
-				&& tipoPAT(bus.getTipo()) && capacidadMZero(bus.getCapacidad()))
-			buses.update(em, bus);
+	public String update(Tmio1Bus bus) {
+		buses= new Tmio1_Buses_DAO();
+		if(bus==null)
+			return "El bus es nulo";
+		if(buses.findById(em, bus.getId())==null)
+			return "No existe el bus a actualizar";
+		if(!placaMESix(bus))
+			return "La placa no tiene 6 caracteres";
+		if(!marcaMEThree(bus))
+			return "La marca tiene menos de 3 caracteres";
+		if(!modeloNumbersEFour(bus.getModelo()))
+			return "El modelo no es númerico de 4 dígitos";
+		if(!tipoPAT(bus.getTipo()))
+			return "El tipo no es P, A o T";
+		if(!capacidadMZero(bus.getCapacidad()))
+			return "La capacidad no es mayor a cero";
+		
+		buses.update(em, bus);
+		return "Se actualizó correctamente el bus";
 	}
 
-	public void delete(Tmio1Bus bus) {
-		buses = new Tmio1_Buses_DAO();
-		if (bus != null && buses.findById(em, bus.getId()) != null)
-			buses.delete(em, findById(bus.getId()));
+	public String delete(Tmio1Bus bus) {
+		buses= new Tmio1_Buses_DAO();
+		if(bus==null)
+			return "El bus es nulo";
+		if(buses.findById(em, bus.getId())==null)
+			return "No se encontró el bus a eliminar";
+		
+		
+		buses.delete(em, findById(bus.getId()));
+		return "Se eliminó correctamente el bus";
 	}
 
 	public List<Tmio1Bus> findByModelo(BigDecimal m) {
 		buses = new Tmio1_Buses_DAO();
 		if (modeloNumbersEFour(m))
+			if(buses.findByModel(em, m)!=null)
 			return buses.findByModel(em, m);
-		else
+	
 			return null;
 	}
 
 	public List<Tmio1Bus> findByTipo(String t) {
 		buses = new Tmio1_Buses_DAO();
 		if (tipoPAT(t))
+			if(buses.findByType(em, t)!=null)
 			return buses.findByType(em, t);
-		else
+		
 			return null;
 	}
 
 	public List<Tmio1Bus> findByCapacidad(BigDecimal c) {
 		buses = new Tmio1_Buses_DAO();
 		if (capacidadMZero(c))
+			if(buses.findByCapacity(em, c)!=null)
 			return buses.findByCapacity(em, c);
-		else
+		
 			return null;
 	}
 
 	public Tmio1Bus findById(int id) {
 		buses = new Tmio1_Buses_DAO();
+		
 		return buses.findById(em, id);
 	}
 

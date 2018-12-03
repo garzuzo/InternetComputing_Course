@@ -44,7 +44,7 @@ public class Filtro implements Filter {
 		HttpSession session = req.getSession(false);
 
 		if (session == null || (session != null && session.getAttribute("username") == null
-				|| (session.getAttribute("username") != null && !session.getAttribute("username").equals("admin")))) {
+				|| (session != null &&session.getAttribute("username") != null && !session.getAttribute("username").equals("admin")))) {
 
 			String halfPath = req.getContextPath();
 

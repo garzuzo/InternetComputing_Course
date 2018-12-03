@@ -34,27 +34,30 @@ public class Servicio implements Serializable {
 	private String ruta;
 	private Date fechaInicio;
 	private Date fechaFin;
-
+	private String valorDialog;
 	private List<Servicio> dt = new ArrayList<Servicio>();
 
 	// Debe permitir seleccionar el conductor, ruta y bus a
 	// asociar el servicio de los existentes.
-	public void crearServicio() {
+	public String crearServicio() {
 		Tmio1Servicio servicio = new Tmio1Servicio();
-		servicioLogic.createServicio(servicio);
 		cleanValues();
+		return servicioLogic.createServicio(servicio);
+
 	}
 
-	public void actualizarServicio() {
+	public String actualizarServicio() {
 		Tmio1Servicio servicio = new Tmio1Servicio();
-		servicioLogic.updateServicio(servicio);
 		cleanValues();
+		return servicioLogic.updateServicio(servicio);
+
 	}
 
-	public void borrarServicio() {
+	public String borrarServicio() {
 		Tmio1Servicio servicio = new Tmio1Servicio();
-		servicioLogic.deleteServicio(servicio);
 		cleanValues();
+		return servicioLogic.deleteServicio(servicio);
+
 	}
 
 	public void findByRangoFechas() {
@@ -64,20 +67,22 @@ public class Servicio implements Serializable {
 		Calendar ff = Calendar.getInstance();
 		ff.setTime(fechaFin);
 		List<Tmio1Servicio> ret = servicioLogic.findByRangeOfDates(fi, ff);
-		List<Servicio> m = new ArrayList<Servicio>();
+		dt = new ArrayList<Servicio>();
+		if (ret != null) {
+			for (int i = 0; i < ret.size(); i++) {
+				Servicio act = new Servicio();
+				Tmio1Servicio finded = ret.get(i);
+				if (finded != null) {
+					act.bus = finded.getTmio1Bus().getId() + "";
+					act.conductor = finded.getTmio1Conductore() + "";
+					act.fechaFin = finded.getId().getFechaFin();
+					act.fechaInicio = finded.getId().getFechaInicio();
+					act.ruta = finded.getTmio1Ruta() + "";
 
-		for (int i = 0; i < ret.size(); i++) {
-			Servicio act = new Servicio();
-			Tmio1Servicio finded = ret.get(i);
-			act.bus = finded.getTmio1Bus().getId() + "";
-			act.conductor = finded.getTmio1Conductore() + "";
-			act.fechaFin = finded.getId().getFechaFin();
-			act.fechaInicio = finded.getId().getFechaInicio();
-			act.ruta = finded.getTmio1Ruta() + "";
-
-			m.add(act);
+					dt.add(act);
+				}
+			}
 		}
-		dt = m;
 
 	}
 
@@ -93,7 +98,7 @@ public class Servicio implements Serializable {
 
 		ruta = "";
 		fechaInicio = null;
-		 fechaFin =null;
+		fechaFin = null;
 
 	}
 
@@ -111,6 +116,14 @@ public class Servicio implements Serializable {
 
 	public void setConductor(String conductor) {
 		this.conductor = conductor;
+	}
+
+	public String getValorDialog() {
+		return valorDialog;
+	}
+
+	public void setValorDialog(String valorDialog) {
+		this.valorDialog = valorDialog;
 	}
 
 	public String getRuta() {

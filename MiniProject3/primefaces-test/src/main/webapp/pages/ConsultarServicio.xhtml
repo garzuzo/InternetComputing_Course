@@ -11,21 +11,21 @@
 		
 		
 		
-		<p:dataTable var="servicioDT" value="#{servicio.datos()}">
+		<p:dataTable var="servicioDT" value="#{servicio.dt}">
 			<p:column headerText="Id Ruta">
-				<h:outputText value="#{servicio.idRuta}" />
+				<h:outputText value="#{servicioDT.ruta}" />
 			</p:column>
 			<p:column headerText="Cedula Conductor">
-				<h:outputText value="#{servicio.cedulaConductor}" />
+				<h:outputText value="#{servicioDT.conductor}" />
 			</p:column>
 			<p:column headerText="Id Bus">
-				<h:outputText value="#{servicio.idBus}" />
+				<h:outputText value="#{servicioDT.bus}" />
 			</p:column>
 			<p:column headerText="Fecha Inicio">
-				<h:outputText value="#{servicio.fechaInicio}" />
+				<h:outputText value="#{servicioDT.fechaInicio}" />
 			</p:column>
 			<p:column headerText="Fecha Fin">
-				<h:outputText value="#{servicio.fechaFin}" />
+				<h:outputText value="#{servicioDT.fechaFin}" />
 			</p:column>
 		</p:dataTable>
 		

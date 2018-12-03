@@ -7,11 +7,11 @@ import co.edu.icesi.mio.model.Tmio1Ruta;
 
 public interface ITmioRutasLogic {
 
-	public boolean add(Tmio1Ruta ruta);
+	public String add(Tmio1Ruta ruta);
 
-	public void update(Tmio1Ruta ruta);
+	public String update(Tmio1Ruta ruta);
 
-	public void delete(Tmio1Ruta ruta);
+	public String delete(Tmio1Ruta ruta);
 
 	public List<Tmio1Ruta> findByRangoDias(BigDecimal di, BigDecimal df);
 

@@ -45,12 +45,13 @@ public class Ruta implements Serializable {
 
 	private String activa;
 
+	private String valorDialog;
 	private List<Tmio1Servicio> tmio1Servicio;
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitio;
 	private List<Tmio1SitiosRuta> tmio1SitiosRuta;
 	private List<Ruta> dt = new ArrayList<Ruta>();
 
-	public void crearRuta() {
+	public String crearRuta() {
 
 		Tmio1Ruta ruta = new Tmio1Ruta();
 
@@ -68,12 +69,12 @@ public class Ruta implements Serializable {
 		ruta.setTmio1Servicios(tmio1Servicio);
 		ruta.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 		ruta.setTmio1SitiosRutas1(tmio1SitiosRuta);
-
-		rutaLogic.add(ruta);
 		cleanValues();
+	return	rutaLogic.add(ruta);
+		
 	}
 
-	public void actualizarRuta() {
+	public String actualizarRuta() {
 		Tmio1Ruta ruta = rutaLogic.findById(Integer.parseInt(id));
 
 		ruta.setActiva(activa);
@@ -86,25 +87,28 @@ public class Ruta implements Serializable {
 		ruta.setTmio1Servicios(tmio1Servicio);
 		ruta.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 		ruta.setTmio1SitiosRutas1(tmio1SitiosRuta);
-
-		rutaLogic.update(ruta);
 		cleanValues();
+		return rutaLogic.update(ruta);
+		
 	}
 
-	public void borrarRuta() {
+	public String borrarRuta() {
 		Tmio1Ruta ruta = rutaLogic.findById(Integer.parseInt(id));
-		rutaLogic.delete(ruta);
 		cleanValues();
+	return	rutaLogic.delete(ruta);
+	
 	}
 
 	public void findByRangoDias() {
 		Tmio1Ruta ruta = new Tmio1Ruta();
 		List<Tmio1Ruta> ret = rutaLogic.findByRangoDias(new BigDecimal(diaInicio), new BigDecimal(diaFin));
 
-		List<Ruta> m = new ArrayList<Ruta>();
+		dt = new ArrayList<Ruta>();
+		if(ret!=null) {
 		for (int i = 0; i < ret.size(); i++) {
 			Ruta act = new Ruta();
 			Tmio1Ruta finded = ret.get(i);
+			if(finded!=null) {
 			act.activa = finded.getActiva();
 			act.id = finded.getId() + "";
 			act.descripcion = finded.getDescripcion();
@@ -113,9 +117,10 @@ public class Ruta implements Serializable {
 			act.numero = finded.getNumero();
 			act.horaFin = finded.getHoraFin() + "";
 			act.horaInicio = finded.getHoraInicio() + "";
-			m.add(act);
-		}
-		dt = m;
+			dt.add(act);
+			}
+		}}
+		
 	}
 
 	public void cleanValues() {
@@ -197,7 +202,13 @@ public class Ruta implements Serializable {
 	public String getId() {
 		return id;
 	}
+	public String getValorDialog() {
+		return valorDialog;
+	}
 
+	public void setValorDialog(String valorDialog) {
+		this.valorDialog = valorDialog;
+	}
 	public void setId(String id) {
 		this.id = id;
 	}

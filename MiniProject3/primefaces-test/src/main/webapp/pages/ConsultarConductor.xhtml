@@ -11,39 +11,39 @@
 
 
 		<p:spinner value="#{conductor.cedula}" />
-		<p:commandButton action="#{conductor.findByCedula}"
+		<p:commandButton action="#{conductor.findByCedula()}"
 			value="Consultar por cedula" ajax="false" />
 		<br></br>
 		<br></br>
 
 
 		<p:inputText value="#{conductor.nombre}" minlength="3" />
-		<p:commandButton action="#{bus.findByNombre}"
+		<p:commandButton action="#{conductor.findByNombre()}"
 			value="Consultar por nombre" ajax="false" />
 		<br></br>
 		<br></br>
 
 
 		<p:inputText value="#{conductor.apellidos}" minlength="3" />
-		<p:commandButton action="#{conductor.findByApellidos}"
+		<p:commandButton action="#{conductor.findByApellidos()}"
 			value="Consultar por apellidos" ajax="false" />
 
 
-		<p:dataTable var="cond" value="#{conductor.datos()}">
+		<p:dataTable var="condDt" value="#{conductor.dt}">
 			<p:column headerText="Cedula">
-				<h:outputText value="#{conductor.cedula}" />
+				<h:outputText value="#{condDt.cedula}" />
 			</p:column>
 			<p:column headerText="Nombre">
-				<h:outputText value="#{conductor.nombre}" />
+				<h:outputText value="#{condDt.nombre}" />
 			</p:column>
 			<p:column headerText="Apellidos">
-				<h:outputText value="#{conductor.apellidos}" />
+				<h:outputText value="#{condDt.apellidos}" />
 			</p:column>
 			<p:column headerText="Fecha contratación">
-				<h:outputText value="#{conductor.fechaContratacion}" />
+				<h:outputText value="#{condDt.fechaContratacion}" />
 			</p:column>
 			<p:column headerText="Fecha Nacimiento">
-				<h:outputText value="#{conductor.fechaNacimiento}" />
+				<h:outputText value="#{condDt.fechaNacimiento}" />
 			</p:column>
 
 		</p:dataTable>

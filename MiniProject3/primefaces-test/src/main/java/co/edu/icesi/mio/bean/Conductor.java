@@ -35,6 +35,7 @@ public class Conductor implements Serializable {
 
 	private String nombre;
 
+	private String valorDialog;
 	private List<Tmio1Servicio> tmio1Servicio;
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitio;
 	private List<Conductor> dt = new ArrayList<Conductor>();
@@ -43,7 +44,7 @@ public class Conductor implements Serializable {
 
 	}
 
-	public void crearConductor() {
+	public String crearConductor() {
 		Tmio1Conductore conductor = new Tmio1Conductore();
 
 		conductor.setCedula(cedula);
@@ -53,12 +54,12 @@ public class Conductor implements Serializable {
 		conductor.setNombre(nombre);
 		conductor.setTmio1Servicios(tmio1Servicio);
 		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
-
-		conductorLogic.createConductor(conductor);
 		cleanValues();
+		return conductorLogic.createConductor(conductor);
+
 	}
 
-	public void actualizarConductor() {
+	public String actualizarConductor() {
 		Tmio1Conductore conductor = conductorLogic.findByCedula(cedula);
 
 		conductor.setApellidos(apellidos);
@@ -67,73 +68,77 @@ public class Conductor implements Serializable {
 		conductor.setNombre(nombre);
 		conductor.setTmio1Servicios(tmio1Servicio);
 		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
-
-		conductorLogic.updateConductor(conductor);
 		cleanValues();
+		return conductorLogic.updateConductor(conductor);
+
 	}
 
-	public void borrarConductor() {
+	public String borrarConductor() {
 		Tmio1Conductore conductor = conductorLogic.findByCedula(cedula);
-		conductorLogic.deleteConductor(conductor);
 		cleanValues();
+		return conductorLogic.deleteConductor(conductor);
+
 	}
 
 	public void findByNombre() {
 
 		List<Tmio1Conductore> ret = conductorLogic.findByName(nombre);
 
-		List<Conductor> m = new ArrayList<Conductor>();
-
+		dt = new ArrayList<Conductor>();
+if(ret!=null) {
 		for (int i = 0; i < ret.size(); i++) {
 			Conductor act = new Conductor();
 			Tmio1Conductore finded = ret.get(i);
-			act.cedula = finded.getCedula();
-			act.apellidos = finded.getApellidos();
-			act.fechaContratacion = finded.getFechaContratacion();
-			act.fechaNacimiento = finded.getFechaNacimiento();
-			act.nombre = finded.getNombre();
-			m.add(act);
+			if (finded != null) {
+				act.cedula = finded.getCedula();
+				act.apellidos = finded.getApellidos();
+				act.fechaContratacion = finded.getFechaContratacion();
+				act.fechaNacimiento = finded.getFechaNacimiento();
+				act.nombre = finded.getNombre();
+				dt.add(act);
+			}
 		}
-		dt = m;
-
+}
 	}
 
 	public void findByApellidos() {
 		// Tmio1Conductore conductor = new Tmio1Conductore();
 		List<Tmio1Conductore> ret = conductorLogic.findByLastname(apellidos);
 
-		List<Conductor> m = new ArrayList<Conductor>();
-
+		dt = new ArrayList<Conductor>();
+		if(ret!=null) {
 		for (int i = 0; i < ret.size(); i++) {
 			Conductor act = new Conductor();
 			Tmio1Conductore finded = ret.get(i);
-			act.cedula = finded.getCedula();
-			act.apellidos = finded.getApellidos();
-			act.fechaContratacion = finded.getFechaContratacion();
-			act.fechaNacimiento = finded.getFechaNacimiento();
-			act.nombre = finded.getNombre();
-			m.add(act);
+			if (finded != null) {
+				act.cedula = finded.getCedula();
+				act.apellidos = finded.getApellidos();
+				act.fechaContratacion = finded.getFechaContratacion();
+				act.fechaNacimiento = finded.getFechaNacimiento();
+				act.nombre = finded.getNombre();
+				dt.add(act);
+			}
 		}
-		dt = m;
+		}
 	}
 
 	public void findByCedula() {
 		// Tmio1Conductore conductor = new Tmio1Conductore();
 		Tmio1Conductore ret = conductorLogic.findByCedula(cedula);
 
-		List<Conductor> m = new ArrayList<Conductor>();
-
+		dt = new ArrayList<Conductor>();
+		if(ret!=null) {
 		Conductor act = new Conductor();
 		Tmio1Conductore finded = ret;
-		act.cedula = finded.getCedula();
-		act.apellidos = finded.getApellidos();
-		act.fechaContratacion = finded.getFechaContratacion();
-		act.fechaNacimiento = finded.getFechaNacimiento();
-		act.nombre = finded.getNombre();
-		m.add(act);
-
-		dt = m;
-
+		if (finded != null) {
+			act.cedula = finded.getCedula();
+			act.apellidos = finded.getApellidos();
+			act.fechaContratacion = finded.getFechaContratacion();
+			act.fechaNacimiento = finded.getFechaNacimiento();
+			act.nombre = finded.getNombre();
+			dt.add(act);
+		}
+		}
 	}
 
 	public void cleanValues() {
@@ -150,10 +155,10 @@ public class Conductor implements Serializable {
 
 	}
 
-	public List<Conductor> datos() {
-		return dt;
-
-	}
+//	public List<Conductor> datos() {
+//		return dt;
+//
+//	}
 
 	public List<Tmio1Servicio> getTmio1Servicio() {
 		return tmio1Servicio;
@@ -197,6 +202,14 @@ public class Conductor implements Serializable {
 
 	public String getApellidos() {
 		return apellidos;
+	}
+
+	public String getValorDialog() {
+		return valorDialog;
+	}
+
+	public void setValorDialog(String valorDialog) {
+		this.valorDialog = valorDialog;
 	}
 
 	public void setApellidos(String apellidos) {

@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.component.datatable.DataTable;
+
 import co.edu.icesi.demo.logic.IEstudianteLogicRemota;
 import co.edu.icesi.mio.logic.ITmioBusesLogicRemota;
 import co.edu.icesi.mio.model.Tmio1Bus;
@@ -38,14 +40,15 @@ public class Bus implements Serializable {
 	private String placa;
 
 	private String tipo;
-
+	private String valorDialog;
 	private String id;
 
+	DataTable dtBus;
 	private List<Tmio1Servicio> tmio1Servicios;
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitio;
 	private List<Bus> dt = new ArrayList<Bus>();
 
-	public void crearBus() {
+	public String crearBus() {
 		Tmio1Bus bus = new Tmio1Bus();
 
 		bus.setCapacidad(new BigDecimal(capacidad));
@@ -58,8 +61,10 @@ public class Bus implements Serializable {
 		bus.setTmio1Servicios(tmio1Servicios);
 		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
-		busLogic.add(bus);
-		cleanValues();
+		String answ = busLogic.add(bus);
+		// cleanValues();
+		valorDialog = answ;
+		return answ;
 	}
 
 	public void cleanValues() {
@@ -77,7 +82,7 @@ public class Bus implements Serializable {
 
 	}
 
-	public void actualizarBus() {
+	public String actualizarBus() {
 		Tmio1Bus bus = new Tmio1Bus();
 
 		bus = busLogic.findById(Integer.parseInt(id));
@@ -91,77 +96,103 @@ public class Bus implements Serializable {
 		bus.setTmio1Servicios(tmio1Servicios);
 		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
-		busLogic.update(bus);
+		String answ = busLogic.update(bus);
 		cleanValues();
+		valorDialog = answ;
+		return answ;
 	}
 
-	public void borrarBus() {
+	public String borrarBus() {
 		Tmio1Bus bus = busLogic.findById(Integer.parseInt(id));
 
-		busLogic.delete(bus);
-
+		cleanValues();
+		String answ = busLogic.delete(bus);
+		valorDialog = answ;
+		return answ;
 	}
 
 	public void findByModelo() {
 		List<Tmio1Bus> ret = busLogic.findByModelo(new BigDecimal(modelo));
 
-		List<Bus> m = new ArrayList<Bus>();
-
-		for (int i = 0; i < ret.size(); i++) {
-			Bus act = new Bus();
-			Tmio1Bus finded = ret.get(i);
-			act.id = finded.getId() + "";
-			act.capacidad = finded.getCapacidad() + "";
-			act.marca = finded.getMarca();
-			act.modelo = finded.getModelo() + "";
-			act.placa = finded.getPlaca();
-
-			m.add(act);
+		dt = new ArrayList<Bus>();
+		if (ret != null) {
+			for (int i = 0; i < ret.size(); i++) {
+				Bus act = new Bus();
+				Tmio1Bus finded = ret.get(i);
+				if (finded != null) {
+					act.id = finded.getId() + "";
+					act.capacidad = finded.getCapacidad() + "";
+					act.marca = finded.getMarca();
+					act.modelo = finded.getModelo() + "";
+					act.placa = finded.getPlaca();
+					act.tipo = finded.getTipo();
+					dt.add(act);
+				}
+			}
 		}
-		dt = m;
 	}
 
 	public void findByTipo() {
-		List<Tmio1Bus> ret = busLogic.findByTipo(tipo);
+		dt = new ArrayList<Bus>();
+		if (tipo != null) {
+			List<Tmio1Bus> ret = busLogic.findByTipo(tipo);
 
-		List<Bus> m = new ArrayList<Bus>();
+		
 
-		for (int i = 0; i < ret.size(); i++) {
-			Bus act = new Bus();
-			Tmio1Bus finded = ret.get(i);
-			act.id = finded.getId() + "";
-			act.capacidad = finded.getCapacidad() + "";
-			act.marca = finded.getMarca();
-			act.modelo = finded.getModelo() + "";
-			act.placa = finded.getPlaca();
+			for (int i = 0; i < ret.size(); i++) {
+				Bus act = new Bus();
+				Tmio1Bus finded = ret.get(i);
+				if (finded != null) {
+					act.id = finded.getId() + "";
+					act.capacidad = finded.getCapacidad() + "";
+					act.marca = finded.getMarca();
+					act.modelo = finded.getModelo() + "";
+					act.placa = finded.getPlaca();
+					act.tipo = finded.getTipo();
+					dt.add(act);
+				}
+			}
 
-			m.add(act);
+			// cleanValues();
 		}
-		dt = m;
-		cleanValues();
 	}
 
 	public void findByCapacidad() {
 		List<Tmio1Bus> ret = busLogic.findByCapacidad(new BigDecimal(capacidad));
+		dt = new ArrayList<Bus>();
+		if (ret != null) {
 
-		List<Bus> m = new ArrayList<Bus>();
-		for (int i = 0; i < ret.size(); i++) {
-			Bus act = new Bus();
-			Tmio1Bus finded = ret.get(i);
-			act.id = finded.getId() + "";
-			act.capacidad = finded.getCapacidad() + "";
-			act.marca = finded.getMarca();
-			act.modelo = finded.getModelo() + "";
-			act.placa = finded.getPlaca();
-
-			m.add(act);
+			for (int i = 0; i < ret.size(); i++) {
+				Bus act = new Bus();
+				Tmio1Bus finded = ret.get(i);
+				if (finded != null) {
+					act.id = finded.getId() + "";
+					act.capacidad = finded.getCapacidad() + "";
+					act.marca = finded.getMarca();
+					act.modelo = finded.getModelo() + "";
+					act.placa = finded.getPlaca();
+					act.tipo = finded.getTipo();
+					dt.add(act);
+				}
+			}
 		}
-		dt = m;
-		cleanValues();
+
+		// datos();
+		// dtBus.reset();
+
+		// cleanValues();
+	}
+
+	public DataTable getDtBus() {
+		return dtBus;
+	}
+
+	public void setDtBus(DataTable dtBus) {
+		this.dtBus = dtBus;
 	}
 
 	public List<Bus> datos() {
-
+		dtBus.reset();
 		return dt;
 	}
 
@@ -183,6 +214,14 @@ public class Bus implements Serializable {
 
 	public List<Tmio1Servicio> getTmio1Servicios() {
 		return tmio1Servicios;
+	}
+
+	public String getValorDialog() {
+		return valorDialog;
+	}
+
+	public void setValorDialog(String valorDialog) {
+		this.valorDialog = valorDialog;
 	}
 
 	public void setTmio1Servicios(List<Tmio1Servicio> tmio1Servicios) {

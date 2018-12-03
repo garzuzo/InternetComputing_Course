@@ -6,11 +6,11 @@ import java.util.List;
 import co.edu.icesi.mio.model.Tmio1Bus;
 
 public interface ITmioBusesLogicRemota {
-	public boolean add(Tmio1Bus bus);
+	public String add(Tmio1Bus bus);
 
-	public void update(Tmio1Bus bus);
+	public String update(Tmio1Bus bus);
 
-	public void delete(Tmio1Bus bus);
+	public String delete(Tmio1Bus bus);
 
 	public List<Tmio1Bus> findByModelo(BigDecimal m);
 

@@ -11,12 +11,14 @@
 		<h:outputLabel>dia inicio</h:outputLabel>
 		<br></br>
 		<p:spinner value="#{ruta.diaInicio}" max="7" min="1" />
-<br></br><br></br>
+		<br></br>
+		<br></br>
 		<h:outputLabel>dia fin</h:outputLabel>
 		<br></br>
 		<p:spinner value="#{ruta.diaFin}" max="7" min="1" />
-		<br></br><br></br>
-		<p:commandButton action="#{ruta.findByRangoDias}"
+		<br></br>
+		<br></br>
+		<p:commandButton action="#{ruta.findByRangoDias()}"
 			value="Consultar por rango de días" ajax="false" />
 		<br></br>
 		<br></br>
@@ -24,38 +26,39 @@
 
 
 
-		<p:dataTable var="rutaDT" value="#{ruta.datos()}">
+		<p:dataTable var="rutaDT" value="#{ruta.dt}">
 
 			<p:column headerText="Id Ruta">
-				<h:outputText value="#{ruta.id}" />
+				<h:outputText value="#{rutaDT.id}" />
 			</p:column>
 			<p:column headerText="Activa">
-				<h:outputText value="#{ruta.activa}" />
+				<h:outputText value="#{rutaDT.activa}" />
 			</p:column>
 			<p:column headerText="Dia Inicio">
-				<h:outputText value="#{ruta.diaInicio}" />
+				<h:outputText value="#{rutaDT.diaInicio}" />
 			</p:column>
 			<p:column headerText="Dia Fin">
-				<h:outputText value="#{ruta.diaFin}" />
+				<h:outputText value="#{rutaDT.diaFin}" />
 			</p:column>
 			<p:column headerText="Hora Inicio">
-				<h:outputText value="#{ruta.horaInicio}" />
+				<h:outputText value="#{rutaDT.horaInicio}" />
 			</p:column>
 			<p:column headerText="Hora Fin">
-				<h:outputText value="#{ruta.horaFin}" />
+				<h:outputText value="#{rutaDT.horaFin}" />
 			</p:column>
 			<p:column headerText="Número">
-				<h:outputText value="#{ruta.numero}" />
+				<h:outputText value="#{rutaDT.numero}" />
 			</p:column>
 			<p:column headerText="Descripción">
-				<h:outputText value="#{ruta.descripcion}" />
+				<h:outputText value="#{rutaDT.descripcion}" />
 			</p:column>
 		</p:dataTable>
 
 	</h:form>
 
 	<h:form>
-	<br></br><br></br>
+		<br></br>
+		<br></br>
 		<p:commandButton action="#{login.cRuta}" value="Atrás" ajax="false" />
 	</h:form>
 </h:body>
