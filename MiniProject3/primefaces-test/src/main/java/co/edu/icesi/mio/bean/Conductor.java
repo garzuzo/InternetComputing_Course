@@ -1,6 +1,7 @@
 package co.edu.icesi.mio.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class Conductor implements Serializable {
 
 	private List<Tmio1Servicio> tmio1Servicio;
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitio;
+	private List<Conductor> dt = new ArrayList<Conductor>();
 
 	public void prueba() {
 
@@ -53,6 +55,7 @@ public class Conductor implements Serializable {
 		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
 		conductorLogic.createConductor(conductor);
+		cleanValues();
 	}
 
 	public void actualizarConductor() {
@@ -66,26 +69,90 @@ public class Conductor implements Serializable {
 		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
 		conductorLogic.updateConductor(conductor);
+		cleanValues();
 	}
 
 	public void borrarConductor() {
 		Tmio1Conductore conductor = conductorLogic.findByCedula(cedula);
 		conductorLogic.deleteConductor(conductor);
+		cleanValues();
 	}
 
-	public List<Tmio1Conductore>  findByNombre() {
-	
-		return conductorLogic.findByName(nombre);
+	public void findByNombre() {
+
+		List<Tmio1Conductore> ret = conductorLogic.findByName(nombre);
+
+		List<Conductor> m = new ArrayList<Conductor>();
+
+		for (int i = 0; i < ret.size(); i++) {
+			Conductor act = new Conductor();
+			Tmio1Conductore finded = ret.get(i);
+			act.cedula = finded.getCedula();
+			act.apellidos = finded.getApellidos();
+			act.fechaContratacion = finded.getFechaContratacion();
+			act.fechaNacimiento = finded.getFechaNacimiento();
+			act.nombre = finded.getNombre();
+			m.add(act);
+		}
+		dt = m;
+
 	}
 
-	public List<Tmio1Conductore> findByApellidos() {
-	//	Tmio1Conductore conductor = new Tmio1Conductore();
-		return conductorLogic.findByLastname(apellidos);
+	public void findByApellidos() {
+		// Tmio1Conductore conductor = new Tmio1Conductore();
+		List<Tmio1Conductore> ret = conductorLogic.findByLastname(apellidos);
+
+		List<Conductor> m = new ArrayList<Conductor>();
+
+		for (int i = 0; i < ret.size(); i++) {
+			Conductor act = new Conductor();
+			Tmio1Conductore finded = ret.get(i);
+			act.cedula = finded.getCedula();
+			act.apellidos = finded.getApellidos();
+			act.fechaContratacion = finded.getFechaContratacion();
+			act.fechaNacimiento = finded.getFechaNacimiento();
+			act.nombre = finded.getNombre();
+			m.add(act);
+		}
+		dt = m;
 	}
 
-	public Tmio1Conductore findByCedula() {
-		//Tmio1Conductore conductor = new Tmio1Conductore();
-		return conductorLogic.findByCedula(cedula);
+	public void findByCedula() {
+		// Tmio1Conductore conductor = new Tmio1Conductore();
+		Tmio1Conductore ret = conductorLogic.findByCedula(cedula);
+
+		List<Conductor> m = new ArrayList<Conductor>();
+
+		Conductor act = new Conductor();
+		Tmio1Conductore finded = ret;
+		act.cedula = finded.getCedula();
+		act.apellidos = finded.getApellidos();
+		act.fechaContratacion = finded.getFechaContratacion();
+		act.fechaNacimiento = finded.getFechaNacimiento();
+		act.nombre = finded.getNombre();
+		m.add(act);
+
+		dt = m;
+
+	}
+
+	public void cleanValues() {
+
+		cedula = "";
+
+		apellidos = "";
+
+		fechaContratacion = null;
+
+		fechaNacimiento = null;
+
+		nombre = "";
+
+	}
+
+	public List<Conductor> datos() {
+		return dt;
+
 	}
 
 	public List<Tmio1Servicio> getTmio1Servicio() {
@@ -110,6 +177,14 @@ public class Conductor implements Serializable {
 
 	public void setConductorLogic(ITmioConductoresLogicRemota conductorLogic) {
 		this.conductorLogic = conductorLogic;
+	}
+
+	public List<Conductor> getDt() {
+		return dt;
+	}
+
+	public void setDt(List<Conductor> dt) {
+		this.dt = dt;
 	}
 
 	public String getCedula() {

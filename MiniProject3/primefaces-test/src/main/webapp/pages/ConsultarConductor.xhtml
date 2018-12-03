@@ -8,17 +8,51 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
-		<h:outputLabel>consultar por nombre</h:outputLabel>
-		<p:inputText value="#{Conductor.nombre}" />
-		
 
-		<h:outputLabel>consultar por apellidos</h:outputLabel>
-		<p:inputText value="#{Conductor.nombre}" />
-		
 
-		<h:outputLabel>consultar por cédula</h:outputLabel>
-		<p:inputText value="#{Conductor.nombre}" />
-	
+		<p:spinner value="#{conductor.cedula}" />
+		<p:commandButton action="#{conductor.findByCedula}"
+			value="Consultar por cedula" ajax="false" />
+		<br></br>
+		<br></br>
+
+
+		<p:inputText value="#{conductor.nombre}" minlength="3" />
+		<p:commandButton action="#{bus.findByNombre}"
+			value="Consultar por nombre" ajax="false" />
+		<br></br>
+		<br></br>
+
+
+		<p:inputText value="#{conductor.apellidos}" minlength="3" />
+		<p:commandButton action="#{conductor.findByApellidos}"
+			value="Consultar por apellidos" ajax="false" />
+
+
+		<p:dataTable var="cond" value="#{conductor.datos()}">
+			<p:column headerText="Cedula">
+				<h:outputText value="#{conductor.cedula}" />
+			</p:column>
+			<p:column headerText="Nombre">
+				<h:outputText value="#{conductor.nombre}" />
+			</p:column>
+			<p:column headerText="Apellidos">
+				<h:outputText value="#{conductor.apellidos}" />
+			</p:column>
+			<p:column headerText="Fecha contratación">
+				<h:outputText value="#{conductor.fechaContratacion}" />
+			</p:column>
+			<p:column headerText="Fecha Nacimiento">
+				<h:outputText value="#{conductor.fechaNacimiento}" />
+			</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+	<h:form>
+		<p:commandButton action="#{login.cConductor}" value="Atrás"
+			ajax="false" />
 	</h:form>
 </h:body>
 </html>

@@ -7,6 +7,13 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
+	
+		<h:outputLabel>Id</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{ruta.id}"  />
+		<br></br>
+		<br></br>
+		
 		<h:outputLabel>numero</h:outputLabel>
 		<br></br>
 		<p:inputText value="#{ruta.numero}" maxlength="3" minlength="3" />
@@ -16,33 +23,33 @@
 
 		<h:outputLabel>descripción</h:outputLabel>
 		<br></br>
-		<p:inputTextarea rows="4" cols="20"
-			completeMethod="#{ruta.descripcion}" />
+		<p:inputTextarea rows="4" cols="20" maxlength="30"
+			value="#{ruta.descripcion}" />
 
 		<br></br>
 		<br></br>
 
 		<h:outputLabel>dia inicio</h:outputLabel>
 		<br></br>
-		<p:spinner value="#{ruta.diaInicio}" />
+		<p:spinner value="#{ruta.diaInicio}" max="7" min="1"  />
 		<br></br>
 		<br></br>
 
 		<h:outputLabel>dia fin</h:outputLabel>
 		<br></br>
-		<p:spinner value="#{ruta.diaFin}" />
+		<p:spinner value="#{ruta.diaFin}" max="7" min="1" />
 		<br></br>
 		<br></br>
 
 		<h:outputLabel>hora inicio</h:outputLabel>
 		<br></br>
-		<p:spinner value="#{ruta.horaInicio}" />
+		<p:spinner value="#{ruta.horaInicio}" max="1440" min="1"  />
 		<br></br>
 
 		<h:outputLabel>hora fin</h:outputLabel>
 		<br></br>
 		<br></br>
-		<p:spinner value="#{ruta.horaFin}" />
+		<p:spinner value="#{ruta.horaFin}" max="1440" min="1"   />
 		<br></br>
 		<br></br>
 		<h:outputLabel>activa</h:outputLabel>
@@ -54,13 +61,8 @@
 
 
 
-
-
 		<br></br>
 		<br></br>
-
-
-
 
 		<p:commandButton action="#{ruta.crearRuta}" value="Agregar Ruta"
 			ajax="false" />
@@ -75,10 +77,7 @@
 		<br></br>
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{login.gRuta}" value="Atrás" ajax="false" />
-
-<p:commandButton action="#{login.gRuta}" value="Atrás" ajax="false" />
-
+	
 
 
 	</h:form>

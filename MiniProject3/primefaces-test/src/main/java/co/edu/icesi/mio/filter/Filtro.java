@@ -38,18 +38,19 @@ public class Filtro implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-//		HttpServletRequest req = (HttpServletRequest) request;
-//
-//	//	String val=(String) sc.getAttribute("username");
-//		HttpSession session = req.getSession(false);
-//
-//		if (session == null) {
-//
-//			String halfPath = req.getContextPath();
-//
-//			((HttpServletResponse) response).sendRedirect(halfPath + "/Login.xhtml");
-//			sc.log("Intento de acceso no autorizado");
-//		}
+		HttpServletRequest req = (HttpServletRequest) request;
+
+		// String val=(String) sc.getAttribute("username");
+		HttpSession session = req.getSession(false);
+
+		if (session == null || (session != null && session.getAttribute("username") == null
+				|| (session.getAttribute("username") != null && !session.getAttribute("username").equals("admin")))) {
+
+			String halfPath = req.getContextPath();
+
+			((HttpServletResponse) response).sendRedirect(halfPath + "/Login.xhtml");
+			sc.log("Intento de acceso no autorizado");
+		}
 
 		chain.doFilter(request, response);
 	}

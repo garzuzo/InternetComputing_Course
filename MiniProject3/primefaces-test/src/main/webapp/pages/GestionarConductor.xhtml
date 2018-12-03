@@ -11,7 +11,7 @@
 
 		<h:outputLabel>cedula</h:outputLabel>
 		<br></br>
-		<p:inputText type="number" value="#{conductor.cedula}" />
+		<p:spinner value="#{conductor.cedula}" />
 
 		<br></br>
 		<br></br>
@@ -65,10 +65,7 @@
 
 
 	</h:form>
-	<h:form>
-		<p:commandButton action="#{login.gConductor}" value="Atrás"
-			ajax="false" />
-	</h:form>
+	
 	<h:form>
 		<p:commandButton action="#{login.gConductor}" value="Atrás"
 			ajax="false" />

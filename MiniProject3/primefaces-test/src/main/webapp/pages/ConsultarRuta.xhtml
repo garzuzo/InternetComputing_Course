@@ -8,17 +8,55 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
-	<h:outputLabel>dia menor</h:outputLabel>
-	
-	<p:inputText value="#{Login.user}" />
-	
-	<h:outputLabel>dia mayor</h:outputLabel>
-	
-	<p:inputText value="#{Login.user}" />
-	
-	
-	
+		<h:outputLabel>dia inicio</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{ruta.diaInicio}" max="7" min="1" />
+<br></br><br></br>
+		<h:outputLabel>dia fin</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{ruta.diaFin}" max="7" min="1" />
+		<br></br><br></br>
+		<p:commandButton action="#{ruta.findByRangoDias}"
+			value="Consultar por rango de días" ajax="false" />
+		<br></br>
+		<br></br>
 
+
+
+
+		<p:dataTable var="rutaDT" value="#{ruta.datos()}">
+
+			<p:column headerText="Id Ruta">
+				<h:outputText value="#{ruta.id}" />
+			</p:column>
+			<p:column headerText="Activa">
+				<h:outputText value="#{ruta.activa}" />
+			</p:column>
+			<p:column headerText="Dia Inicio">
+				<h:outputText value="#{ruta.diaInicio}" />
+			</p:column>
+			<p:column headerText="Dia Fin">
+				<h:outputText value="#{ruta.diaFin}" />
+			</p:column>
+			<p:column headerText="Hora Inicio">
+				<h:outputText value="#{ruta.horaInicio}" />
+			</p:column>
+			<p:column headerText="Hora Fin">
+				<h:outputText value="#{ruta.horaFin}" />
+			</p:column>
+			<p:column headerText="Número">
+				<h:outputText value="#{ruta.numero}" />
+			</p:column>
+			<p:column headerText="Descripción">
+				<h:outputText value="#{ruta.descripcion}" />
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+	<h:form>
+	<br></br><br></br>
+		<p:commandButton action="#{login.cRuta}" value="Atrás" ajax="false" />
 	</h:form>
 </h:body>
 </html>

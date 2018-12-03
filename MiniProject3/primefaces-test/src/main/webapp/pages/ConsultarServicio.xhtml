@@ -8,6 +8,33 @@
 <h:body>
 	<h:form>
 		
+		
+		
+		
+		<p:dataTable var="servicioDT" value="#{servicio.datos()}">
+			<p:column headerText="Id Ruta">
+				<h:outputText value="#{servicio.idRuta}" />
+			</p:column>
+			<p:column headerText="Cedula Conductor">
+				<h:outputText value="#{servicio.cedulaConductor}" />
+			</p:column>
+			<p:column headerText="Id Bus">
+				<h:outputText value="#{servicio.idBus}" />
+			</p:column>
+			<p:column headerText="Fecha Inicio">
+				<h:outputText value="#{servicio.fechaInicio}" />
+			</p:column>
+			<p:column headerText="Fecha Fin">
+				<h:outputText value="#{servicio.fechaFin}" />
+			</p:column>
+		</p:dataTable>
+		
+		
+	</h:form>
+	
+	<h:form>
+		<p:commandButton action="#{login.cServicio}" value="Atrás"
+			ajax="false" />
 	</h:form>
 </h:body>
 </html>

@@ -2,6 +2,7 @@ package co.edu.icesi.mio.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -10,6 +11,7 @@ import javax.inject.Named;
 
 import co.edu.icesi.mio.logic.ITmioBusesLogicRemota;
 import co.edu.icesi.mio.logic.ITmioRutasLogicRemota;
+import co.edu.icesi.mio.model.Tmio1Conductore;
 import co.edu.icesi.mio.model.Tmio1Ruta;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
@@ -46,6 +48,7 @@ public class Ruta implements Serializable {
 	private List<Tmio1Servicio> tmio1Servicio;
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitio;
 	private List<Tmio1SitiosRuta> tmio1SitiosRuta;
+	private List<Ruta> dt = new ArrayList<Ruta>();
 
 	public void crearRuta() {
 
@@ -58,11 +61,16 @@ public class Ruta implements Serializable {
 		ruta.setHoraFin(new BigDecimal(horaFin));
 		ruta.setHoraInicio(new BigDecimal(horaInicio));
 		ruta.setNumero(numero);
+
+		tmio1Servicio = new ArrayList<Tmio1Servicio>();
+		tmio1ServiciosSitio = new ArrayList<Tmio1ServiciosSitio>();
+		tmio1SitiosRuta = new ArrayList<Tmio1SitiosRuta>();
 		ruta.setTmio1Servicios(tmio1Servicio);
 		ruta.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 		ruta.setTmio1SitiosRutas1(tmio1SitiosRuta);
 
 		rutaLogic.add(ruta);
+		cleanValues();
 	}
 
 	public void actualizarRuta() {
@@ -80,17 +88,58 @@ public class Ruta implements Serializable {
 		ruta.setTmio1SitiosRutas1(tmio1SitiosRuta);
 
 		rutaLogic.update(ruta);
-
+		cleanValues();
 	}
 
 	public void borrarRuta() {
 		Tmio1Ruta ruta = rutaLogic.findById(Integer.parseInt(id));
 		rutaLogic.delete(ruta);
+		cleanValues();
 	}
 
 	public void findByRangoDias() {
 		Tmio1Ruta ruta = new Tmio1Ruta();
-		rutaLogic.findByRangoDias(new BigDecimal(diaInicio), new BigDecimal(diaFin));
+		List<Tmio1Ruta> ret = rutaLogic.findByRangoDias(new BigDecimal(diaInicio), new BigDecimal(diaFin));
+
+		List<Ruta> m = new ArrayList<Ruta>();
+		for (int i = 0; i < ret.size(); i++) {
+			Ruta act = new Ruta();
+			Tmio1Ruta finded = ret.get(i);
+			act.activa = finded.getActiva();
+			act.id = finded.getId() + "";
+			act.descripcion = finded.getDescripcion();
+			act.diaFin = finded.getDiaFin() + "";
+			act.diaInicio = finded.getDiaInicio() + "";
+			act.numero = finded.getNumero();
+			act.horaFin = finded.getHoraFin() + "";
+			act.horaInicio = finded.getHoraInicio() + "";
+			m.add(act);
+		}
+		dt = m;
+	}
+
+	public void cleanValues() {
+
+		descripcion = "";
+
+		id = "";
+
+		diaFin = "";
+
+		diaInicio = "";
+
+		horaFin = "";
+
+		horaInicio = "";
+
+		numero = "";
+
+		activa = "";
+
+	}
+
+	public List<Ruta> datos() {
+		return dt;
 	}
 
 	public List<Tmio1Servicio> getTmio1Servicio() {
@@ -131,6 +180,14 @@ public class Ruta implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public List<Ruta> getDt() {
+		return dt;
+	}
+
+	public void setDt(List<Ruta> dt) {
+		this.dt = dt;
 	}
 
 	public String getDiaFin() {

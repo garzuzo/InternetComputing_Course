@@ -12,6 +12,7 @@ import javax.inject.Named;
 import co.edu.icesi.demo.logic.IEstudianteLogicRemota;
 import co.edu.icesi.mio.logic.ITmioBusesLogicRemota;
 import co.edu.icesi.mio.model.Tmio1Bus;
+import co.edu.icesi.mio.model.Tmio1Conductore;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
 
@@ -27,11 +28,11 @@ public class Bus implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -798144091678030958L;
-//bd
+
 	private String capacidad;
 
 	private String marca;
-	// bd
+
 	private String modelo;
 
 	private String placa;
@@ -42,6 +43,7 @@ public class Bus implements Serializable {
 
 	private List<Tmio1Servicio> tmio1Servicios;
 	private List<Tmio1ServiciosSitio> tmio1ServiciosSitio;
+	private List<Bus> dt = new ArrayList<Bus>();
 
 	public void crearBus() {
 		Tmio1Bus bus = new Tmio1Bus();
@@ -57,6 +59,22 @@ public class Bus implements Serializable {
 		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
 		busLogic.add(bus);
+		cleanValues();
+	}
+
+	public void cleanValues() {
+		capacidad = "";
+
+		marca = "";
+
+		modelo = "";
+
+		placa = "";
+
+		tipo = "";
+
+		id = "";
+
 	}
 
 	public void actualizarBus() {
@@ -74,6 +92,7 @@ public class Bus implements Serializable {
 		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
 		busLogic.update(bus);
+		cleanValues();
 	}
 
 	public void borrarBus() {
@@ -83,16 +102,67 @@ public class Bus implements Serializable {
 
 	}
 
-	public List<Tmio1Bus> findByModelo() {
-	return	busLogic.findByModelo(new BigDecimal(modelo));
+	public void findByModelo() {
+		List<Tmio1Bus> ret = busLogic.findByModelo(new BigDecimal(modelo));
+
+		List<Bus> m = new ArrayList<Bus>();
+
+		for (int i = 0; i < ret.size(); i++) {
+			Bus act = new Bus();
+			Tmio1Bus finded = ret.get(i);
+			act.id = finded.getId() + "";
+			act.capacidad = finded.getCapacidad() + "";
+			act.marca = finded.getMarca();
+			act.modelo = finded.getModelo() + "";
+			act.placa = finded.getPlaca();
+
+			m.add(act);
+		}
+		dt = m;
 	}
 
-	public List<Tmio1Bus> findByTipo() {
-		return busLogic.findByTipo(tipo);
+	public void findByTipo() {
+		List<Tmio1Bus> ret = busLogic.findByTipo(tipo);
+
+		List<Bus> m = new ArrayList<Bus>();
+
+		for (int i = 0; i < ret.size(); i++) {
+			Bus act = new Bus();
+			Tmio1Bus finded = ret.get(i);
+			act.id = finded.getId() + "";
+			act.capacidad = finded.getCapacidad() + "";
+			act.marca = finded.getMarca();
+			act.modelo = finded.getModelo() + "";
+			act.placa = finded.getPlaca();
+
+			m.add(act);
+		}
+		dt = m;
+		cleanValues();
 	}
 
-	public List<Tmio1Bus> findByCapacidad() {
-		return busLogic.findByCapacidad(new BigDecimal(capacidad));
+	public void findByCapacidad() {
+		List<Tmio1Bus> ret = busLogic.findByCapacidad(new BigDecimal(capacidad));
+
+		List<Bus> m = new ArrayList<Bus>();
+		for (int i = 0; i < ret.size(); i++) {
+			Bus act = new Bus();
+			Tmio1Bus finded = ret.get(i);
+			act.id = finded.getId() + "";
+			act.capacidad = finded.getCapacidad() + "";
+			act.marca = finded.getMarca();
+			act.modelo = finded.getModelo() + "";
+			act.placa = finded.getPlaca();
+
+			m.add(act);
+		}
+		dt = m;
+		cleanValues();
+	}
+
+	public List<Bus> datos() {
+
+		return dt;
 	}
 
 	public String getId() {
@@ -101,6 +171,14 @@ public class Bus implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public List<Bus> getDt() {
+		return dt;
+	}
+
+	public void setDt(List<Bus> dt) {
+		this.dt = dt;
 	}
 
 	public List<Tmio1Servicio> getTmio1Servicios() {

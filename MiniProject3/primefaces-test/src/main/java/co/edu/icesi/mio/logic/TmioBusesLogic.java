@@ -13,7 +13,6 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
 import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.dao.Tmio1_Buses_DAO;
 import co.edu.icesi.mio.model.Tmio1Bus;
@@ -23,70 +22,62 @@ import co.edu.icesi.mio.model.Tmio1Bus;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(ITmioBusesLogicLocal.class)
 @Remote(ITmioBusesLogicRemota.class)
-public class TmioBusesLogic implements ITmioBusesLogicLocal,ITmioBusesLogicRemota {
+public class TmioBusesLogic implements ITmioBusesLogicLocal, ITmioBusesLogicRemota {
 
-	
 	private ITmio1_Buses_DAO buses;
 
 	@PersistenceContext
 	private EntityManager em;
 
-	
 	public boolean add(Tmio1Bus bus) {
-		buses=new Tmio1_Buses_DAO();
+		buses = new Tmio1_Buses_DAO();
 		if (bus != null && placaMESix(bus) && marcaMEThree(bus) && modeloNumbersEFour(bus.getModelo())
 				&& tipoPAT(bus.getTipo()) && capacidadMZero(bus.getCapacidad())) {
 			buses.save(em, bus);
 			return true;
-		}else
+		} else
 			return false;
 	}
 
-	
 	public void update(Tmio1Bus bus) {
-		buses=new Tmio1_Buses_DAO();
-		if (bus != null && buses.findById(em, bus.getId()) != null && placaMESix(bus) && marcaMEThree(bus)
-				&& modeloNumbersEFour(bus.getModelo()) && tipoPAT(bus.getTipo()) && capacidadMZero(bus.getCapacidad()))
+		buses = new Tmio1_Buses_DAO();
+		if (bus != null && placaMESix(bus) && marcaMEThree(bus) && modeloNumbersEFour(bus.getModelo())
+				&& tipoPAT(bus.getTipo()) && capacidadMZero(bus.getCapacidad()))
 			buses.update(em, bus);
 	}
 
-	
 	public void delete(Tmio1Bus bus) {
-		buses=new Tmio1_Buses_DAO();
+		buses = new Tmio1_Buses_DAO();
 		if (bus != null && buses.findById(em, bus.getId()) != null)
 			buses.delete(em, findById(bus.getId()));
 	}
 
-	
 	public List<Tmio1Bus> findByModelo(BigDecimal m) {
-		buses=new Tmio1_Buses_DAO();
+		buses = new Tmio1_Buses_DAO();
 		if (modeloNumbersEFour(m))
 			return buses.findByModel(em, m);
 		else
 			return null;
 	}
 
-	
 	public List<Tmio1Bus> findByTipo(String t) {
-		buses=new Tmio1_Buses_DAO();
+		buses = new Tmio1_Buses_DAO();
 		if (tipoPAT(t))
 			return buses.findByType(em, t);
 		else
 			return null;
 	}
 
-	
 	public List<Tmio1Bus> findByCapacidad(BigDecimal c) {
-		buses=new Tmio1_Buses_DAO();
+		buses = new Tmio1_Buses_DAO();
 		if (capacidadMZero(c))
 			return buses.findByCapacity(em, c);
 		else
 			return null;
 	}
 
-	
 	public Tmio1Bus findById(int id) {
-		buses=new Tmio1_Buses_DAO();
+		buses = new Tmio1_Buses_DAO();
 		return buses.findById(em, id);
 	}
 

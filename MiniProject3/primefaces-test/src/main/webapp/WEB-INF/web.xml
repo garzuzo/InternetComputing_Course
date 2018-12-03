@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" >
 
- <!--  <filter>
+   <filter>
     <filter-name>Filtro</filter-name>
     <filter-class>co.edu.icesi.mio.filter.Filtro</filter-class>
   </filter>
@@ -12,7 +12,7 @@
     <filter-name>Filtro</filter-name>
     <url-pattern>/pages/*</url-pattern>
   </filter-mapping>
-   -->
+   
   
   
     <context-param>

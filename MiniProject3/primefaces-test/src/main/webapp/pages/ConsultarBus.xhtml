@@ -8,21 +8,61 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
-		<h:outputLabel>consultar por modelo</h:outputLabel>
-		<p:inputText value="#{bus.modelo}" />
-		
-		
-	<h:outputLabel>consultar por tipo</h:outputLabel>
-		
-		<h:outputLabel>consultar por capacidad</h:outputLabel>
-	
+
+		<p:spinner value="#{bus.capacidad}" min="1" />
+		<p:commandButton for="busDT" action="#{bus.findByCapacidad}"
+			value="Consultar por capacidad" ajax="false" />
+		<br></br>
+		<br></br>
+
+		<br></br>
+		<p:spinner value="#{bus.modelo}" min="1" maxlength="4" minlength="4" />
+		<p:commandButton for="busDT" action="#{bus.findByModelo}"
+			value="Consultar por modelo" ajax="false" />
+		<br></br>
+		<br></br>
+
+		<br></br>
+		<p:selectOneRadio id="tip" value="#{bus.tipo}">
+			<f:selectItem itemLabel="P" itemValue="P" />
+			<f:selectItem itemLabel="A" itemValue="A" />
+			<f:selectItem itemLabel="T" itemValue="T" />
+		</p:selectOneRadio>
+		<p:button for="busDT" action="#{bus.findByTipo}" value="Consultar por tipo"
+			ajax="false" />
+		<br></br>
+		<br></br>
+
+
+		<p:dataTable var="busDT" value="#{bus.datos()}">
+			<p:column headerText="Id">
+				<h:outputText value="#{bus.id}" />
+			</p:column>
+			<p:column headerText="Capacidad">
+				<h:outputText value="#{bus.capacidad}" />
+			</p:column>
+			<p:column headerText="Marca">
+				<h:outputText value="#{bus.marca}" />
+			</p:column>
+			<p:column headerText="Modelo">
+				<h:outputText value="#{bus.modelo}" />
+			</p:column>
+			<p:column headerText="Placa">
+				<h:outputText value="#{bus.placa}" />
+			</p:column>
+			<p:column headerText="Tipo">
+				<h:outputText value="#{bus.tipo}" />
+			</p:column>
+		</p:dataTable>
+
+
+
 	</h:form>
-	
-	
+
 	<h:form>
-	
-	
-	
+		<p:commandButton action="#{login.cBus}" value="Atrás"
+			ajax="false" />
 	</h:form>
+
 </h:body>
 </html>

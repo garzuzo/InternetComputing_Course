@@ -5,11 +5,17 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head>
+<h:head>
+<h1>Gestión de Buses</h1>
+</h:head>
 <h:body>
 	<h:form>
 
-
+		<h:outputLabel>Id</h:outputLabel>
+		<br></br>
+		<p:spinner value="#{bus.id}"  />
+		<br></br>
+		<br></br>
 		<h:outputLabel>placa</h:outputLabel>
 		<br></br>
 		<p:inputText value="#{bus.placa}" maxlength="6" minlength="6" />
@@ -59,7 +65,7 @@
 		<br></br>
 		<br></br>
 
-		<p:commandButton action="#{login.gBus}" value="Atrás" ajax="false" />
+		
 
 	</h:form>
 	<h:form>

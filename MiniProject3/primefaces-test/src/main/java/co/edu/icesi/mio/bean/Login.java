@@ -53,20 +53,25 @@ public class Login implements Serializable {
 		String correctUser = "garzuzo";
 		String correctPass = "123";
 		if (user.equals(correctUser) && password.equals(correctPass)) {
-//			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
-//					.getSession(false);
-//			
-//			
-//			session.getServletContext().setAttribute("username", user);
-//			session.setAttribute("username", user);
+			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+					.getSession(false);
+
+			session.setAttribute("username", "admin");
 
 			return "aceptado";
 		}
+
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		session.invalidate();
+
 		return "failed";
 
 	}
 
 	public String inicio() {
+
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		session.invalidate();
 		return "salida";
 	}
 
