@@ -6,6 +6,8 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head></h:head>
+<ui:composition template="MainView.xhtml">
+<ui:define name="content">
 <h:body>
 	<h:form>
 		<p:messages id="messages" showDetail="true" closable="true">
@@ -69,4 +71,6 @@
 		<p:commandButton action="#{login.cRuta}" value="Atrás" ajax="false" />
 	</h:form>
 </h:body>
+</ui:define>
+</ui:composition>
 </html>

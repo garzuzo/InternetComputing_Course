@@ -236,6 +236,12 @@ public class Servicio implements Serializable {
 		fi.setTime(fechaInicio);
 		Calendar ff = Calendar.getInstance();
 		ff.setTime(fechaFin);
+		
+		Date dAct=fi.getTime();
+		Date dAct1=ff.getTime();
+		int s1=ff.get(Calendar.YEAR);
+		int s2=ff.get(Calendar.MONTH);
+	int s3=ff.get(Calendar.DAY_OF_MONTH);
 		List<Tmio1Servicio> ret = servicioLogic.findByRangeOfDates(fi, ff);
 		dt = new ArrayList<Servicio>();
 		if (ret != null) {
