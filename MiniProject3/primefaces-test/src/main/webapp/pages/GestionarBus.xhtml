@@ -6,14 +6,16 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-<h1>Gestión de Buses</h1>
+	<h1>Gestión de Buses</h1>
 </h:head>
 <h:body>
 	<h:form>
-
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 		<h:outputLabel>Id</h:outputLabel>
 		<br></br>
-		<p:spinner value="#{bus.id}"  />
+		<p:spinner value="#{bus.id}" min="-20"/>
 		<br></br>
 		<br></br>
 		<h:outputLabel>placa</h:outputLabel>
@@ -52,24 +54,23 @@
 
 
 
-		<p:commandButton  action="#{bus.crearBus}"  onclick="PF('dlg1').show();"  value="Agregar Bus"
+		<p:commandButton action="#{bus.crearBus}" value="Agregar Bus"
 			ajax="false" />
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{bus.actualizarBus}"  onclick="PF('dlg1').show();" value="Actualizar Bus"
+		<p:commandButton action="#{bus.actualizarBus}" value="Actualizar Bus"
 			ajax="false" />
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{bus.borrarBus}"  onclick="PF('dlg1').show();" value="Borrar Bus"
+		<p:commandButton action="#{bus.borrarBus}" value="Borrar Bus"
 			ajax="false" />
 		<br></br>
 		<br></br>
-<p:dialog header="Mensaje" widgetVar="dlg1" minHeight="40" dynamic="true">
-    <h:outputText value="#{bus.valorDialog}" />
-</p:dialog>
-		
+
 
 	</h:form>
+
+
 	<h:form>
 		<p:commandButton action="#{login.gBus}" value="Atrás" ajax="false" />
 

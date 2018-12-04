@@ -7,6 +7,9 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 		<p:outputLabel for="popup" value="fecha inicio" />
 		<br></br>
 		<p:calendar id="popup" value="#{servicio.fechaInicio}" />

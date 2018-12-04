@@ -8,6 +8,9 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 		<h:outputLabel>dia inicio</h:outputLabel>
 		<br></br>
 		<p:spinner value="#{ruta.diaInicio}" max="7" min="1" />

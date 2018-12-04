@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -69,9 +71,20 @@ public class Ruta implements Serializable {
 		ruta.setTmio1Servicios(tmio1Servicio);
 		ruta.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 		ruta.setTmio1SitiosRutas1(tmio1SitiosRuta);
-		cleanValues();
-	return	rutaLogic.add(ruta);
+
+		String ret = rutaLogic.add(ruta);
 		
+		if (ret.equals("Se agregó correctamente la ruta")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+			
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
+
+	
+			
+		}
+		return ret;
 	}
 
 	public String actualizarRuta() {
@@ -87,16 +100,35 @@ public class Ruta implements Serializable {
 		ruta.setTmio1Servicios(tmio1Servicio);
 		ruta.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 		ruta.setTmio1SitiosRutas1(tmio1SitiosRuta);
-		cleanValues();
-		return rutaLogic.update(ruta);
-		
+
+		String ret = rutaLogic.update(ruta);
+			if (ret.equals("Se actualizó la ruta correctamente")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+			
+		}else {
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
+			
+		}
+
+		return ret;
 	}
 
 	public String borrarRuta() {
 		Tmio1Ruta ruta = rutaLogic.findById(Integer.parseInt(id));
 		cleanValues();
-	return	rutaLogic.delete(ruta);
-	
+		String ret = rutaLogic.delete(ruta);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+		if (ret.equals("Se eliminó correctamente la ruta")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+			
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
+				
+		}
+		return ret;
 	}
 
 	public void findByRangoDias() {
@@ -104,23 +136,27 @@ public class Ruta implements Serializable {
 		List<Tmio1Ruta> ret = rutaLogic.findByRangoDias(new BigDecimal(diaInicio), new BigDecimal(diaFin));
 
 		dt = new ArrayList<Ruta>();
-		if(ret!=null) {
-		for (int i = 0; i < ret.size(); i++) {
-			Ruta act = new Ruta();
-			Tmio1Ruta finded = ret.get(i);
-			if(finded!=null) {
-			act.activa = finded.getActiva();
-			act.id = finded.getId() + "";
-			act.descripcion = finded.getDescripcion();
-			act.diaFin = finded.getDiaFin() + "";
-			act.diaInicio = finded.getDiaInicio() + "";
-			act.numero = finded.getNumero();
-			act.horaFin = finded.getHoraFin() + "";
-			act.horaInicio = finded.getHoraInicio() + "";
-			dt.add(act);
+		if (ret != null) {
+			for (int i = 0; i < ret.size(); i++) {
+				Ruta act = new Ruta();
+				Tmio1Ruta finded = ret.get(i);
+				if (finded != null) {
+					act.activa = finded.getActiva();
+					act.id = finded.getId() + "";
+					act.descripcion = finded.getDescripcion();
+					act.diaFin = finded.getDiaFin() + "";
+					act.diaInicio = finded.getDiaInicio() + "";
+					act.numero = finded.getNumero();
+					act.horaFin = finded.getHoraFin() + "";
+					act.horaInicio = finded.getHoraInicio() + "";
+					dt.add(act);
+				}
 			}
-		}}
-		
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró a ruta"));
+
+		}
+
 	}
 
 	public void cleanValues() {
@@ -202,6 +238,7 @@ public class Ruta implements Serializable {
 	public String getId() {
 		return id;
 	}
+
 	public String getValorDialog() {
 		return valorDialog;
 	}
@@ -209,6 +246,7 @@ public class Ruta implements Serializable {
 	public void setValorDialog(String valorDialog) {
 		this.valorDialog = valorDialog;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}

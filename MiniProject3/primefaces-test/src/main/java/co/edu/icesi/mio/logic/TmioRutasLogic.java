@@ -50,14 +50,9 @@ public class TmioRutasLogic implements ITmioRutasLogicLocal, ITmioRutasLogicRemo
 			return "La hora inicio no es menor a la hora fin";
 		if (!validacionActiva(ruta))
 			return "Activa no es S o N";
-//		if (ruta != null && validacionNumeroRuta(ruta) && validacionDiaInicio(ruta) && validacionDiaFin(ruta)
-//				&& validacionDiaInicioMenorFin(ruta) && validacionHoraFin(ruta) && validacionHoraInicio(ruta)
-//				&& validacionHoraInicioMenorFin(ruta) && validacionActiva(ruta)) {
-		rutas.save(em, ruta);
-		return "exitoso";
-//			return true;
-//		} else
-//			return false;
+	rutas.save(em, ruta);
+		return "Se agregó correctamente la ruta";
+
 	}
 
 	public String update(Tmio1Ruta ruta) {

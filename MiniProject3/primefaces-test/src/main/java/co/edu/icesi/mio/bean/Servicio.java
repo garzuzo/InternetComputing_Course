@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -42,22 +44,52 @@ public class Servicio implements Serializable {
 	public String crearServicio() {
 		Tmio1Servicio servicio = new Tmio1Servicio();
 		cleanValues();
-		return servicioLogic.createServicio(servicio);
+		String ret = servicioLogic.createServicio(servicio);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
 
+		if (ret.equals("Servicio creado exitosamente")) {
+			cleanValues();
+		}
+		return ret;
 	}
 
 	public String actualizarServicio() {
 		Tmio1Servicio servicio = new Tmio1Servicio();
 		cleanValues();
-		return servicioLogic.updateServicio(servicio);
+		String ret = servicioLogic.updateServicio(servicio);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
 
+		if (ret.equals("Servicio actualizado exitosamente")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+
+		} else {
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
+
+		}
+		return ret;
 	}
 
 	public String borrarServicio() {
 		Tmio1Servicio servicio = new Tmio1Servicio();
 		cleanValues();
-		return servicioLogic.deleteServicio(servicio);
+		String ret = servicioLogic.deleteServicio(servicio);
 
+		if (ret.equals("El servicio se eliminó correctamente")) {
+
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
+
+		}
+		return ret;
 	}
 
 	public void findByRangoFechas() {
@@ -82,6 +114,10 @@ public class Servicio implements Serializable {
 					dt.add(act);
 				}
 			}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró el servicio"));
+
 		}
 
 	}

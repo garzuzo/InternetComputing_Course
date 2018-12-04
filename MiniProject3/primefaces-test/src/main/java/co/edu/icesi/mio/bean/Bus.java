@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.datatable.DataTable;
 
 import co.edu.icesi.demo.logic.IEstudianteLogicRemota;
@@ -42,6 +45,9 @@ public class Bus implements Serializable {
 	private String tipo;
 	private String valorDialog;
 	private String id;
+	private CommandButton cbCrear;
+	private CommandButton cbActualizar;
+	private CommandButton cbBorrar;
 
 	DataTable dtBus;
 	private List<Tmio1Servicio> tmio1Servicios;
@@ -63,7 +69,18 @@ public class Bus implements Serializable {
 
 		String answ = busLogic.add(bus);
 		// cleanValues();
-		valorDialog = answ;
+
+		if (answ.equals("Se agregó correctamente el bus")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", answ));
+
+		} else {
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", answ));
+
+		}
 		return answ;
 	}
 
@@ -97,8 +114,19 @@ public class Bus implements Serializable {
 		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
 		String answ = busLogic.update(bus);
-		cleanValues();
-		valorDialog = answ;
+
+		if (answ.equals("Se actualizó correctamente el bus")) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", answ));
+
+			cleanValues();
+		} else {
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", answ));
+
+		}
+
 		return answ;
 	}
 
@@ -107,7 +135,18 @@ public class Bus implements Serializable {
 
 		cleanValues();
 		String answ = busLogic.delete(bus);
-		valorDialog = answ;
+
+		if (answ.equals("Se eliminó correctamente el bus")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", answ));
+
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", answ));
+
+		}
+
 		return answ;
 	}
 
@@ -129,15 +168,15 @@ public class Bus implements Serializable {
 					dt.add(act);
 				}
 			}
-		}
+		} else
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró ningún bus"));
 	}
 
 	public void findByTipo() {
 		dt = new ArrayList<Bus>();
 		if (tipo != null) {
 			List<Tmio1Bus> ret = busLogic.findByTipo(tipo);
-
-		
 
 			for (int i = 0; i < ret.size(); i++) {
 				Bus act = new Bus();
@@ -154,7 +193,9 @@ public class Bus implements Serializable {
 			}
 
 			// cleanValues();
-		}
+		} else
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró ningún bus"));
 	}
 
 	public void findByCapacidad() {
@@ -175,7 +216,9 @@ public class Bus implements Serializable {
 					dt.add(act);
 				}
 			}
-		}
+		} else
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró ningún bus"));
 
 		// datos();
 		// dtBus.reset();
@@ -206,6 +249,30 @@ public class Bus implements Serializable {
 
 	public List<Bus> getDt() {
 		return dt;
+	}
+
+	public CommandButton getCbCrear() {
+		return cbCrear;
+	}
+
+	public void setCbCrear(CommandButton cbCrear) {
+		this.cbCrear = cbCrear;
+	}
+
+	public CommandButton getCbActualizar() {
+		return cbActualizar;
+	}
+
+	public void setCbActualizar(CommandButton cbActualizar) {
+		this.cbActualizar = cbActualizar;
+	}
+
+	public CommandButton getCbBorrar() {
+		return cbBorrar;
+	}
+
+	public void setCbBorrar(CommandButton cbBorrar) {
+		this.cbBorrar = cbBorrar;
 	}
 
 	public void setDt(List<Bus> dt) {

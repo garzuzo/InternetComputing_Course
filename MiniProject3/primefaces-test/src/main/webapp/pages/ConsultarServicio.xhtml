@@ -7,10 +7,12 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
-		
-		
-		
-		
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+
+
 		<p:dataTable var="servicioDT" value="#{servicio.dt}">
 			<p:column headerText="Id Ruta">
 				<h:outputText value="#{servicioDT.ruta}" />
@@ -28,10 +30,10 @@
 				<h:outputText value="#{servicioDT.fechaFin}" />
 			</p:column>
 		</p:dataTable>
-		
-		
+
+
 	</h:form>
-	
+
 	<h:form>
 		<p:commandButton action="#{login.cServicio}" value="Atrás"
 			ajax="false" />

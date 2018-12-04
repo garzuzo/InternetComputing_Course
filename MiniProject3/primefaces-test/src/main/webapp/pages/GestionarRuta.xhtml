@@ -7,7 +7,9 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
-	
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 		<h:outputLabel>Id</h:outputLabel>
 		<br></br>
 		<p:spinner value="#{ruta.id}"  />

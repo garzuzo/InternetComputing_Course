@@ -58,7 +58,7 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal, ITmioCo
 			return "Recuerda que la fecha de contratación tiene que ser menor a la fecha actual";
 
 		conductorDAO.save(em, conductor);
-		return "Se creó exitosamente";
+		return "Se creó exitosamente el conductor";
 	}
 
 	
@@ -86,8 +86,8 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal, ITmioCo
 		if (!validacionFechaContratacion(conductor.getFechaContratacion()))
 			return "Recuerda que la fecha de contratación tiene que ser menor a la fecha actual";
 
-		conductorDAO.save(em, conductor);
-		return "Se creó exitosamente";
+		conductorDAO.update(em, conductor);
+		return "Se actualizó exitosamente el conductor";
 	}
 
 	public String deleteConductor(Tmio1Conductore conductor) {
@@ -99,7 +99,7 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal, ITmioCo
 			return "El conductor no existe";
 		
 			conductorDAO.delete(em, findByCedula(conductor.getCedula()));
-			return "Se eliminó correctamente";
+			return "Se eliminó correctamente el conductor";
 	}
 
 	public List<Tmio1Conductore> findByName(String name) {

@@ -96,7 +96,7 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServic
 			return "La fecha inicial es mayor que la fecha final";
 
 		servicioDAO.update(em, servicio);
-		return "Servicio creado exitosamente";
+		return "Servicio actualizado exitosamente";
 	}
 
 	public String deleteServicio(Tmio1Servicio servicio) {
@@ -112,7 +112,7 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServic
 			
 			
 				servicioDAO.delete(em, getServicio(servicio.getId()));
-				return "El servicio no se eliminó correctamente";
+				return "El servicio se eliminó correctamente";
 	}
 
 	public List<Tmio1Servicio> findByRangeOfDates(Calendar d1, Calendar d2) {

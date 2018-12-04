@@ -8,10 +8,12 @@
 <h:body>
 	<h:form>
 
-
+	<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 		<h:outputLabel>cedula</h:outputLabel>
 		<br></br>
-		<p:spinner value="#{conductor.cedula}" />
+		<p:spinner value="#{conductor.cedula}" min="0"/>
 
 		<br></br>
 		<br></br>

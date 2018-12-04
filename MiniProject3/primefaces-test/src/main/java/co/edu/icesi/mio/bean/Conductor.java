@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -55,29 +57,63 @@ public class Conductor implements Serializable {
 		conductor.setTmio1Servicios(tmio1Servicio);
 		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 		cleanValues();
-		return conductorLogic.createConductor(conductor);
+		String ret = conductorLogic.createConductor(conductor);
 
+		if (ret.equals("Se creó exitosamente el conductor")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
+
+		}
+		return ret;
 	}
 
 	public String actualizarConductor() {
 		Tmio1Conductore conductor = conductorLogic.findByCedula(cedula);
+		String ret = "";
+		if (conductor != null) {
+			conductor.setApellidos(apellidos);
+			conductor.setFechaContratacion(fechaContratacion);
+			conductor.setFechaNacimiento(fechaNacimiento);
+			conductor.setNombre(nombre);
+			//conductor.setTmio1Servicios(tmio1Servicio);
+		//	conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
+			cleanValues();
+			ret = conductorLogic.updateConductor(conductor);
+			if (ret.equals("Se actualizó exitosamente el conductor")) {
+				cleanValues();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
+				return ret;
+			}
 
-		conductor.setApellidos(apellidos);
-		conductor.setFechaContratacion(fechaContratacion);
-		conductor.setFechaNacimiento(fechaNacimiento);
-		conductor.setNombre(nombre);
-		conductor.setTmio1Servicios(tmio1Servicio);
-		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
-		cleanValues();
-		return conductorLogic.updateConductor(conductor);
+		}
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
 
+		return ret;
 	}
 
 	public String borrarConductor() {
 		Tmio1Conductore conductor = conductorLogic.findByCedula(cedula);
 		cleanValues();
-		return conductorLogic.deleteConductor(conductor);
+		String ret = conductorLogic.deleteConductor(conductor);
+		if (ret.equals("Se eliminó correctamente el conductor")) {
+			cleanValues();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
 
+		} else {
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", ret));
+
+		}
+
+		return ret;
 	}
 
 	public void findByNombre() {
@@ -85,20 +121,24 @@ public class Conductor implements Serializable {
 		List<Tmio1Conductore> ret = conductorLogic.findByName(nombre);
 
 		dt = new ArrayList<Conductor>();
-if(ret!=null) {
-		for (int i = 0; i < ret.size(); i++) {
-			Conductor act = new Conductor();
-			Tmio1Conductore finded = ret.get(i);
-			if (finded != null) {
-				act.cedula = finded.getCedula();
-				act.apellidos = finded.getApellidos();
-				act.fechaContratacion = finded.getFechaContratacion();
-				act.fechaNacimiento = finded.getFechaNacimiento();
-				act.nombre = finded.getNombre();
-				dt.add(act);
+		if (ret != null) {
+			for (int i = 0; i < ret.size(); i++) {
+				Conductor act = new Conductor();
+				Tmio1Conductore finded = ret.get(i);
+				if (finded != null) {
+					act.cedula = finded.getCedula();
+					act.apellidos = finded.getApellidos();
+					act.fechaContratacion = finded.getFechaContratacion();
+					act.fechaNacimiento = finded.getFechaNacimiento();
+					act.nombre = finded.getNombre();
+					dt.add(act);
+				}
 			}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró el conductor"));
+
 		}
-}
 	}
 
 	public void findByApellidos() {
@@ -106,19 +146,23 @@ if(ret!=null) {
 		List<Tmio1Conductore> ret = conductorLogic.findByLastname(apellidos);
 
 		dt = new ArrayList<Conductor>();
-		if(ret!=null) {
-		for (int i = 0; i < ret.size(); i++) {
-			Conductor act = new Conductor();
-			Tmio1Conductore finded = ret.get(i);
-			if (finded != null) {
-				act.cedula = finded.getCedula();
-				act.apellidos = finded.getApellidos();
-				act.fechaContratacion = finded.getFechaContratacion();
-				act.fechaNacimiento = finded.getFechaNacimiento();
-				act.nombre = finded.getNombre();
-				dt.add(act);
+		if (ret != null) {
+			for (int i = 0; i < ret.size(); i++) {
+				Conductor act = new Conductor();
+				Tmio1Conductore finded = ret.get(i);
+				if (finded != null) {
+					act.cedula = finded.getCedula();
+					act.apellidos = finded.getApellidos();
+					act.fechaContratacion = finded.getFechaContratacion();
+					act.fechaNacimiento = finded.getFechaNacimiento();
+					act.nombre = finded.getNombre();
+					dt.add(act);
+				}
 			}
-		}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró el conductor"));
+
 		}
 	}
 
@@ -127,17 +171,21 @@ if(ret!=null) {
 		Tmio1Conductore ret = conductorLogic.findByCedula(cedula);
 
 		dt = new ArrayList<Conductor>();
-		if(ret!=null) {
-		Conductor act = new Conductor();
-		Tmio1Conductore finded = ret;
-		if (finded != null) {
-			act.cedula = finded.getCedula();
-			act.apellidos = finded.getApellidos();
-			act.fechaContratacion = finded.getFechaContratacion();
-			act.fechaNacimiento = finded.getFechaNacimiento();
-			act.nombre = finded.getNombre();
-			dt.add(act);
-		}
+		if (ret != null) {
+			Conductor act = new Conductor();
+			Tmio1Conductore finded = ret;
+			if (finded != null) {
+				act.cedula = finded.getCedula();
+				act.apellidos = finded.getApellidos();
+				act.fechaContratacion = finded.getFechaContratacion();
+				act.fechaNacimiento = finded.getFechaNacimiento();
+				act.nombre = finded.getNombre();
+				dt.add(act);
+			}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró el conductor"));
+
 		}
 	}
 

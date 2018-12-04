@@ -8,7 +8,9 @@
 <h:head></h:head>
 <h:body>
 	<h:form>
-
+	<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
 		<p:spinner value="#{bus.capacidad}" min="1" />
 		<p:commandButton  action="#{bus.findByCapacidad()}"
 			value="Consultar por capacidad" ajax="false" />

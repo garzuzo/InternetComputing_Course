@@ -40,7 +40,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal, ITmioBusesLogicRemo
 			return "La marca tiene menos de 3 caracteres";
 		if(!modeloNumbersEFour(bus.getModelo()))
 			return "El modelo no es númerico de 4 dígitos";
-		if(!tipoPAT(bus.getTipo()))
+		if(bus.getTipo()!=null &&!tipoPAT(bus.getTipo()))
 			return "El tipo no es P, A o T";
 		if(!capacidadMZero(bus.getCapacidad()))
 			return "La capacidad no es mayor a cero";
@@ -62,7 +62,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal, ITmioBusesLogicRemo
 			return "La marca tiene menos de 3 caracteres";
 		if(!modeloNumbersEFour(bus.getModelo()))
 			return "El modelo no es númerico de 4 dígitos";
-		if(!tipoPAT(bus.getTipo()))
+		if(bus.getTipo()!=null&&!tipoPAT(bus.getTipo()))
 			return "El tipo no es P, A o T";
 		if(!capacidadMZero(bus.getCapacidad()))
 			return "La capacidad no es mayor a cero";
@@ -94,7 +94,7 @@ public class TmioBusesLogic implements ITmioBusesLogicLocal, ITmioBusesLogicRemo
 
 	public List<Tmio1Bus> findByTipo(String t) {
 		buses = new Tmio1_Buses_DAO();
-		if (tipoPAT(t))
+		if (t!=null&&tipoPAT(t))
 			if(buses.findByType(em, t)!=null)
 			return buses.findByType(em, t);
 		
