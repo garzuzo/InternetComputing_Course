@@ -1,6 +1,7 @@
 package co.edu.icesi.mio.logic;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -77,12 +78,11 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServic
 		conductorDAO = new Tmio1_Conductores_DAO();
 		busDAO = new Tmio1_Buses_DAO();
 		rutaDAO = new Tmio1_Rutas_DAO();
-	
 
 		if (servicio == null)
 			return "El servicio es nulo";
 
-		if (getServicio(servicio.getId()) == null)
+		if (servicio.getId() == null)
 			return "El servicio no se encuentra agregado";
 
 		if (!validacionLlavesForaneas(servicio.getTmio1Bus(), servicio.getTmio1Conductore(), servicio.getTmio1Ruta()))
@@ -107,12 +107,11 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServic
 		if (servicio == null)
 			return "El servicio es nulo";
 
-			if (getServicio(servicio.getId()) == null)
-				return "El servicio no se encuentra agregado";
-			
-			
-				servicioDAO.delete(em, getServicio(servicio.getId()));
-				return "El servicio se eliminó correctamente";
+		if (getServicio(servicio.getId()) == null)
+			return "El servicio no se encuentra agregado";
+
+		servicioDAO.delete(em, getServicio(servicio.getId()));
+		return "El servicio se eliminó correctamente";
 	}
 
 	public List<Tmio1Servicio> findByRangeOfDates(Calendar d1, Calendar d2) {
@@ -132,6 +131,52 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServic
 		busDAO = new Tmio1_Buses_DAO();
 		rutaDAO = new Tmio1_Rutas_DAO();
 		return servicioDAO.findById(em, id);
+	}
+
+	public List<Tmio1Servicio> getListaServicios(int idBus, int cedula, int idRuta) {
+		servicioDAO = new Tmio1_Servicios_DAO();
+		conductorDAO = new Tmio1_Conductores_DAO();
+		busDAO = new Tmio1_Buses_DAO();
+		rutaDAO = new Tmio1_Rutas_DAO();
+
+		Tmio1Bus bus = busDAO.findById(em, idBus);
+		Tmio1Ruta ruta = rutaDAO.findById(em, idRuta);
+		Tmio1Conductore conductor = conductorDAO.findByCedula(em, cedula + "");
+
+		List<Tmio1Servicio> listaServicios = servicioDAO.findAll(em);
+		List<Tmio1Servicio> ret = new ArrayList<Tmio1Servicio>();
+		for (int i = 0; i < listaServicios.size(); i++) {
+			Tmio1Servicio servAct = listaServicios.get(i);
+			if (idBus == servAct.getTmio1Bus().getId() && (servAct.getTmio1Conductore().getCedula().equals(cedula + ""))
+					&& idRuta == servAct.getTmio1Ruta().getId()) {
+				ret.add(servAct);
+				// Tmio1ServicioPK pkAct = servAct.getId();
+				// ret.add(pkAct);
+			}
+
+		}
+
+		return ret;
+	}
+
+	public List<Tmio1Bus> getListaBuses() {
+
+		busDAO = new Tmio1_Buses_DAO();
+
+		return busDAO.findAll(em);
+	}
+
+	public List<Tmio1Ruta> getListaRutas() {
+
+		rutaDAO = new Tmio1_Rutas_DAO();
+
+		return rutaDAO.findAll(em);
+	}
+
+	public List<Tmio1Conductore> getListaConductores() {
+		conductorDAO = new Tmio1_Conductores_DAO();
+
+		return conductorDAO.findAll(em);
 	}
 
 	/**
@@ -157,7 +202,7 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServic
 	}
 
 	public boolean validacionBusesYConductoresDisponibles(Tmio1Bus b, Tmio1Ruta r, Tmio1Conductore c) {
-		boolean validacion = false;
+		boolean validacion = true;
 		if (busesConductoresLibres(b, r, c)) {
 			validacion = true;
 		}
@@ -186,6 +231,17 @@ public class TmioServiciosLogic implements ITmioServiciosLogicLocal, ITmioServic
 		List<Tmio1Servicio> servicios = findAllServicios();
 		for (Tmio1Servicio s : servicios) {
 
+			Date f1=s.getId().getFechaFin();
+			Date i1=s.getId().getFechaInicio();
+			
+			//Date f2=c.getf;
+			//Date i2=s.getId().getFechaInicio();
+		
+			int d1=r.getDiaFin().intValue();
+			int d2=r.getHoraFin().intValue();
+			int d3=r.getHoraInicio().intValue();
+			int d4=r.getDiaInicio().intValue();
+			
 			if ((s.getId().getFechaFin()).compareTo(fechaActual) > 0) {
 				hs.add(s.getTmio1Bus().getId());
 				hs1.add(s.getTmio1Conductore().getCedula());

@@ -136,7 +136,7 @@ public class Conductor implements Serializable {
 			}
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró el conductor"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Info", "No se encontró el conductor"));
 
 		}
 	}
@@ -161,7 +161,7 @@ public class Conductor implements Serializable {
 			}
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró el conductor"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Info", "No se encontró el conductor"));
 
 		}
 	}
@@ -184,7 +184,7 @@ public class Conductor implements Serializable {
 			}
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró el conductor"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Info", "No se encontró el conductor"));
 
 		}
 	}

@@ -84,11 +84,9 @@
   PATH="/pages/ConsultarRuta.xhtml" SHAPE="304,1553,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#pages#ConsultarRuta.xhtml:0" NAME="item"
    PATH="/pages/ConsultarRuta.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="cRuta:#{login.cRuta}:#pages#ConsultarRuta.xhtml" NAME="output"
-    PATH="/pages/ConsultarRuta.xhtml"
-    TARGET="rules:#pages#ConsultarRuta.xhtml"
-    TITLE="#{login.cRuta}:cRuta" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cRuta:#{login.cRuta}:#pages#MainView.xhtml"
+    NAME="output" PATH="/pages/MainView.xhtml"
+    TARGET="rules:#pages#MainView.xhtml" TITLE="#{login.cRuta}:cRuta" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#GestionarBus.xhtml"

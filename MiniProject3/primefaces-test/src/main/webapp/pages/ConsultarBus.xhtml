@@ -11,6 +11,11 @@
 	<p:messages id="messages" showDetail="true" closable="true">
 			<p:autoUpdate />
 		</p:messages>
+		
+		<center>
+		<h3>Consulta de buses</h3>
+	</center>
+		
 		<p:spinner value="#{bus.capacidad}" min="1" />
 		<p:commandButton  action="#{bus.findByCapacidad()}"
 			value="Consultar por capacidad" ajax="false" />

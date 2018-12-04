@@ -171,7 +171,7 @@ public class Bus implements Serializable {
 			}
 		} else
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró ningún bus"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Info", "No se encontró ningún bus"));
 	}
 
 	public void findByTipo() {
@@ -196,7 +196,7 @@ public class Bus implements Serializable {
 			// cleanValues();
 		} else
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró ningún bus"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Info", "No se encontró ningún bus"));
 	}
 
 	public void findByCapacidad() {
@@ -219,7 +219,7 @@ public class Bus implements Serializable {
 			}
 		} else
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No se encontró ningún bus"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Info", "No se encontró ningún bus"));
 
 		// datos();
 		// dtBus.reset();

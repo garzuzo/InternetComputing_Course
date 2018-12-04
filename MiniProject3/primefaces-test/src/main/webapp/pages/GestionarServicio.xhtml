@@ -6,10 +6,127 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head></h:head>
 <h:body>
-	<h:form>
+<center>
+		<h3>Gestión Servicio</h3>
+	</center>
+<style type="text/css">
+   .ui-row-editor .ui-row-editor-pencil .ui-row-editor {
+        margin-left:8px;
+    }
+</style>
+	<h:form id="form">
 		<p:messages id="messages" showDetail="true" closable="true">
 			<p:autoUpdate />
 		</p:messages>
+  <p:growl id="msgs" showDetail="true"/>
+
+		<h:panelGrid columns="3" cellpadding="5" id="obtenerServicio">
+			<h:outputLabel>Id bus</h:outputLabel>
+
+			<h:outputLabel>Cedula conductor</h:outputLabel>
+
+			<h:outputLabel>Id ruta</h:outputLabel>
+
+
+
+			<p:selectOneMenu id="lazy" value="#{servicio.bus}" dynamic="true"
+				style="width:125px">
+				<f:selectItem itemLabel="Seleccionar bus" itemValue="" />
+				<f:selectItems value="#{servicio.buses}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="lazy1" value="#{servicio.conductor}"
+				dynamic="true" style="width:125px">
+				<f:selectItem itemLabel="Seleccionar conductor" itemValue="" />
+				<f:selectItems value="#{servicio.conductores}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="lazy2" value="#{servicio.ruta}" dynamic="true"
+				style="width:125px">
+				<f:selectItem itemLabel="Seleccionar ruta" itemValue="" />
+				<f:selectItems value="#{servicio.rutas}" />
+			</p:selectOneMenu>
+
+
+
+		</h:panelGrid>
+
+
+
+ <p:dataTable id="servicios" var="serv" value="#{servicio.servicios}" editable="true" style="margin-bottom:20px">
+        <f:facet name="header">
+            Gestión de servicio
+        </f:facet>
+
+ <p:ajax event="rowEdit" listener="#{servicio.onRowEdit}" update=":form:msgs"/>
+        <p:ajax event="rowEditCancel" listener="#{servicio.onRowCancel}"  update=":form:msgs"/>
+         <p:ajax event="rowEditCancel" listener="#{servicio.onRowDelete}"  update=":form:msgs"/>
+        
+         
+         <p:column headerText="#">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{serv.pos}" /></f:facet>
+                <f:facet name="input"><p:inputText  value="#{serv.pos}" disabled="true" style="width:100%"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+         <p:column headerText="Id Bus">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{serv.bus}" /></f:facet>
+                <f:facet name="input">
+                    <h:selectOneMenu value="#{serv.bus}" style="width:100%">
+                        <f:selectItems value="#{servicio.buses}" var="b" itemLabel="#{b}" itemValue="#{b}" />
+                    </h:selectOneMenu>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+         <p:column headerText="Cedula Conductor">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{serv.conductor}" /></f:facet>
+                <f:facet name="input">
+                    <h:selectOneMenu value="#{serv.conductor}" style="width:100%">
+                        <f:selectItems value="#{servicio.conductores}" var="con" itemLabel="#{con}" itemValue="#{con}" />
+                    </h:selectOneMenu>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+         <p:column headerText="Id Ruta">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{serv.ruta}" /></f:facet>
+                <f:facet name="input">
+                    <h:selectOneMenu value="#{serv.ruta}" style="width:100%">
+                        <f:selectItems value="#{servicio.rutas}" var="ru" itemLabel="#{ru}" itemValue="#{ru}" />
+                    </h:selectOneMenu>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+        
+         <p:column headerText="Fecha inicio">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{serv.fechaInicio}" /></f:facet>
+                <f:facet name="input"><p:calendar  value="#{servicio.fechaInicio}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+
+<p:column headerText="Fecha Fin">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{serv.fechaFin}" /></f:facet>
+                <f:facet name="input"><p:calendar value="#{servicio.fechaFin}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+<p:column style="width:25px">
+            <p:rowEditor />
+        </p:column>
+   </p:dataTable>
+
+
+
+
+
+
 		<p:outputLabel for="popup" value="fecha inicio" />
 		<br></br>
 		<p:calendar id="popup" value="#{servicio.fechaInicio}" />
@@ -28,14 +145,14 @@
 
 
 		<p:commandButton action="#{servicio.crearServicio}"
-			value="Agregar Conductor" ajax="false" />
+			value="Agregar Servicio" ajax="false" />
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{servicio.actualizarServicio}"
+		<p:commandButton action="#{servicio.editarEliminarServicio}"
 			value="Actualizar Servicio" ajax="false" />
 		<br></br>
 		<br></br>
-		<p:commandButton action="#{servicio.borrarServicio}"
+		<p:commandButton action="#{servicio.editarEliminarServicio}"
 			value="Borrar Servicio" ajax="false" />
 		<br></br>
 		<br></br>

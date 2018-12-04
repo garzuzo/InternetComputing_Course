@@ -11,7 +11,60 @@
 			<p:autoUpdate />
 		</p:messages>
 
+		<center>
+		<h3>Consulta de Servicios</h3>
+	</center>
 
+
+
+			<!--	
+			
+			<h:panelGrid columns="3" cellpadding="5" id="obtenerServicio">
+			<h:outputLabel>Id bus</h:outputLabel>
+
+			<h:outputLabel>Cedula conductor</h:outputLabel>
+
+			<h:outputLabel>Id ruta</h:outputLabel>
+			
+			
+			<p:selectOneMenu id="lazy" value="#{servicio.bus}" dynamic="true"
+				style="width:125px">
+				<f:selectItem itemLabel="Seleccionar bus" itemValue="" />
+				<f:selectItems value="#{servicio.buses}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="lazy1" value="#{servicio.conductor}"
+				dynamic="true" style="width:125px">
+				<f:selectItem itemLabel="Seleccionar conductor" itemValue="" />
+				<f:selectItems value="#{servicio.conductores}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="lazy2" value="#{servicio.ruta}" dynamic="true"
+				style="width:125px">
+				<f:selectItem itemLabel="Seleccionar ruta" itemValue="" />
+				<f:selectItems value="#{servicio.rutas}" />
+			</p:selectOneMenu>
+			</h:panelGrid>
+			-->
+
+
+			<p:outputLabel for="popup" value="fecha inicio" />
+			<br></br>
+			<p:calendar id="popup" value="#{servicio.fechaInicio}" />
+			<br></br>
+			<br></br>
+			<p:outputLabel for="popup1" value="fecha fin" />
+			<br></br>
+			<p:calendar id="popup1" value="#{servicio.fechaFin}" />
+			<br></br>
+			<br></br>
+
+			
+			<p:commandButton action="#{servicio.findByRangoFechas()}"
+				value="Consultar por rango de de fechas" ajax="false" />
+			<br></br>
+	<br></br>
+		
 
 		<p:dataTable var="servicioDT" value="#{servicio.dt}">
 			<p:column headerText="Id Ruta">
