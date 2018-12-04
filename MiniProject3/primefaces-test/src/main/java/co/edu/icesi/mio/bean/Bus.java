@@ -101,51 +101,52 @@ public class Bus implements Serializable {
 
 	public String actualizarBus() {
 		Tmio1Bus bus = new Tmio1Bus();
-
+		String answ = "";
 		bus = busLogic.findById(Integer.parseInt(id));
+		if (bus != null) {
+			bus.setCapacidad(new BigDecimal(capacidad));
 
-		bus.setCapacidad(new BigDecimal(capacidad));
+			bus.setMarca(marca);
+			bus.setModelo(new BigDecimal(modelo));
+			bus.setPlaca(placa);
+			bus.setTipo(tipo);
+			bus.setTmio1Servicios(tmio1Servicios);
+			bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
 
-		bus.setMarca(marca);
-		bus.setModelo(new BigDecimal(modelo));
-		bus.setPlaca(placa);
-		bus.setTipo(tipo);
-		bus.setTmio1Servicios(tmio1Servicios);
-		bus.setTmio1ServiciosSitios(tmio1ServiciosSitio);
+			answ = busLogic.update(bus);
 
-		String answ = busLogic.update(bus);
+			if (answ.equals("Se actualizó correctamente el bus")) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", answ));
 
-		if (answ.equals("Se actualizó correctamente el bus")) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", answ));
-
-			cleanValues();
-		} else {
-
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", answ));
-
+				cleanValues();
+			}
+			return answ;
 		}
+
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", answ));
 
 		return answ;
 	}
 
 	public String borrarBus() {
 		Tmio1Bus bus = busLogic.findById(Integer.parseInt(id));
-
-		cleanValues();
-		String answ = busLogic.delete(bus);
-
-		if (answ.equals("Se eliminó correctamente el bus")) {
+		String answ = "";
+		if (bus != null) {
 			cleanValues();
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", answ));
+			 answ = busLogic.delete(bus);
 
-		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", answ));
+			if (answ.equals("Se eliminó correctamente el bus")) {
+				cleanValues();
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", answ));
 
+			}
+			return answ;
 		}
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_FATAL, "error", answ));
 
 		return answ;
 	}

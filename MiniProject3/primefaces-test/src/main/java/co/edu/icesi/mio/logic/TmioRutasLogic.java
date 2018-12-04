@@ -48,7 +48,7 @@ public class TmioRutasLogic implements ITmioRutasLogicLocal, ITmioRutasLogicRemo
 			return "La hora fin no es numérico y su valor no está entre 1 y 1440";
 		if (!validacionHoraInicioMenorFin(ruta))
 			return "La hora inicio no es menor a la hora fin";
-		if (!validacionActiva(ruta))
+		if (ruta.getActiva()==null||!validacionActiva(ruta))
 			return "Activa no es S o N";
 	rutas.save(em, ruta);
 		return "Se agregó correctamente la ruta";
@@ -75,7 +75,7 @@ public class TmioRutasLogic implements ITmioRutasLogicLocal, ITmioRutasLogicRemo
 			return "La hora fin no es numérico y su valor no está entre 1 y 1440";
 		if (!validacionHoraInicioMenorFin(ruta))
 			return "La hora inicio no es menor a la hora fin";
-		if (!validacionActiva(ruta))
+		if (ruta.getActiva()==null||!validacionActiva(ruta))
 			return "Activa no es S o N";
 
 		rutas.update(em, ruta);

@@ -56,7 +56,7 @@ public class Conductor implements Serializable {
 		conductor.setNombre(nombre);
 		conductor.setTmio1Servicios(tmio1Servicio);
 		conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
-		cleanValues();
+		
 		String ret = conductorLogic.createConductor(conductor);
 
 		if (ret.equals("Se creó exitosamente el conductor")) {
@@ -82,7 +82,7 @@ public class Conductor implements Serializable {
 			conductor.setNombre(nombre);
 			//conductor.setTmio1Servicios(tmio1Servicio);
 		//	conductor.setTmio1ServiciosSitios(tmio1ServiciosSitio);
-			cleanValues();
+			
 			ret = conductorLogic.updateConductor(conductor);
 			if (ret.equals("Se actualizó exitosamente el conductor")) {
 				cleanValues();

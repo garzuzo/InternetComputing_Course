@@ -117,10 +117,9 @@ public class Ruta implements Serializable {
 
 	public String borrarRuta() {
 		Tmio1Ruta ruta = rutaLogic.findById(Integer.parseInt(id));
-		cleanValues();
+		
 		String ret = rutaLogic.delete(ruta);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
-		if (ret.equals("Se eliminó correctamente la ruta")) {
+			if (ret.equals("Se eliminó correctamente la ruta")) {
 			cleanValues();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ret));
 			

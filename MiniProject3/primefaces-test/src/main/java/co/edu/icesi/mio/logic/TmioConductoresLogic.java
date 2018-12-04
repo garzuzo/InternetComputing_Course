@@ -51,10 +51,10 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal, ITmioCo
 		if (!validacionApellido(conductor.getApellidos()))
 			return "El apellido no es válido, debe tener 3 caracteres o más";
 
-		if (!validacionFechaNacimiento(conductor.getFechaNacimiento()))
+		if (conductor.getFechaNacimiento()==null ||!validacionFechaNacimiento(conductor.getFechaNacimiento()))
 			return "Recuerda que tienes que ser mayor de edad";
 
-		if (!validacionFechaContratacion(conductor.getFechaContratacion()))
+		if (conductor.getFechaContratacion()==null ||!validacionFechaContratacion(conductor.getFechaContratacion()))
 			return "Recuerda que la fecha de contratación tiene que ser menor a la fecha actual";
 
 		conductorDAO.save(em, conductor);
@@ -80,10 +80,10 @@ public class TmioConductoresLogic implements ITmioConductoresLogicLocal, ITmioCo
 		if (!validacionApellido(conductor.getApellidos()))
 			return "El apellido no es válido, debe tener 3 caracteres o más";
 
-		if (!validacionFechaNacimiento(conductor.getFechaNacimiento()))
+		if (conductor.getFechaNacimiento()==null ||!validacionFechaNacimiento(conductor.getFechaNacimiento()))
 			return "Recuerda que tienes que ser mayor de edad";
 
-		if (!validacionFechaContratacion(conductor.getFechaContratacion()))
+		if (conductor.getFechaContratacion()==null ||!validacionFechaContratacion(conductor.getFechaContratacion()))
 			return "Recuerda que la fecha de contratación tiene que ser menor a la fecha actual";
 
 		conductorDAO.update(em, conductor);
